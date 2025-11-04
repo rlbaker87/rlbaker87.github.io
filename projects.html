@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Robert Baker's portfolio of instructional design projects - AI-enhanced leadership development, compliance training, and enterprise learning solutions">
+    <title>Projects | Robert Baker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .projects-hero h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .projects-hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .project-card {
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 6px solid #00B4A6;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 180, 166, 0.2);
+        }
+
+        .project-header {
+            margin-bottom: 30px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background-color: #00B4A6;
+            color: #FFFFFF;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            color: #1B365D;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .project-subtitle {
+            color: #343A40;
+            font-size: 1.15em;
+            opacity: 0.9;
+        }
+
+        .project-section {
+            margin: 30px 0;
+        }
+
+        .project-section h3 {
+            color: #1B365D;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .project-section p {
+            color: #343A40;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .solution-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .solution-list li {
+            padding: 15px;
+            background: #F8F9FA;
+            border-left: 4px solid #00B4A6;
+            border-radius: 4px;
+        }
+
+        .solution-list li:before {
+            content: "✓";
+            color: #00B4A6;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .results-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .results-box h3 {
+            color: #F07B3F;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result-label {
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.4;
+        }
+
+        .tools-box {
+            background: #E9ECEF;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+        }
+
+        .tools-box strong {
+            color: #1B365D;
+            font-size: 1.1em;
+        }
+
+        .tools-box span {
+            color: #343A40;
+            font-size: 1em;
+        }
+
+        @media (max-width: 768px) {
+            .projects-hero h1 {
+                font-size: 2.2em;
+            }
+
+            .project-card {
+                padding: 30px;
+            }
+
+            .project-title {
+                font-size: 1.8em;
+            }
+
+            .result-number {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Projects Hero -->
+    <section class="projects-hero">
+        <h1>Featured Projects</h1>
+        <p>Enterprise learning solutions delivering measurable business impact through strategic design and innovative implementation</p>
+    </section>
+
+    <!-- Projects Container -->
+    <div class="projects-container">
+        
+        <!-- Project 1: Innovation Forge -->
+        <article class="project-card">
+            <div class="project-header">
+                <span class="project-tag">AI-Enhanced Learning</span>
+                <h2 class="project-title">Innovation Forge: AI-Powered Leadership Development</h2>
+                <p class="project-subtitle">Pioneering AI integration in healthcare leadership training through custom chatbot development and experiential learning design</p>
+            </div>
+
+            <div class="project-section">
+                <h3>The Challenge</h3>
+                <p>Design a 60-minute leadership development experience for senior healthcare leaders (Directors and above) that teaches practical AI skills while developing strategic communication and problem-solving capabilities—all without feeling like a technology training session.</p>
+            </div>
+
+            <div class="project-section">
+                <h3>Solution</h3>
+                <ul class="solution-list">
+                    <li>Built custom AI agents in Microsoft CoPilot with hybrid prompt architecture, creating "Forge Coach" as an intelligent thought partner</li>
+                    <li>Leveraged external AI tools (ChatGPT, Claude, Perplexity) for building and testing the AI Agent to ensure robust coaching capabilities</li>
+                    <li>Designed hands-on crisis simulation combining traditional team challenges with real-time AI consultation</li>
+                    <li>Created "5 P's of Prompting" framework (Prime, Persona, Privacy, Product, Polish) for practical skill transfer</li>
+                    <li>Integrated Socratic coaching methodology that guides teams to discover solutions rather than providing answers</li>
+                </ul>
+            </div>
+
+            <div class="results-box">
+                <h3>Impact & Results</h3>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-number">100+</span>
+                        <span class="result-label">Senior Healthcare Leaders Trained</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">First</span>
+                        <span class="result-label">AI-Integrated Leadership Training at Prisma Health</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">Model</span>
+                        <span class="result-label">Case Study for AI Agent Development & Experimental Framework</span>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; color: #343A40;">Pioneered organizational adoption of AI-enhanced learning by demonstrating how AI can augment (not replace) human collaboration and strategic thinking. Now serves as departmental case study for AI agent building and experimental model for future AI-integrated learning initiatives across the enterprise.</p>
+            </div>
+
+            <div class="tools-box">
+                <strong>Role:</strong> <span>Lead Instructional Designer & AI Integration Specialist - Built AI agents and leveraged multiple AI platforms for development and testing</span><br>
+                <strong>Tools:</strong> <span>Microsoft CoPilot AI Agents, ChatGPT, Claude, Perplexity, Custom Prompt Engineering, Experiential Learning Design, Lego Serious Play Methodology</span>
+            </div>
+        </article>
+
+        <!-- Project 2: Leadership Symposium -->
+        <article class="project-card">
+            <div class="project-header">
+                <span class="project-tag">Event Management</span>
+                <h2 class="project-title">Annual Learning & Leadership Symposium</h2>
+                <p class="project-subtitle">Transforming a 400+ person healthcare leadership event through strategic project management and cross-functional team coordination</p>
+            </div>
+
+            <div class="project-section">
+                <h3>The Challenge</h3>
+                <p>Manage an enterprise-wide learning event serving 400+ healthcare leaders across multiple states while coordinating 6 cross-functional teams, managing a $60,000+ budget, and delivering high-quality learning experiences that justify significant organizational investment.</p>
+            </div>
+
+            <div class="project-section">
+                <h3>Solution</h3>
+                <ul class="solution-list">
+                    <li>Led 30+ team members across Session Planning and Logistics, Design and Development, Media and Technology, Registration and Learning Hub, Host and Expo, and Marketing and Communications teams</li>
+                    <li>Developed strategic session programming aligned with organizational priorities and leadership competencies</li>
+                    <li>Implemented real-time feedback systems and data-driven session optimization</li>
+                    <li>Earned expanded responsibility through demonstrated results: Session Planning Lead (2023) → Design Oversight (2024) → Project Manager (2025)</li>
+                </ul>
+            </div>
+
+            <div class="results-box">
+                <h3>Impact & Results</h3>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-number">4.74/5</span>
+                        <span class="result-label">Average Session Quality Rating</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">$60K+</span>
+                        <span class="result-label">Budget Managed</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">6</span>
+                        <span class="result-label">Cross-Functional Teams Coordinated</span>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; color: #343A40;">Delivered successful multi-day event with high participant satisfaction and demonstrated ability to manage complex, high-visibility initiatives with significant organizational impact.</p>
+            </div>
+
+            <div class="tools-box">
+                <strong>Role:</strong> <span>Project Manager and Learning Strategist (2025), previously Design Lead (2024) and Session Planning Lead (2023)</span><br>
+                <strong>Tools:</strong> <span>Microsoft Project, Cross-functional Team Management, Budget Management, Strategic Planning, Event Production</span>
+            </div>
+        </article>
+
+        <!-- Project 3: Compliance Training -->
+        <article class="project-card">
+            <div class="project-header">
+                <span class="project-tag">Enterprise Learning</span>
+                <h2 class="project-title">Compliance Training Transformation</h2>
+                <p class="project-subtitle">Redesigning mandatory training to reduce completion time while maintaining regulatory standards across 40,000+ employees</p>
+            </div>
+
+            <div class="project-section">
+                <h3>The Challenge</h3>
+                <p>Redesign mandatory annual compliance training across 40,000+ team members spanning two states with varying regulatory requirements. Content needed to use universal, evergreen language applicable across state lines while reducing completion time, improving engagement, and maintaining all regulatory standards without compromising audit readiness.</p>
+            </div>
+
+            <div class="project-section">
+                <h3>Solution</h3>
+                <ul class="solution-list">
+                    <li>Analyzed content inefficiencies and eliminated redundant information while preserving compliance integrity across state-specific requirements</li>
+                    <li>Developed universal language framework ensuring content applicability for team members in both states</li>
+                    <li>Redesigned navigation architecture for intuitive user experience and faster content access</li>
+                    <li>Leveraged AI tools (ChatGPT, Claude, CoPilot) to accelerate content development workflows while maintaining quality</li>
+                    <li>Implemented interactive design elements to increase engagement and knowledge retention</li>
+                </ul>
+            </div>
+
+            <div class="results-box">
+                <h3>Impact & Results</h3>
+                <p style="color: #343A40; font-size: 1.1em; margin-bottom: 0;">Achieved significant reduction in training completion time across the enterprise, generating substantial productivity gains for 40,000+ team members. Maintained 100% regulatory compliance and audit readiness while improving employee satisfaction with the training experience. Universal language approach ensured consistent learning outcomes across both state operations.</p>
+            </div>
+
+            <div class="tools-box">
+                <strong>Role:</strong> <span>Lead Instructional Designer</span><br>
+                <strong>Tools:</strong> <span>Articulate Storyline 360, AI-Enhanced Development (ChatGPT, Claude, CoPilot), Content Analysis, UX Design, Compliance Framework Development</span>
+            </div>
+        </article>
+
+        <!-- Project 4: Microlearning Strategy -->
+        <article class="project-card">
+            <div class="project-header">
+                <span class="project-tag">Strategic Initiative</span>
+                <h2 class="project-title">Enterprise Microlearning Strategy</h2>
+                <p class="project-subtitle">Implementing scalable microlearning framework across a 40,000+ employee healthcare organization</p>
+            </div>
+
+            <div class="project-section">
+                <h3>The Challenge</h3>
+                <p>Establish organization-wide microlearning standards and capabilities where none existed, requiring departmental alignment, toolkit development, and change management across diverse teams and stakeholders in a 40,000+ employee organization.</p>
+            </div>
+
+            <div class="project-section">
+                <h3>Solution</h3>
+                <ul class="solution-list">
+                    <li>Developed comprehensive Microlearning Toolkit with templates, guidelines, and best practices</li>
+                    <li>Created departmental standards documentation for consistent quality and approach</li>
+                    <li>Designed implementation strategy that integrates into existing frameworks and workflows, alleviating excessive upskilling requirements and easing change management</li>
+                    <li>Established scalable framework for future microlearning initiatives across the enterprise</li>
+                </ul>
+            </div>
+
+            <div class="results-box">
+                <h3>Impact & Results</h3>
+                <p style="color: #343A40; font-size: 1.1em; margin-bottom: 0;">Strategy finalized and approved by leadership for enterprise-wide deployment. Integration into existing framework reduces training burden on teams while establishing organizational competency in modern learning delivery methods. Deployment phase will begin next iteration, with toolkit and standards ready for immediate use.</p>
+            </div>
+
+            <div class="tools-box">
+                <strong>Role:</strong> <span>Strategy Lead & Framework Developer</span><br>
+                <strong>Tools:</strong> <span>Microlearning Design Principles, Change Management, Toolkit Development, Organizational Standards Documentation, Workflow Integration</span>
+            </div>
+        </article>
+
+        <!-- Project 5: Safety Training -->
+        <article class="project-card">
+            <div class="project-header">
+                <span class="project-tag">High-Risk Training</span>
+                <h2 class="project-title">Comprehensive Safety & Emergency Response Training</h2>
+                <p class="project-subtitle">Developing life-critical training for diverse high-risk scenarios from warehouse operations to contaminated patient care</p>
+            </div>
+
+            <div class="project-section">
+                <h3>The Challenge</h3>
+                <p>Create effective, practical safety training for healthcare team members across dramatically different high-risk scenarios—from warehouse chemical handling and kitchen fires to treating contaminated patients. Content must meet multiple regulatory standards (OSHA, DHEC, FEMA) while remaining accessible and immediately actionable where mistakes have serious consequences.</p>
+            </div>
+
+            <div class="project-section">
+                <h3>Solution</h3>
+                <ul class="solution-list">
+                    <li>Developed First Receiver Courses for healthcare team members treating contaminated patients (HAZMAT, Biological, Chemical, Radiological, Explosive threats)</li>
+                    <li>Created warehouse safety training covering chemical handling, equipment operation, and lifting protocols</li>
+                    <li>Designed kitchen fire safety and emergency response protocols for food service environments</li>
+                    <li>Collaborated with field teams to assess real-world performance needs across diverse operational settings</li>
+                    <li>Integrated OSHA, DHEC, and FEMA requirements with scenario-based practical application</li>
+                    <li>Developed multimedia training ensuring consistent safety standards across all high-risk environments</li>
+                </ul>
+            </div>
+
+            <div class="results-box">
+                <h3>Impact & Results</h3>
+                <p style="color: #343A40; font-size: 1.1em; margin-bottom: 0;">Improved safety compliance rates and reduced incident reports across multiple high-risk healthcare environments. Enhanced operational efficiency and emergency preparedness through comprehensive, field-validated training that prepares team members for life-critical situations ranging from routine safety protocols to emergency response for contaminated patients.</p>
+            </div>
+
+            <div class="tools-box">
+                <strong>Role:</strong> <span>Instructional Designer & Safety Training Specialist</span><br>
+                <strong>Tools:</strong> <span>Scenario-Based Learning Design, Regulatory Compliance Integration (OSHA, DHEC, FEMA), Field Validation, Multimedia Development (Camtasia, Articulate), Emergency Response Protocols</span>
+            </div>
+        </article>
+
+    </div>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Interested in Similar Results?</h2>
+            <p>Let's discuss how strategic instructional design can drive measurable impact in your organization.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="about.html" class="btn btn-secondary">Learn More About Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2025 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
