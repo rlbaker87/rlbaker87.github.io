@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Robert Baker - Senior Instructional Designer and Learning Strategist passionate about solving complex learning challenges at scale">
+    <title>About | Robert Baker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 80px 20px;
+        }
+
+        .about-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-hero .tagline {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+
+        .about-hero .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .about-section {
+            margin-bottom: 60px;
+        }
+
+        .about-section h2 {
+            color: #1B365D;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .about-section h3 {
+            color: #1B365D;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        .about-section p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: #343A40;
+            margin-bottom: 20px;
+        }
+
+        /* Photo Grid Section */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .photo-placeholder {
+            background: #E9ECEF;
+            border-radius: 10px;
+            padding: 60px 20px;
+            text-align: center;
+            border: 2px dashed #00B4A6;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-placeholder p {
+            color: #1B365D;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Core Values Box */
+        .values-box {
+            background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+            border-left: 5px solid #00B4A6;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .values-box h3 {
+            color: #1B365D;
+            margin-top: 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .value-item {
+            background: #FFFFFF;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 4px solid #F07B3F;
+        }
+
+        .value-item h4 {
+            color: #1B365D;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .value-item p {
+            font-size: 1em;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: #FFFFFF;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #00B4A6;
+        }
+
+        .skills-category {
+            margin-bottom: 35px;
+        }
+
+        .skills-category h4 {
+            color: #1B365D;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: #F8F9FA;
+            color: #343A40;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            border: 2px solid #E9ECEF;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #00B4A6;
+            color: #FFFFFF;
+            border-color: #00B4A6;
+            transform: translateY(-2px);
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .education-card {
+            background: #F8F9FA;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #00B4A6;
+        }
+
+        .education-card h4 {
+            color: #1B365D;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .education-card .degree {
+            color: #F07B3F;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .education-card .year {
+            color: #343A40;
+            opacity: 0.8;
+            font-size: 0.95em;
+        }
+
+        /* Personal Section */
+        .personal-section {
+            background: linear-gradient(135deg, #FFF3CD 0%, #FFE9A6 100%);
+            padding: 50px;
+            border-radius: 10px;
+            border-left: 5px solid #F07B3F;
+        }
+
+        .personal-section h2 {
+            color: #1B365D;
+        }
+
+        .personal-section p {
+            color: #343A40;
+        }
+
+        .interests-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .interests-list li {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .interests-list li:before {
+            content: "●";
+            color: #F07B3F;
+            font-size: 1.5em;
+            margin-right: 12px;
+        }
+
+        /* CTA Section */
+        .about-cta {
+            background: #1B365D;
+            color: #FFFFFF;
+            padding: 60px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .about-cta h2 {
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        .about-cta p {
+            color: #FFFFFF;
+            opacity: 0.9;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* Timeline Placeholder */
+        .timeline-placeholder {
+            background: #E9ECEF;
+            border-radius: 10px;
+            padding: 80px 20px;
+            text-align: center;
+            border: 2px dashed #00B4A6;
+            margin: 40px 0;
+        }
+
+        .timeline-placeholder p {
+            color: #1B365D;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.2em;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-section {
+                padding: 30px;
+            }
+
+            .about-cta {
+                padding: 40px 20px;
+            }
+
+            .personal-section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>Hi, I'm Robert</h1>
+            <div class="tagline">I solve complex learning challenges at scale</div>
+            <div class="subtitle">Passionate about analysis, problem-solving, and creating measurable impact through strategic learning design</div>
+        </div>
+    </section>
+
+    <!-- About Container -->
+    <div class="about-container">
+
+        <!-- Photo Grid Section -->
+        <div class="photo-grid">
+            <div class="photo-placeholder">
+                <p>📸 Professional Headshot<br>(Add later)</p>
+            </div>
+            <div class="photo-placeholder">
+                <p>👨‍👩‍👧‍👦 Family Photo<br>(Add later)</p>
+            </div>
+        </div>
+
+        <!-- My Approach Section -->
+        <section class="about-section">
+            <h2>My Approach</h2>
+            <p>Learning never stops for me—it's not just what I do, it's who I am. I'm driven by curiosity and the challenge of getting to the root of a problem. When organizations face complex learning challenges, I don't just design training; I analyze the system, identify what's actually blocking performance, and create solutions that deliver measurable business results.</p>
+            
+            <p>My approach combines strategic thinking with practical execution. I've pioneered AI-integrated leadership development, optimized enterprise compliance training across two states, and led learning initiatives reaching 40,000+ team members. But what matters most isn't the scale—it's the impact. Every project I take on is guided by one question: <strong>How does this help people perform better and drive organizational goals?</strong></p>
+        </section>
+
+        <!-- What Drives Me -->
+        <div class="values-box">
+            <h3>What Drives Me</h3>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h4>Measurable Impact</h4>
+                    <p>I'm not satisfied with "delivered training." I want to see time saved, costs reduced, performance improved—real business outcomes that justify the investment.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Continuous Learning</h4>
+                    <p>Whether it's mastering AI agent development or exploring new learning technologies, I'm always pushing myself to stay ahead and bring fresh approaches to my work.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Helping People Grow</h4>
+                    <p>At the heart of every project is people—team members gaining new skills, leaders developing their capabilities, organizations building capacity for the future.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Journey -->
+        <section class="about-section">
+            <h2>Professional Journey</h2>
+            <p>I've spent over a decade in learning and development, with the last three years focused on enterprise instructional design at Prisma Health, a 40,000+ employee healthcare organization spanning two states.</p>
+            
+            <p>My background includes 10 years in education—teaching at the high school and collegiate level, designing professional development for educators, and coaching teams to measurable improvement. That foundation taught me how to break down complex concepts, adapt to diverse audiences, and use data to drive results. When I transitioned to corporate learning in 2022, I brought that same analytical, results-focused approach to enterprise-scale challenges.</p>
+
+            <p>Today, I lead strategic initiatives like our annual Learning & Leadership Symposium (400+ attendees, $60K+ budget), pioneer AI-integrated learning solutions, and develop training that spans everything from regulatory compliance to high-risk emergency response. I'm particularly energized by projects that push boundaries—whether that's building custom AI agents, designing universal training frameworks across state lines, or creating learning experiences that blend technology with human connection.</p>
+
+            <!-- Timeline Placeholder -->
+            <div class="timeline-placeholder">
+                <p>📊 Career Timeline Visual<br>(Will be added as image)</p>
+            </div>
+        </section>
+
+        <!-- Core Competencies -->
+        <section class="about-section">
+            <h2>Core Competencies</h2>
+            
+            <div class="skills-section">
+                <div class="skills-category">
+                    <h4>Learning Strategy & Leadership</h4>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Enterprise Learning Strategy</span>
+                        <span class="skill-tag">Project Management</span>
+                        <span class="skill-tag">Cross-Functional Team Leadership</span>
+                        <span class="skill-tag">Change Management</span>
+                        <span class="skill-tag">Budget Management</span>
+                        <span class="skill-tag">Stakeholder Engagement</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h4>Instructional Design & Development</h4>
+                    <div class="skills-tags">
+                        <span class="skill-tag">ADDIE & SAM</span>
+                        <span class="skill-tag">Articulate Storyline 360</span>
+                        <span class="skill-tag">Articulate Rise</span>
+                        <span class="skill-tag">Scenario-Based Learning</span>
+                        <span class="skill-tag">Microlearning Design</span>
+                        <span class="skill-tag">Multimedia Development</span>
+                        <span class="skill-tag">Camtasia</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h4>AI Integration & Innovation</h4>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Microsoft CoPilot Agents</span>
+                        <span class="skill-tag">ChatGPT</span>
+                        <span class="skill-tag">Claude</span>
+                        <span class="skill-tag">Perplexity</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">AI-Enhanced Content Development</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h4>Compliance & Safety Training</h4>
+                    <div class="skills-tags">
+                        <span class="skill-tag">OSHA Compliance</span>
+                        <span class="skill-tag">DHEC Standards</span>
+                        <span class="skill-tag">FEMA Guidelines</span>
+                        <span class="skill-tag">HAZMAT Training</span>
+                        <span class="skill-tag">Emergency Response Protocols</span>
+                        <span class="skill-tag">Regulatory Training</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h4>Learning Technologies</h4>
+                    <div class="skills-tags">
+                        <span class="skill-tag">LMS Administration (Cornerstone)</span>
+                        <span class="skill-tag">Microsoft Project</span>
+                        <span class="skill-tag">SharePoint</span>
+                        <span class="skill-tag">Google Workspace</span>
+                        <span class="skill-tag">Adobe Creative Suite</span>
+                        <span class="skill-tag">VR Content Delivery</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="about-section">
+            <h2>Education & Credentials</h2>
+            
+            <div class="education-grid">
+                <div class="education-card">
+                    <h4>University of North Georgia</h4>
+                    <div class="degree">Master of Arts in History</div>
+                    <div class="year">2014</div>
+                    <p style="margin-top: 10px; font-size: 0.95em;">Early American History, Thesis on Martial Culture in U.S. Officer Corps</p>
+                </div>
+
+                <div class="education-card">
+                    <h4>North Georgia College and State University</h4>
+                    <div class="degree">Master of Arts in Teaching</div>
+                    <div class="year">2011</div>
+                    <p style="margin-top: 10px; font-size: 0.95em;">Secondary Social Studies Education, Coursework in Curriculum, Instruction Design & Technology</p>
+                </div>
+
+                <div class="education-card">
+                    <h4>Carson-Newman University</h4>
+                    <div class="degree">Bachelor of Arts in History</div>
+                    <div class="year">2010</div>
+                    <p style="margin-top: 10px; font-size: 0.95em;">Liberal Arts Education, Coursework in History and Education</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 30px;"><strong>Additional Experience:</strong> Designed and facilitated professional development workshops for educators on instructional technology, data analysis, and effective teaching methodologies. Comfortable delivering teacher training and educator-focused learning solutions.</p>
+        </section>
+
+        <!-- Beyond Work -->
+        <section class="about-section">
+            <div class="personal-section">
+                <h2>Beyond Work</h2>
+                <p>I live in Greer, South Carolina with my wife and our two children. Family is at the center of every major decision I make—from career moves to how I approach my work. I want to create learning experiences that make people's jobs easier, more fulfilling, and more successful, because I know they're going home to families who matter just as much as mine does to me.</p>
+
+                <p>When I'm not designing learning solutions, you'll find me:</p>
+
+                <ul class="interests-list">
+                    <li>Woodworking and building things with my hands</li>
+                    <li>Hiking and exploring the mountains</li>
+                    <li>Playing and spending time with my kids</li>
+                    <li>Experimenting with new technologies and AI tools</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="about-cta">
+            <h2>Let's Work Together</h2>
+            <p>I'm currently leading learning initiatives at Prisma Health and am open to exploring senior L&D leadership opportunities and consulting engagements. If you're looking for someone who combines strategic thinking with hands-on execution, let's connect.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="projects.html" class="btn btn-secondary">View My Work</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2025 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
