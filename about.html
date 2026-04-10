@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About Robert Baker - Senior Instructional Designer and Learning Strategist passionate about solving complex learning challenges at scale">
+    <meta name="description" content="About Robert Baker - Senior L&D Strategist with 10+ years designing learning that drives real performance across healthcare and enterprise environments">
     <title>About | Robert Baker</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -70,33 +70,6 @@
             margin-bottom: 20px;
         }
 
-        /* Photo Grid Section */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .photo-placeholder {
-            background: #E9ECEF;
-            border-radius: 10px;
-            padding: 60px 20px;
-            text-align: center;
-            border: 2px dashed #00B4A6;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .photo-placeholder p {
-            color: #1B365D;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        /* Core Values Box */
         .values-box {
             background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
             border-left: 5px solid #00B4A6;
@@ -108,6 +81,8 @@
         .values-box h3 {
             color: #1B365D;
             margin-top: 0;
+            font-size: 1.6em;
+            font-weight: 700;
         }
 
         .values-grid {
@@ -136,99 +111,6 @@
             line-height: 1.6;
         }
 
-        /* Career Timeline Styles */
-        .career-timeline {
-            margin: 50px 0;
-        }
-
-        .timeline-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, #343A40, #1B365D, #00B4A6, #F07B3F);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 60px;
-            margin-bottom: 50px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 12px;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 4px solid #FFFFFF;
-            box-shadow: 0 0 0 2px #E9ECEF;
-        }
-
-        .timeline-content {
-            background: #FFFFFF;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid #00B4A6;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(0, 180, 166, 0.15);
-        }
-
-        .timeline-year {
-            display: inline-block;
-            background: #00B4A6;
-            color: #FFFFFF;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.9em;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .timeline-content h4 {
-            color: #1B365D;
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        .timeline-content p {
-            color: #343A40;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .timeline-highlights {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .highlight-badge {
-            background: #F8F9FA;
-            color: #1B365D;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-            border: 1px solid #E9ECEF;
-        }
-
-        /* Skills Section */
         .skills-section {
             background: #FFFFFF;
             padding: 50px;
@@ -271,7 +153,6 @@
             transform: translateY(-2px);
         }
 
-        /* Education Section */
         .education-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -304,7 +185,6 @@
             font-size: 0.95em;
         }
 
-        /* Personal Section */
         .personal-section {
             background: linear-gradient(135deg, #FFF3CD 0%, #FFE9A6 100%);
             padding: 50px;
@@ -333,18 +213,11 @@
             padding: 15px;
             background: rgba(255, 255, 255, 0.7);
             border-radius: 6px;
-            display: flex;
-            align-items: center;
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.5;
         }
 
-        .interests-list li:before {
-            content: "\2022";
-            color: #F07B3F;
-            font-size: 1.5em;
-            margin-right: 12px;
-        }
-
-        /* CTA Section */
         .about-cta {
             background: #1B365D;
             color: #FFFFFF;
@@ -366,14 +239,9 @@
             margin-bottom: 30px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .about-hero h1 {
                 font-size: 2.2em;
-            }
-
-            .photo-grid {
-                grid-template-columns: 1fr;
             }
 
             .skills-section {
@@ -386,18 +254,6 @@
 
             .personal-section {
                 padding: 30px;
-            }
-
-            .timeline-container::before {
-                left: 10px;
-            }
-
-            .timeline-dot {
-                left: 2px;
-            }
-
-            .timeline-item {
-                padding-left: 45px;
             }
         }
     </style>
@@ -420,30 +276,24 @@
     <section class="about-hero">
         <div class="about-hero-content">
             <h1>Hi, I'm Robert</h1>
-            <div class="tagline">I solve complex learning challenges at scale</div>
-            <div class="subtitle">Passionate about analysis, problem-solving, and creating measurable impact through strategic learning design</div>
+            <div class="tagline">I design learning that drives real performance</div>
+            <div class="subtitle">10+ years spanning healthcare enterprise learning, classroom teaching, and athletic coaching. That combination shapes how I approach every project.</div>
         </div>
     </section>
 
     <!-- About Container -->
     <div class="about-container">
 
-        <!-- Photo Grid Section -->
-        <div class="photo-grid">
-            <div class="photo-placeholder">
-                <p>[Photo: Professional Headshot]<br>(Add later)</p>
-            </div>
-            <div class="photo-placeholder">
-                <p>[Photo: Family Photo]<br>(Add later)</p>
-            </div>
-        </div>
-
         <!-- My Approach Section -->
         <section class="about-section">
             <h2>My Approach</h2>
-            <p>Learning never stops for me—it's not just what I do, it's who I am. I'm driven by curiosity and the challenge of getting to the root of a problem. When organizations face complex learning challenges, I don't just design training; I analyze the system, identify what's actually blocking performance, and create solutions that deliver measurable business results.</p>
-            
-            <p>My approach combines strategic thinking with practical execution. I've pioneered AI-integrated leadership development, optimized enterprise compliance training across two states, and led learning initiatives reaching 40,000+ team members. But what matters most isn't the scale—it's the impact. Every project I take on is guided by one question: <strong>How does this help people perform better and drive organizational goals?</strong></p>
+            <p>I am driven by curiosity and the challenge of getting to the root of a problem. When organizations face learning challenges, I do not just design training. I analyze the system, identify what is actually blocking performance, and build solutions that connect directly to business outcomes.</p>
+
+            <p>My background spans enterprise instructional design, a decade of classroom teaching and collegiate instruction, and years of athletic coaching. Each of those roles taught me something different about how people actually learn, what gets in the way, and what it takes to move performance. I brought all of that into corporate learning when I joined Prisma Health in 2022, and it shapes every project I take on.</p>
+
+            <p>At Prisma Health, I design and lead learning initiatives for a 30,000+ employee organization across South Carolina and Tennessee. Recent work includes building Forge Coach, the organization's first AI-integrated leadership training experience, and serving as Project Manager for the annual Learning and Leadership Symposium, a 400+ attendee enterprise event with 30+ cross-functional team members. I also serve as an AI Champion, helping colleagues build practical fluency with tools that are reshaping how we work.</p>
+
+            <p>I believe AI should enhance human expertise, not replace it. That principle guides every AI-integrated learning experience I design.</p>
         </section>
 
         <!-- What Drives Me -->
@@ -452,15 +302,15 @@
             <div class="values-grid">
                 <div class="value-item">
                     <h4>Measurable Impact</h4>
-                    <p>I'm not satisfied with "delivered training." I want to see time saved, costs reduced, performance improved—real business outcomes that justify the investment.</p>
+                    <p>I am not satisfied with "delivered training." I want to see time saved, costs reduced, performance improved. Real outcomes that justify the investment.</p>
                 </div>
                 <div class="value-item">
                     <h4>Continuous Learning</h4>
-                    <p>Whether it's mastering AI agent development or exploring new learning technologies, I'm always pushing myself to stay ahead and bring fresh approaches to my work.</p>
+                    <p>Whether it is building AI agents or exploring new learning methodologies, I am always pushing to stay ahead and bring fresh thinking to my work.</p>
                 </div>
                 <div class="value-item">
-                    <h4>Helping People Grow</h4>
-                    <p>At the heart of every project is people—team members gaining new skills, leaders developing their capabilities, organizations building capacity for the future.</p>
+                    <h4>Developing People</h4>
+                    <p>At the center of every project are people gaining new skills, leaders developing their capabilities, and organizations building capacity for the future.</p>
                 </div>
             </div>
         </div>
@@ -468,136 +318,75 @@
         <!-- Professional Journey -->
         <section class="about-section">
             <h2>Professional Journey</h2>
-            <p>I've spent over a decade in learning and development, with the last three years focused on enterprise instructional design at Prisma Health, a 40,000+ employee healthcare organization spanning two states.</p>
-            
-            <p>My background includes 10 years in education—teaching at the high school and collegiate level, designing professional development for educators, and coaching teams to measurable improvement. That foundation taught me how to break down complex concepts, adapt to diverse audiences, and use data to drive results. When I transitioned to corporate learning in 2022, I brought that same analytical, results-focused approach to enterprise-scale challenges.</p>
+            <p>I spent a decade in education, teaching high school and collegiate students, designing professional development for educators, and coaching wrestling and football. That work built my foundation in curriculum design, facilitation, performance analysis, and developing people under pressure. I learned how to break down complex concepts, adapt to wildly different audiences, and use data to improve outcomes.</p>
 
-            <p>Today, I lead strategic initiatives like our annual Learning & Leadership Symposium (400+ attendees, $60K+ budget), pioneer AI-integrated learning solutions, and develop training that spans everything from regulatory compliance to high-risk emergency response. I'm particularly energized by projects that push boundaries—whether that's building custom AI agents, designing universal training frameworks across state lines, or creating learning experiences that blend technology with human connection.</p>
+            <p>In 2022 I transitioned to enterprise instructional design at Prisma Health, bringing that same analytical and results-focused approach to a much larger stage. Over the past three years I have progressively taken on more strategic scope, from designing individual learning solutions to leading enterprise-wide initiatives, managing cross-functional teams, and pioneering AI integration in learning design.</p>
 
-            <!-- Career Timeline -->
-            <div class="career-timeline">
-                <h3 style="text-align: center; color: #1B365D; margin-bottom: 40px; font-size: 1.8em;">Career Journey</h3>
-                
-                <div class="timeline-container">
-                    <!-- Timeline Item 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background: #343A40;"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-year">2010-2011</div>
-                            <h4>Foundation</h4>
-                            <p>Completed MA in Teaching and MA in History. Built instructional design foundation through education coursework.</p>
-                        </div>
-                    </div>
-
-                    <!-- Timeline Item 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background: #1B365D;"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-year">2011-2019</div>
-                            <h4>Educator & Technology Integration Specialist</h4>
-                            <p>Led curriculum development, professional development, and technology integration across multiple schools. Pioneered VR content delivery, Google Apps for Education, and data-driven instruction.</p>
-                            <div class="timeline-highlights">
-                                <span class="highlight-badge">Community of Practice Leader</span>
-                                <span class="highlight-badge">Google Certified Educator</span>
-                                <span class="highlight-badge">VR Pioneer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Timeline Item 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background: #00B4A6;"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-year">2019-2022</div>
-                            <h4>Transition to Corporate Learning</h4>
-                            <p>Continued teaching while expanding professional development facilitation. Adapted to remote learning during COVID-19, demonstrating agility with virtual and hybrid delivery methods.</p>
-                        </div>
-                    </div>
-
-                    <!-- Timeline Item 4 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background: #00B4A6;"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-year">2022-2024</div>
-                            <h4>Instructional Designer - Prisma Health</h4>
-                            <p>Launched enterprise L&D career, developing compliance training, safety protocols, and operational learning for 40,000+ team members across two states.</p>
-                            <div class="timeline-highlights">
-                                <span class="highlight-badge">Enterprise Learning</span>
-                                <span class="highlight-badge">Safety Training</span>
-                                <span class="highlight-badge">Symposium Session Lead</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Timeline Item 5 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background: #F07B3F;"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-year">2024-Present</div>
-                            <h4>Senior Instructional Designer - Prisma Health</h4>
-                            <p>Leading strategic initiatives including AI-integrated leadership development, microlearning strategy, and symposium project management. Pioneering innovative approaches to enterprise learning.</p>
-                            <div class="timeline-highlights">
-                                <span class="highlight-badge">Innovation Forge (AI Leadership)</span>
-                                <span class="highlight-badge">Symposium Project Manager</span>
-                                <span class="highlight-badge">Microlearning Strategy Lead</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p>Today I lead projects that span AI-integrated leadership development, enterprise compliance training covering federal healthcare statutes, high-risk environment safety training, and large-scale program management. I am particularly energized by work that sits at the intersection of technology and human performance, where the design challenge is not just what to teach but how to make it stick in the real world.</p>
         </section>
 
         <!-- Core Competencies -->
         <section class="about-section">
             <h2>Core Competencies</h2>
-            
+
             <div class="skills-section">
                 <div class="skills-category">
-                    <h4>Learning Strategy & Leadership</h4>
+                    <h4>Learning Strategy and Leadership</h4>
                     <div class="skills-tags">
                         <span class="skill-tag">Enterprise Learning Strategy</span>
-                        <span class="skill-tag">Project Management</span>
+                        <span class="skill-tag">Program and Event Management</span>
                         <span class="skill-tag">Cross-Functional Team Leadership</span>
-                        <span class="skill-tag">Change Management</span>
+                        <span class="skill-tag">KPI Development and Reporting</span>
+                        <span class="skill-tag">Kirkpatrick Evaluation Model</span>
                         <span class="skill-tag">Budget Management</span>
-                        <span class="skill-tag">Stakeholder Engagement</span>
+                        <span class="skill-tag">Executive Stakeholder Engagement</span>
+                        <span class="skill-tag">Needs Assessment and Gap Analysis</span>
+                        <span class="skill-tag">OKR Development and Metrics</span>
                     </div>
                 </div>
 
                 <div class="skills-category">
-                    <h4>Instructional Design & Development</h4>
+                    <h4>Instructional Design and Development</h4>
                     <div class="skills-tags">
-                        <span class="skill-tag">ADDIE & SAM</span>
+                        <span class="skill-tag">ADDIE and SAM Methodologies</span>
                         <span class="skill-tag">Articulate Storyline 360</span>
                         <span class="skill-tag">Articulate Rise</span>
                         <span class="skill-tag">Scenario-Based Learning</span>
                         <span class="skill-tag">Microlearning Design</span>
+                        <span class="skill-tag">Experiential Learning Design</span>
                         <span class="skill-tag">Multimedia Development</span>
                         <span class="skill-tag">Camtasia</span>
+                        <span class="skill-tag">Lego Serious Play</span>
                     </div>
                 </div>
 
                 <div class="skills-category">
-                    <h4>AI Integration & Innovation</h4>
+                    <h4>AI Integration and Innovation</h4>
                     <div class="skills-tags">
-                        <span class="skill-tag">Microsoft CoPilot Agents</span>
+                        <span class="skill-tag">Microsoft CoPilot Agent Development</span>
+                        <span class="skill-tag">AI Upskilling Program Design</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">AI Workflow Automation</span>
                         <span class="skill-tag">ChatGPT</span>
                         <span class="skill-tag">Claude</span>
+                        <span class="skill-tag">Gemini</span>
                         <span class="skill-tag">Perplexity</span>
-                        <span class="skill-tag">Prompt Engineering</span>
-                        <span class="skill-tag">AI-Enhanced Content Development</span>
                     </div>
                 </div>
 
                 <div class="skills-category">
-                    <h4>Compliance & Safety Training</h4>
+                    <h4>Compliance and Regulatory Training</h4>
                     <div class="skills-tags">
+                        <span class="skill-tag">HIPAA</span>
+                        <span class="skill-tag">EMTALA</span>
+                        <span class="skill-tag">Stark Law</span>
+                        <span class="skill-tag">Anti-Kickback Statute</span>
                         <span class="skill-tag">OSHA Compliance</span>
                         <span class="skill-tag">DHEC Standards</span>
                         <span class="skill-tag">FEMA Guidelines</span>
                         <span class="skill-tag">HAZMAT Training</span>
-                        <span class="skill-tag">Emergency Response Protocols</span>
-                        <span class="skill-tag">Regulatory Training</span>
+                        <span class="skill-tag">Multi-State Compliance Frameworks</span>
+                        <span class="skill-tag">Audit Readiness</span>
                     </div>
                 </div>
 
@@ -605,11 +394,13 @@
                     <h4>Learning Technologies</h4>
                     <div class="skills-tags">
                         <span class="skill-tag">LMS Administration (Cornerstone)</span>
+                        <span class="skill-tag">Blackboard</span>
+                        <span class="skill-tag">Canvas</span>
                         <span class="skill-tag">Microsoft Project</span>
                         <span class="skill-tag">SharePoint</span>
                         <span class="skill-tag">Google Workspace</span>
-                        <span class="skill-tag">Adobe Creative Suite</span>
                         <span class="skill-tag">VR Content Delivery</span>
+                        <span class="skill-tag">Workday</span>
                     </div>
                 </div>
             </div>
@@ -617,55 +408,53 @@
 
         <!-- Education -->
         <section class="about-section">
-            <h2>Education & Credentials</h2>
-            
+            <h2>Education</h2>
+
             <div class="education-grid">
                 <div class="education-card">
                     <h4>University of North Georgia</h4>
                     <div class="degree">Master of Arts in History</div>
                     <div class="year">2014</div>
-                    <p style="margin-top: 10px; font-size: 0.95em;">Early American History, Thesis on Martial Culture in U.S. Officer Corps</p>
+                    <p style="margin-top: 10px; font-size: 0.95em;">Early American History. Thesis on Martial Culture in the U.S. Officer Corps.</p>
                 </div>
 
                 <div class="education-card">
                     <h4>North Georgia College and State University</h4>
                     <div class="degree">Master of Arts in Teaching</div>
                     <div class="year">2011</div>
-                    <p style="margin-top: 10px; font-size: 0.95em;">Secondary Social Studies Education, Coursework in Curriculum, Instruction Design & Technology</p>
+                    <p style="margin-top: 10px; font-size: 0.95em;">Secondary Social Studies Education. Coursework in Curriculum, Instructional Design and Technology.</p>
                 </div>
 
                 <div class="education-card">
                     <h4>Carson-Newman University</h4>
                     <div class="degree">Bachelor of Arts in History</div>
                     <div class="year">2010</div>
-                    <p style="margin-top: 10px; font-size: 0.95em;">Liberal Arts Education, Coursework in History and Education</p>
+                    <p style="margin-top: 10px; font-size: 0.95em;">Liberal Arts Education. Coursework in History and Education.</p>
                 </div>
             </div>
-
-            <p style="margin-top: 30px;"><strong>Additional Experience:</strong> Designed and facilitated professional development workshops for educators on instructional technology, data analysis, and effective teaching methodologies. Comfortable delivering teacher training and educator-focused learning solutions.</p>
         </section>
 
         <!-- Beyond Work -->
         <section class="about-section">
             <div class="personal-section">
                 <h2>Beyond Work</h2>
-                <p>I live in Greer, South Carolina with my wife and our three children. Family is at the center of every major decision I make—from career moves to how I approach my work. I want to create learning experiences that make people's jobs easier, more fulfilling, and more successful, because I know they're going home to families who matter just as much as mine does to me.</p>
+                <p>I live in Greer, South Carolina with my wife and our three kids. Family drives every major decision I make, including how I approach my work. I want to design learning that makes people's jobs genuinely easier and more effective, because I know they are going home to people who matter just as much as mine do to me.</p>
 
-                <p>When I'm not designing learning solutions, you'll find me:</p>
+                <p>Outside of work you will find me:</p>
 
                 <ul class="interests-list">
                     <li>Woodworking and building things with my hands</li>
-                    <li>Hiking and exploring the mountains</li>
-                    <li>Playing and spending time with my kids</li>
-                    <li>Experimenting with new technologies and AI tools</li>
+                    <li>Running OCR races and training for the next one</li>
+                    <li>Hiking and getting outside with the family</li>
+                    <li>Building and experimenting with AI tools</li>
                 </ul>
             </div>
         </section>
 
         <!-- CTA -->
         <div class="about-cta">
-            <h2>Let's Connect</h2>
-            <p>I'm passionate about solving complex learning challenges and always interested in connecting with fellow L&D professionals. Whether you're looking to discuss instructional design strategies, explore collaboration opportunities, or exchange ideas, I'd love to hear from you.</p>
+            <h2>Let's Talk About What Learning Can Do</h2>
+            <p>If you are building something that needs to stick and drive real results, I would like to hear about it.</p>
             <div class="cta-buttons">
                 <a href="contact.html" class="btn btn-primary">Get In Touch</a>
                 <a href="projects.html" class="btn btn-secondary">View My Work</a>
@@ -685,7 +474,7 @@
             <div class="footer-social">
                 <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
             </div>
-            <p class="footer-copyright">&copy; 2025 Robert Baker. All rights reserved.</p>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
         </div>
     </footer>
 </body>
