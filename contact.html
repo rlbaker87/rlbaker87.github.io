@@ -3,12 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Robert Baker - Senior Instructional Designer">
+    <meta name="description" content="Contact Robert Baker - Senior L&D Strategist specializing in AI-integrated learning design and instructional strategy at scale">
     <title>Contact | Robert Baker</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        .contact-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
         .contact-page {
-            min-height: 70vh;
+            min-height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -25,24 +45,18 @@
             border-top: 5px solid #00B4A6;
         }
 
-        .contact-container h1 {
+        .contact-container h2 {
             color: #1B365D;
-            font-size: 2.5em;
-            margin-bottom: 15px;
+            font-size: 1.8em;
+            margin-bottom: 25px;
             text-align: center;
-        }
-
-        .contact-container p {
-            text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 40px;
-            color: #343A40;
+            font-weight: 700;
         }
 
         .contact-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
             margin-bottom: 40px;
         }
 
@@ -63,30 +77,40 @@
         .contact-card h3 {
             color: #1B365D;
             margin-bottom: 15px;
-            font-size: 1.3em;
+            font-size: 1.2em;
+            font-weight: 600;
         }
 
         .contact-card a {
             color: #00B4A6;
             font-weight: 600;
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
         .contact-card a:hover {
             color: #F07B3F;
         }
 
-        .availability {
-            background: #FFF3CD;
-            border-left: 4px solid #F07B3F;
-            padding: 20px;
+        .contact-note {
+            background: #F8F9FA;
+            border-left: 4px solid #1B365D;
+            padding: 20px 25px;
             border-radius: 6px;
             text-align: center;
+            color: #343A40;
+            font-size: 1.05em;
+            line-height: 1.7;
+            margin-bottom: 35px;
         }
 
-        .availability strong {
-            color: #F07B3F;
-            font-size: 1.1em;
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2.2em;
+            }
+
+            .contact-container {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
@@ -104,11 +128,21 @@
         </div>
     </nav>
 
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <h1>Let's Talk</h1>
+        <p>Whether you have a learning challenge to solve, a project to discuss, or just want to connect, reach out through any of the options below.</p>
+    </section>
+
     <!-- Contact Page Content -->
     <section class="contact-page">
         <div class="contact-container">
-            <h1>Let's Connect</h1>
-            <p>Interested in discussing learning strategy, portfolio projects, or collaboration opportunities? I'd love to hear from you.</p>
+
+            <h2>Get In Touch</h2>
+
+            <div class="contact-note">
+                I am always open to conversations about learning strategy, instructional design, AI-integrated learning, and how organizations can build programs that drive real performance. Reach out and let's talk.
+            </div>
 
             <div class="contact-methods">
                 <div class="contact-card">
@@ -127,13 +161,10 @@
                 </div>
             </div>
 
-            <div class="availability">
-                <strong>Current Status:</strong> Open to freelance instructional design projects and consulting opportunities.
-            </div>
-
-            <div style="text-align: center; margin-top: 40px;">
+            <div style="text-align: center; margin-top: 10px;">
                 <a href="assets/robert-baker-resume.pdf" class="btn btn-primary" download>Download Resume</a>
             </div>
+
         </div>
     </section>
 
@@ -148,7 +179,7 @@
             <div class="footer-social">
                 <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
             </div>
-            <p class="footer-copyright">&copy; 2025 Robert Baker. All rights reserved.</p>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
         </div>
     </footer>
 </body>
