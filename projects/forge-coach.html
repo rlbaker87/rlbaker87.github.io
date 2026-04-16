@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Forge Coach: Prisma Health's First AI-Integrated Leadership Training — Robert Baker Portfolio">
+    <title>Forge Coach | Robert Baker</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .project-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 50px 20px 40px;
+        }
+        .project-hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #FFFFFF; }
+        .project-tag-hero {
+            display: inline-block;
+            background: rgba(0,180,166,0.3);
+            color: #FFFFFF;
+            font-size: 0.8em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .project-hero h1 {
+            font-size: 2.4em;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 14px;
+        }
+        .project-hero .hero-subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .project-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px 80px;
+        }
+
+        /* Photo grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+        .photo-box {
+            aspect-ratio: 4/3;
+            background: #E9ECEF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #CED4DA;
+        }
+        .photo-box p {
+            font-size: 0.8em;
+            color: #6C757D;
+            text-align: center;
+            padding: 10px;
+            font-weight: 600;
+        }
+        .photo-box.wide {
+            grid-column: span 2;
+            aspect-ratio: 16/7;
+        }
+
+        /* Metrics bar */
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0;
+            background: #1B365D;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        .metric {
+            padding: 24px 20px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .metric:last-child { border-right: none; }
+        .metric-num {
+            font-size: 2em;
+            font-weight: 700;
+            color: #00B4A6;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .metric-label {
+            font-size: 0.82em;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        /* Sections */
+        .section { margin-bottom: 40px; }
+        .section h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E9ECEF;
+        }
+        .section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin-bottom: 14px;
+        }
+
+        .solution-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .solution-list li {
+            padding: 14px 18px;
+            background: #F8F9FA;
+            border-left: 4px solid #00B4A6;
+            border-radius: 4px;
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .results-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 28px 30px;
+            border-radius: 6px;
+            margin-bottom: 40px;
+        }
+        .results-box h2 {
+            color: #F07B3F;
+            border-bottom-color: rgba(240,123,63,0.2);
+        }
+        .results-box p {
+            color: #343A40;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .tools-box {
+            background: #E9ECEF;
+            padding: 20px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            color: #343A40;
+            line-height: 1.8;
+        }
+        .tools-box strong { color: #1B365D; }
+
+        /* Assets section */
+        .assets-section {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .assets-section p {
+            color: #6C757D;
+            font-size: 0.95em;
+            margin-bottom: 16px;
+        }
+        .asset-btn {
+            display: inline-block;
+            background: #1B365D;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.95em;
+            padding: 11px 26px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .asset-btn:hover { background: #00B4A6; color: #FFFFFF; }
+
+        @media (max-width: 700px) {
+            .photo-grid { grid-template-columns: 1fr 1fr; }
+            .photo-box.wide { grid-column: span 2; }
+            .project-hero h1 { font-size: 1.8em; }
+            .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .photo-grid { grid-template-columns: 1fr; }
+            .photo-box.wide { grid-column: span 1; aspect-ratio: 4/3; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="project-hero">
+        <div class="project-hero-inner">
+            <a href="../projects.html" class="back-link">← Back to Projects</a>
+            <span class="project-tag-hero">AI-Integrated Learning</span>
+            <h1>Forge Coach: Prisma Health's First AI-Integrated Leadership Training</h1>
+            <p class="hero-subtitle">Designing and building a custom AI coaching agent for senior healthcare leaders at the annual Learning and Leadership Symposium</p>
+        </div>
+    </section>
+
+    <div class="project-body">
+
+        <!-- Photo Grid -->
+        <div class="photo-grid">
+            <div class="photo-box wide"><p>📸 Session Photo<br>Coming Soon</p></div>
+            <div class="photo-box"><p>📸 Photo<br>Coming Soon</p></div>
+            <div class="photo-box"><p>📸 Photo<br>Coming Soon</p></div>
+            <div class="photo-box"><p>📸 Photo<br>Coming Soon</p></div>
+            <div class="photo-box wide"><p>📸 Session Photo<br>Coming Soon</p></div>
+        </div>
+
+        <!-- Metrics -->
+        <div class="metrics-bar">
+            <div class="metric">
+                <span class="metric-num">4.7/5</span>
+                <span class="metric-label">Attendee Rating</span>
+            </div>
+            <div class="metric">
+                <span class="metric-num">75+</span>
+                <span class="metric-label">Senior Leaders</span>
+            </div>
+            <div class="metric">
+                <span class="metric-num">First</span>
+                <span class="metric-label">AI-Integrated Training at Prisma Health</span>
+            </div>
+            <div class="metric">
+                <span class="metric-num">60</span>
+                <span class="metric-label">Minute Session</span>
+            </div>
+        </div>
+
+        <!-- Challenge -->
+        <div class="section">
+            <h2>The Challenge</h2>
+            <p>Design a 60-minute leadership development experience for director-level and above healthcare leaders that builds practical AI fluency while developing strategic communication and problem-solving skills — without it feeling like a technology training session.</p>
+        </div>
+
+        <!-- Solution -->
+        <div class="section">
+            <h2>Solution</h2>
+            <ul class="solution-list">
+                <li>Built a custom Microsoft CoPilot agent (Forge Coach) using a hybrid prompt architecture designed around Socratic coaching methodology — guiding teams to discover solutions rather than providing answers directly</li>
+                <li>Used ChatGPT, Claude, and Perplexity to build, stress-test, and refine the agent before deployment, ensuring it could handle the range of scenarios leaders would present</li>
+                <li>Designed a hands-on Lego-based crisis simulation where teams consult Forge Coach in real time to work through strategic communication challenges</li>
+                <li>Developed the "5 P's of Prompting" framework (Prime, Persona, Privacy, Product, Polish) as a transferable skill tool leaders could apply immediately after the session</li>
+                <li>Facilitated the session alongside department leadership for an audience of senior healthcare leaders</li>
+            </ul>
+        </div>
+
+        <!-- Results -->
+        <div class="results-box">
+            <h2>Impact and Results</h2>
+            <p>Rated 4.7/5 by attendees. Demonstrated how AI can enhance human collaboration and strategic thinking rather than replace it. The session now serves as the departmental model for future AI-integrated learning initiatives across the enterprise — including the formal case study used when developing subsequent AI agent builds.</p>
+        </div>
+
+        <!-- Assets -->
+        <div class="assets-section">
+            <p>Session materials, PPT slides, and screen recording available upon request.</p>
+            <a href="../contact.html" class="asset-btn">Request Project Materials</a>
+        </div>
+
+        <!-- Role & Tools -->
+        <div class="tools-box">
+            <strong>Role:</strong> Lead Designer and AI Integration Specialist<br>
+            <strong>Tools:</strong> Microsoft CoPilot Agent Development, ChatGPT, Claude, Perplexity, Prompt Engineering, Experiential Learning Design, Lego Serious Play Methodology
+        </div>
+
+    </div>
+
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Interested in What Learning Can Do?</h2>
+            <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
