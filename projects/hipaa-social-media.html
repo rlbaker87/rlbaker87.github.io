@@ -1,0 +1,1005 @@
+<!-- HIPAA Social Media Interaction | Custom Phrase-Select | Portfolio Version -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIPAA Social Media Activity</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B365D;
+  --teal:#00B4A6;
+  --teal-dark:#008B7F;
+  --orange:#F07B3F;
+  --green:#2E7D32;
+  --red:#C62828;
+  --neutral:#455A64;
+  --white:#FFFFFF;
+  --bg-light:#F8F9FA;
+  --bg-selected:#E8F7F6;
+  --text-dark:#343A40;
+  --text-mid:#6C757D;
+  --border:#E9ECEF;
+  --font:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  --social-bg:#F8F9FA;
+  --card-bg:#FFFFFF;
+  --card-border:#E9ECEF;
+  --avatar-1:#1B365D;
+  --avatar-2:#00B4A6;
+  --avatar-3:#F07B3F;
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+body{
+  background:transparent;
+  font-family:var(--font);
+  font-size:15px;
+  line-height:1.6;
+  color:var(--text-dark);
+  padding:0;
+  margin:0;
+}
+
+#app{
+  width:100%;
+  max-width:720px;
+  margin:0 auto;
+  padding:20px 16px 32px;
+}
+
+/* ── Header ── */
+.activity-header{
+  background:var(--navy);
+  color:var(--white);
+  border-radius:6px 6px 0 0;
+  padding:18px 24px 16px;
+  margin-bottom:0;
+}
+.activity-header .badge{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  background:rgba(0,180,166,0.25);
+  color:var(--white);
+  padding:3px 10px;
+  border-radius:3px;
+  display:inline-block;
+  margin-bottom:8px;
+}
+.activity-header h1{
+  font-size:17px;
+  font-weight:700;
+  color:var(--white);
+  margin-bottom:6px;
+}
+.activity-header p{
+  font-size:13px;
+  color:rgba(255,255,255,0.88);
+  line-height:1.55;
+}
+
+/* ── Progress ── */
+.progress-container{
+  background:var(--white);
+  border-left:1px solid var(--card-border);
+  border-right:1px solid var(--card-border);
+  padding:10px 24px 8px;
+}
+.progress-wrap{
+  background:var(--border);
+  height:4px;
+  border-radius:2px;
+  margin-bottom:4px;
+}
+.progress-fill{
+  background:var(--teal);
+  height:4px;
+  border-radius:2px;
+  transition:width 0.4s ease;
+}
+.progress-label{
+  font-size:11px;
+  color:var(--text-mid);
+  text-align:right;
+}
+
+/* ── Scenario wrapper ── */
+.scenario-wrap{
+  border:1px solid var(--card-border);
+  border-top:none;
+  border-radius:0 0 6px 6px;
+  background:var(--social-bg);
+  padding:20px 20px 24px;
+}
+
+.scenario-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text-mid);
+  margin-bottom:12px;
+}
+
+/* ── Social Media Card ── */
+.social-card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  margin-bottom:16px;
+}
+
+.card-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px 8px;
+}
+
+.avatar{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:15px;
+  color:var(--white);
+  flex-shrink:0;
+}
+
+.user-info{
+  flex:1;
+}
+.user-name{
+  font-weight:700;
+  font-size:14px;
+  color:var(--text-dark);
+  display:block;
+}
+.user-meta{
+  font-size:11px;
+  color:var(--text-mid);
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.user-meta .globe{font-size:10px;}
+
+.card-platform-badge{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--text-mid);
+  border:1px solid var(--border);
+  border-radius:3px;
+  padding:2px 6px;
+}
+
+.card-body{
+  padding:4px 14px 12px;
+  font-size:14px;
+  line-height:1.65;
+  color:var(--text-dark);
+}
+
+/* ── Selectable Phrases ── */
+.selectable{
+  display:inline;
+  border-radius:3px;
+  padding:1px 2px;
+  cursor:pointer;
+  transition:background 0.15s, outline 0.15s;
+  outline:2px solid transparent;
+  font-family:var(--font);
+  font-size:inherit;
+  color:inherit;
+  background:none;
+  border:none;
+  text-decoration:underline;
+  text-decoration-style:dotted;
+  text-decoration-color:var(--teal);
+  text-underline-offset:3px;
+}
+.selectable:hover{
+  background:var(--bg-selected);
+  outline:2px solid var(--teal);
+}
+.selectable:focus-visible{
+  outline:3px solid var(--teal);
+  outline-offset:2px;
+}
+.selectable.selected{
+  background:#CCEFED;
+  outline:2px solid var(--teal);
+  text-decoration:none;
+}
+.selectable.locked{
+  cursor:default;
+  pointer-events:none;
+}
+.selectable.correct-reveal{
+  background:#e8f5e9;
+  outline:2px solid var(--green);
+}
+.selectable.incorrect-reveal{
+  background:#fdecea;
+  outline:2px solid var(--red);
+}
+.selectable.missed-reveal{
+  background:#fff3cd;
+  outline:2px solid #f9a825;
+}
+
+/* ── Card Reactions ── */
+.card-reactions{
+  padding:6px 14px 4px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border-top:1px solid var(--card-border);
+  font-size:12px;
+  color:var(--text-mid);
+}
+.reaction-emojis{
+  display:inline-flex;
+  gap:1px;
+}
+.reaction-count{font-size:12px;color:var(--text-mid);}
+.card-actions{
+  padding:4px 14px 10px;
+  display:flex;
+  gap:0;
+  border-top:1px solid var(--card-border);
+  margin-top:2px;
+}
+.card-action-btn{
+  flex:1;
+  background:none;
+  border:none;
+  font-family:var(--font);
+  font-size:12px;
+  font-weight:700;
+  color:var(--text-mid);
+  padding:6px 4px;
+  border-radius:4px;
+  cursor:default;
+  text-align:center;
+}
+
+/* ── Comments Section ── */
+.comments-section{
+  padding:0 14px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.comment-item{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+}
+.comment-avatar{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:11px;
+  color:var(--white);
+  flex-shrink:0;
+  margin-top:2px;
+}
+.comment-bubble{
+  background:var(--bg-light);
+  border-radius:0 12px 12px 12px;
+  padding:7px 12px;
+  font-size:13px;
+  line-height:1.5;
+  flex:1;
+}
+.comment-name{
+  font-weight:700;
+  font-size:12px;
+  color:var(--text-dark);
+  display:block;
+  margin-bottom:1px;
+}
+.comment-violation{
+  background:#fff8e1;
+  border-radius:0 12px 12px 12px;
+  border:1.5px solid #f9a825;
+  padding:7px 12px;
+  font-size:13px;
+  line-height:1.5;
+  flex:1;
+}
+
+/* ── Task box ── */
+.task-box{
+  background:var(--white);
+  border:1px solid var(--card-border);
+  border-radius:6px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  font-size:13px;
+  color:var(--text-dark);
+  line-height:1.6;
+}
+.task-box strong{
+  color:var(--navy);
+}
+
+/* ── Buttons ── */
+.btn-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.btn-no-violation{
+  background:var(--white);
+  color:var(--navy);
+  border:2px solid var(--navy);
+  border-radius:5px;
+  padding:9px 18px;
+  font-family:var(--font);
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  transition:background 0.15s, border-color 0.15s, color 0.15s;
+}
+.btn-no-violation:hover{background:var(--bg-light);}
+.btn-no-violation.active{background:var(--bg-selected);border-color:var(--teal);color:var(--teal);}
+.btn-no-violation:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+.btn-no-violation:disabled{opacity:0.5;cursor:default;}
+
+.btn-submit{
+  background:var(--teal);
+  color:var(--white);
+  border:none;
+  border-radius:5px;
+  padding:9px 22px;
+  font-family:var(--font);
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  transition:background 0.15s;
+}
+.btn-submit:hover{background:var(--teal-dark);}
+.btn-submit:focus-visible{outline:3px solid var(--navy);outline-offset:2px;}
+.btn-submit:disabled{opacity:0.5;cursor:default;}
+
+/* ── Feedback ── */
+.feedback-panel{
+  border-radius:5px;
+  padding:14px 16px;
+  font-size:13px;
+  line-height:1.6;
+  display:none;
+  margin-bottom:14px;
+}
+.feedback-panel.show{display:block;}
+.feedback-panel.correct{
+  background:var(--white);
+  border-left:4px solid var(--green);
+}
+.feedback-panel.incorrect{
+  background:var(--white);
+  border-left:4px solid var(--red);
+}
+.feedback-panel .fb-label{
+  font-weight:700;
+  display:block;
+  margin-bottom:4px;
+}
+.feedback-panel.correct .fb-label{color:var(--green);}
+.feedback-panel.incorrect .fb-label{color:var(--red);}
+
+.next-btn-row{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:4px;
+}
+.btn-next{
+  background:var(--navy);
+  color:var(--white);
+  border:none;
+  border-radius:5px;
+  padding:9px 22px;
+  font-family:var(--font);
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  display:none;
+  transition:background 0.15s;
+}
+.btn-next.show{display:inline-block;}
+.btn-next:hover{background:#142a4a;}
+.btn-next:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+
+/* ── Final screen ── */
+.final-note{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:5px;
+  padding:14px 16px;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--text-dark);
+  margin-bottom:10px;
+  display:none;
+}
+.final-note.show{display:block;}
+
+.btn-try-again{
+  background:var(--white);
+  color:var(--navy);
+  border:2px solid var(--navy);
+  border-radius:5px;
+  padding:9px 18px;
+  font-family:var(--font);
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  transition:background 0.15s;
+  display:none;
+}
+.btn-try-again.show{display:inline-block;}
+.btn-try-again:hover{background:var(--bg-light);}
+.btn-try-again:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+
+/* ── Intro Screen ── */
+.intro-screen{
+  border:1px solid var(--card-border);
+  border-radius:6px;
+  overflow:hidden;
+}
+.intro-header{
+  background:var(--navy);
+  color:var(--white);
+  padding:20px 24px 18px;
+}
+.intro-header .badge{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  background:rgba(0,180,166,0.25);
+  color:var(--white);
+  padding:3px 10px;
+  border-radius:3px;
+  display:inline-block;
+  margin-bottom:10px;
+}
+.intro-header h1{
+  font-size:18px;
+  font-weight:700;
+  color:var(--white);
+  margin:0;
+}
+.intro-body{
+  background:var(--white);
+  padding:24px 24px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.intro-body p{
+  font-size:14px;
+  line-height:1.7;
+  color:var(--text-dark);
+}
+.intro-task{
+  background:var(--bg-light);
+  border-left:4px solid var(--teal);
+  border-radius:0 5px 5px 0;
+  padding:14px 16px;
+}
+.intro-task .task-label{
+  font-size:14px;
+  font-weight:700;
+  color:var(--navy);
+  display:block;
+  margin-bottom:6px;
+}
+.intro-task p{
+  font-size:13px;
+  line-height:1.65;
+  color:var(--text-dark);
+  margin:0;
+}
+.intro-footer{
+  padding:0 24px 24px;
+  background:var(--white);
+  display:flex;
+  justify-content:flex-end;
+}
+.btn-start{
+  background:var(--teal);
+  color:var(--white);
+  border:none;
+  border-radius:5px;
+  padding:11px 28px;
+  font-family:var(--font);
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  transition:background 0.15s;
+}
+.btn-start:hover{background:var(--teal-dark);}
+.btn-start:focus-visible{outline:3px solid var(--navy);outline-offset:2px;}
+
+@media(max-width:500px){
+  #app{padding:12px 8px 24px;}
+  .activity-header{padding:14px 16px 12px;}
+  .btn-row{flex-direction:column;}
+  .btn-no-violation,.btn-submit{width:100%;}
+  .intro-header,.intro-body,.intro-footer{padding-left:16px;padding-right:16px;}
+}
+</style>
+</head>
+<body>
+<div id="app" role="main">
+
+  <!-- Intro Screen -->
+  <div id="intro-screen" class="intro-screen">
+    <div class="intro-header">
+      <span class="badge">Privacy &amp; HIPAA</span>
+      <h1 tabindex="-1" id="intro-heading">Social Media &amp; Patient Privacy</h1>
+    </div>
+    <div class="intro-body">
+      <p>Let's apply what you learned using a popular medium of communication: social media. Healthcare team members use social media in different ways. Some share personal experiences after work. Others post about teamwork, long shifts, or the challenges of working in healthcare.</p>
+      <p>Even when posts are well-intentioned, patient information can be shared unintentionally. Comments, replies, and added details can also create risk, even if the original post seemed appropriate.</p>
+      <div class="intro-task">
+        <span class="task-label">Your Task</span>
+        <p>In the following scenarios, place yourself in the role of a Compliance Officer reviewing social media posts and comments. Your task is to recognize when information crosses the line and identify what puts patient privacy at risk.</p>
+      </div>
+    </div>
+    <div class="intro-footer">
+      <button class="btn-start" id="btn-start" type="button">Start Activity →</button>
+    </div>
+  </div>
+
+  <!-- Activity (hidden until Start) -->
+  <div id="activity-wrap" style="display:none;">
+    <div class="activity-header">
+      <span class="badge">Privacy &amp; HIPAA</span>
+      <h2 tabindex="-1" id="main-heading">Social Media &amp; Patient Privacy</h2>
+      <p>Read the following social media posts to identify if the post is HIPAA compliant. Click on the words or phrases that violate HIPAA. To succeed, you must correctly identify all HIPAA violations. If there are no violations, select the <strong>No Violations Present</strong> button.</p>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-wrap" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-valuetext="Scenario 1 of 3" id="prog-bar">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+      <div class="progress-label" aria-live="polite" id="prog-label">Scenario 1 of 3</div>
+    </div>
+
+    <div class="scenario-wrap" id="scenario-area" aria-live="polite"></div>
+  </div>
+
+</div>
+
+<script>
+// ── Scenario Data ──────────────────────────────────────────────────────────────
+const scenarios = [
+  {
+    id: 1,
+    label: 'Scenario 1 of 3',
+    pct: 0,
+    avatar: { initials: 'JM', color: '#1B365D' },
+    userName: 'Jordan M.',
+    userMeta: '2 hours ago · 🌐',
+    reactions: { emojis: '❤️👍😢', count: '14 reactions' },
+    postPhrases: [
+      { text: 'Long shift today. Helped a ', selectable: false },
+      { text: '67-year-old patient', id: 'p1-age', violation: true },
+      { text: ' from ', selectable: false },
+      { text: 'Downtown Memorial', id: 'p1-loc', violation: true },
+      { text: ' recover after a ', selectable: false },
+      { text: 'difficult admission', id: 'p1-care', violation: true },
+      { text: '. ', selectable: false },
+      { text: "Glad they're doing better now", id: 'p1-dist', violation: false, distractor: true },
+      { text: '.', selectable: false }
+    ],
+    noViolation: false,
+    feedbackCorrect: {
+      label: 'Great job!',
+      text: 'You identified all three elements that make this post non-compliant. Age, location, and care context can identify a patient, even without a name, and combining them significantly increases that risk. Improper disclosure of PHI may require breach notification, corrective action, reporting to the Office for Civil Rights, and civil monetary penalties. If you are unsure whether something already posted creates risk, contact your organization\'s Privacy Office immediately.'
+    },
+    feedbackIncorrect: {
+      label: 'This decision creates risk!',
+      text: 'This post contains patient identifiers that must be removed before it can be posted. Patient identifiers are not limited to names — age, location, and care context can all make a patient recognizable, especially in combination. Sharing this post as written could result in breach notification requirements and civil monetary penalties. Remove all three identifying elements before posting anything about a patient interaction. If you are unsure whether something already posted creates risk, contact your organization\'s Privacy Office immediately.'
+    }
+  },
+  {
+    id: 2,
+    label: 'Scenario 2 of 3',
+    pct: 33,
+    avatar: { initials: 'TP', color: '#00B4A6' },
+    userName: 'Taylor P.',
+    userMeta: '5 hours ago · 🌐',
+    reactions: { emojis: '❤️💪👏', count: '31 reactions' },
+    postPhrases: [
+      { text: 'Long day at work today. Supporting a ', selectable: false },
+      { text: 'trauma patient', id: 'p2-dist', violation: false, distractor: true },
+      { text: ' made it especially tough, but proud of the teamwork that helped get through the shift.', selectable: false }
+    ],
+    noViolation: true,
+    feedbackCorrect: {
+      label: 'Great job!',
+      text: 'You recognized that this post is compliant as written. General statements about work challenges are acceptable when no patient identifiers are included. Not every work-related post violates HIPAA — knowing the difference protects both patients and your ability to communicate normally about your work experience.'
+    },
+    feedbackIncorrect: {
+      label: 'This decision creates risk!',
+      text: 'This post does not contain patient identifiers and is compliant as written. Flagging compliant content as a violation creates unnecessary risk of over-restriction and does not strengthen HIPAA compliance. Knowing what does not need to be changed is just as important as knowing what does. Review what qualifies as a patient identifier — age, location, medical record numbers, and care details — before flagging content as non-compliant.'
+    }
+  },
+  {
+    id: 3,
+    label: 'Scenario 3 of 3',
+    pct: 67,
+    avatar: { initials: 'TP', color: '#00B4A6' },
+    userName: 'Taylor P.',
+    userMeta: '5 hours ago · 🌐',
+    reactions: { emojis: '❤️💪👏', count: '31 reactions' },
+    postPhrases: [
+      { text: 'Long day at work today. Supporting a trauma patient made it especially tough, but proud of the teamwork that helped get through the shift.', selectable: false }
+    ],
+    hasComments: true,
+    genericComments: [
+      { initials: 'SR', color: '#2E7D32', name: 'Sam R.', text: 'Well done! 👏' },
+      { initials: 'CL', color: '#F07B3F', name: 'Casey L.', text: 'You got this! Keep it up 💙' }
+    ],
+    violationComment: {
+      initials: 'MK', color: '#C62828', name: 'Morgan K.',
+      phrases: [
+        { text: 'I think I know who you\'re talking about, ', selectable: false },
+        { text: 'that guy', id: 'p3-gender', violation: true },
+        { text: ' from ', selectable: false },
+        { text: 'room 412', id: 'p3-room', violation: true },
+        { text: '.', selectable: false }
+      ],
+      distractorPhrase: { text: "I think I know who you're talking about", id: 'p3-dist', violation: false, distractor: true }
+    },
+    noViolation: false,
+    commentInstruction: 'A comment has been added to this post. Click on the words or phrases in the comment that violate HIPAA.',
+    feedbackCorrect: {
+      label: 'Great job!',
+      text: 'You identified both elements that make this comment non-compliant. Comments are treated the same as original posts under HIPAA. Adding a room number and a gender reference to an otherwise compliant post creates a combination that can identify a patient. Improper disclosure may require breach notification, corrective action, and reporting to the Office for Civil Rights. If you suspect a violation has already occurred, contact your organization\'s Privacy Office immediately.'
+    },
+    feedbackIncorrect: {
+      label: 'This decision creates risk!',
+      text: 'This comment contains details that make it non-compliant. Comments on social media posts are subject to the same HIPAA requirements as original posts. A room number and gender reference, even added casually, can identify a patient when combined with the context of the original post. Both elements must be identified as non-compliant.'
+    },
+    isFinal: true
+  }
+];
+
+// ── State ──────────────────────────────────────────────────────────────────────
+let currentIdx = 0;
+let completionFired = false;
+
+// ── Render ─────────────────────────────────────────────────────────────────────
+function render(idx) {
+  const s = scenarios[idx];
+  const area = document.getElementById('scenario-area');
+
+  // Progress
+  document.getElementById('prog-fill').style.width = s.pct + '%';
+  const pb = document.getElementById('prog-bar');
+  pb.setAttribute('aria-valuenow', idx + 1);
+  pb.setAttribute('aria-valuetext', s.label);
+  document.getElementById('prog-label').textContent = s.label;
+
+  // Build post phrase spans
+  function buildPhraseSpans(phrases, prefix) {
+    return phrases.map(p => {
+      if (p.selectable === false && !p.id) {
+        return `<span>${escHtml(p.text)}</span>`;
+      }
+      if (p.id) {
+        return `<button class="selectable" data-id="${p.id}" data-violation="${p.violation}" data-distractor="${p.distractor || false}" aria-pressed="false" type="button">${escHtml(p.text)}</button>`;
+      }
+      return `<span>${escHtml(p.text)}</span>`;
+    }).join('');
+  }
+
+  // Generic comments HTML
+  let genericCommentsHtml = '';
+  if (s.hasComments && s.genericComments) {
+    genericCommentsHtml = s.genericComments.map(c => `
+      <div class="comment-item">
+        <div class="comment-avatar" style="background:${c.color}" aria-hidden="true">${c.initials}</div>
+        <div class="comment-bubble">
+          <span class="comment-name">${escHtml(c.name)}</span>
+          ${escHtml(c.text)}
+        </div>
+      </div>`).join('');
+  }
+
+  // Violation comment HTML
+  let violationCommentHtml = '';
+  if (s.hasComments && s.violationComment) {
+    const vc = s.violationComment;
+    const commentSpans = buildPhraseSpans(vc.phrases, 'vc');
+    violationCommentHtml = `
+      <div class="comment-item">
+        <div class="comment-avatar" style="background:${vc.color}" aria-hidden="true">${vc.initials}</div>
+        <div class="comment-violation">
+          <span class="comment-name">${escHtml(vc.name)}</span>
+          ${commentSpans}
+        </div>
+      </div>`;
+  }
+
+  // Comment instruction
+  const commentInstrHtml = s.hasComments ? `
+    <div class="task-box" style="border-left:3px solid var(--orange);margin-bottom:10px;">
+      <strong>Notice the comment below.</strong> ${escHtml(s.commentInstruction)}
+    </div>` : '';
+
+  // Post body
+  const postBodyHtml = buildPhraseSpans(s.postPhrases, 'post');
+
+  // No-violation button
+  const noViolBtnHtml = `
+    <button class="btn-no-violation" id="btn-no-viol" type="button" ${s.noViolation ? '' : ''}>
+      No Violations Present
+    </button>`;
+
+  area.innerHTML = `
+    <div class="scenario-label" id="sc-label-${idx}" tabindex="-1">${escHtml(s.label)}</div>
+
+    ${commentInstrHtml}
+
+    <div class="social-card" role="article" aria-label="Social media post">
+      <div class="card-header">
+        <div class="avatar" style="background:${s.avatar.color}" aria-hidden="true">${s.avatar.initials}</div>
+        <div class="user-info">
+          <span class="user-name">${escHtml(s.userName)}</span>
+          <span class="user-meta"><span class="globe" aria-hidden="true">🌐</span> ${escHtml(s.userMeta)}</span>
+        </div>
+        <span class="card-platform-badge" aria-label="Social post">POST</span>
+      </div>
+      <div class="card-body">${postBodyHtml}</div>
+      ${s.hasComments ? `
+        <div class="card-reactions" aria-label="Reactions">
+          <span class="reaction-emojis" aria-hidden="true">${s.reactions.emojis}</span>
+          <span class="reaction-count">${escHtml(s.reactions.count)}</span>
+        </div>
+        <div class="card-actions" aria-hidden="true">
+          <div class="card-action-btn">👍 Like</div>
+          <div class="card-action-btn">💬 Comment</div>
+          <div class="card-action-btn">↗ Share</div>
+        </div>
+        <div class="comments-section" aria-label="Comments">
+          ${genericCommentsHtml}
+          ${violationCommentHtml}
+        </div>
+      ` : `
+        <div class="card-reactions" aria-label="Reactions">
+          <span class="reaction-emojis" aria-hidden="true">${s.reactions.emojis}</span>
+          <span class="reaction-count">${escHtml(s.reactions.count)}</span>
+        </div>
+        <div class="card-actions" aria-hidden="true">
+          <div class="card-action-btn">👍 Like</div>
+          <div class="card-action-btn">💬 Comment</div>
+          <div class="card-action-btn">↗ Share</div>
+        </div>
+      `}
+    </div>
+
+    <div class="btn-row">
+      ${noViolBtnHtml}
+      <button class="btn-submit" id="btn-submit" type="button">Submit</button>
+    </div>
+
+    <div class="feedback-panel" id="feedback" role="status" aria-live="polite"></div>
+
+    ${!s.isFinal ? `
+    <div class="next-btn-row">
+      <button class="btn-next" id="btn-next" type="button">Next Scenario →</button>
+    </div>
+    ` : ''}
+
+    ${s.isFinal ? `
+      <div class="final-note" id="final-note">
+        Activity complete. Use the <strong>Continue</strong> button in the course to advance. If you want to do the activity again, click <strong>Try Again</strong> below to start from Scenario 1.
+      </div>
+      <div class="next-btn-row">
+        <button class="btn-try-again" id="btn-try-again" type="button">Try Again</button>
+      </div>
+    ` : ''}
+  `;
+
+  // Focus management
+  document.getElementById(`sc-label-${idx}`).focus();
+
+  // Attach interactivity
+  attachEvents(s);
+}
+
+function attachEvents(s) {
+  const selectables = document.querySelectorAll('.selectable');
+  const btnNoViol = document.getElementById('btn-no-viol');
+  const btnSubmit = document.getElementById('btn-submit');
+  const btnNext = document.getElementById('btn-next');
+  const feedback = document.getElementById('feedback');
+  let submitted = false;
+
+  selectables.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (submitted) return;
+      const pressed = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', pressed ? 'false' : 'true');
+      btn.classList.toggle('selected', !pressed);
+    });
+  });
+
+  if (btnNoViol) {
+    btnNoViol.addEventListener('click', () => {
+      if (submitted) return;
+      submitted = true;
+
+      // Deselect any phrases and lock everything
+      selectables.forEach(b => {
+        b.setAttribute('aria-pressed', 'false');
+        b.classList.remove('selected');
+        b.classList.add('locked');
+      });
+      btnNoViol.dataset.active = '1';
+      btnNoViol.classList.add('active');
+      btnNoViol.disabled = true;
+      btnSubmit.disabled = true;
+
+      // Evaluate and reveal
+      const isCorrect = evaluate(s, selectables, btnNoViol);
+      revealAnswers(s, selectables);
+
+      // Show feedback
+      const fb = isCorrect ? s.feedbackCorrect : s.feedbackIncorrect;
+      feedback.innerHTML = `<strong class="fb-label">${escHtml(fb.label)}</strong>${escHtml(fb.text)}`;
+      feedback.className = `feedback-panel show ${isCorrect ? 'correct' : 'incorrect'}`;
+      feedback.focus();
+
+      if (btnNext) btnNext.classList.add('show');
+
+      if (s.isFinal) {
+        const finalNote = document.getElementById('final-note');
+        const btnTryAgain = document.getElementById('btn-try-again');
+        if (finalNote) finalNote.classList.add('show');
+        if (btnTryAgain) {
+          btnTryAgain.classList.add('show');
+          btnTryAgain.addEventListener('click', () => {
+            completionFired = true;
+            showIntro();
+          });
+        }
+        if (!completionFired) {
+          completionFired = true;
+          window.parent.postMessage({ type: 'complete' }, '*');
+        }
+      }
+    });
+  }
+
+  btnSubmit.addEventListener('click', () => {
+    if (submitted) return;
+    submitted = true;
+
+    selectables.forEach(b => {
+      b.classList.add('locked');
+      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed'));
+    });
+    if (btnNoViol) btnNoViol.disabled = true;
+    btnSubmit.disabled = true;
+
+    const isCorrect = evaluate(s, selectables, btnNoViol);
+    revealAnswers(s, selectables);
+
+    const fb = isCorrect ? s.feedbackCorrect : s.feedbackIncorrect;
+    feedback.innerHTML = `<strong class="fb-label">${escHtml(fb.label)}</strong>${escHtml(fb.text)}`;
+    feedback.className = `feedback-panel show ${isCorrect ? 'correct' : 'incorrect'}`;
+    feedback.focus();
+
+    if (btnNext) btnNext.classList.add('show');
+
+    if (s.isFinal) {
+      const finalNote = document.getElementById('final-note');
+      const btnTryAgain = document.getElementById('btn-try-again');
+      if (finalNote) finalNote.classList.add('show');
+      if (btnTryAgain) {
+        btnTryAgain.classList.add('show');
+        btnTryAgain.addEventListener('click', () => {
+          completionFired = true;
+          showIntro();
+        });
+      }
+      if (!completionFired) {
+        completionFired = true;
+        window.parent.postMessage({ type: 'complete' }, '*');
+      }
+    }
+  });
+
+  if (btnNext) {
+    btnNext.addEventListener('click', () => {
+      currentIdx++;
+      render(currentIdx);
+    });
+  }
+}
+
+function evaluate(s, selectables, btnNoViol) {
+  if (s.noViolation) {
+    const anySelected = Array.from(selectables).some(b => b.getAttribute('aria-pressed') === 'true' && b.dataset.violation === 'true');
+    const noViolActive = btnNoViol && btnNoViol.dataset.active === '1';
+    return noViolActive && !anySelected;
+  } else {
+    const violations = Array.from(selectables).filter(b => b.dataset.violation === 'true');
+    const distractors = Array.from(selectables).filter(b => b.dataset.distractor === 'true');
+    const allViolationsSelected = violations.every(b => b.getAttribute('aria-pressed') === 'true');
+    const noDistractorsSelected = distractors.every(b => b.getAttribute('aria-pressed') === 'false');
+    const noViolActive = btnNoViol && btnNoViol.dataset.active === '1';
+    return allViolationsSelected && noDistractorsSelected && !noViolActive;
+  }
+}
+
+function revealAnswers(s, selectables) {
+  selectables.forEach(btn => {
+    const isViolation = btn.dataset.violation === 'true';
+    const isSelected = btn.getAttribute('aria-pressed') === 'true';
+
+    if (isViolation && isSelected) {
+      btn.classList.add('correct-reveal');
+    } else if (isViolation && !isSelected) {
+      btn.classList.add('missed-reveal');
+    } else if (!isViolation && isSelected) {
+      btn.classList.add('incorrect-reveal');
+    }
+    btn.classList.remove('selected');
+  });
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function showIntro() {
+  document.getElementById('intro-screen').style.display = '';
+  document.getElementById('activity-wrap').style.display = 'none';
+}
+
+function startActivity() {
+  document.getElementById('intro-screen').style.display = 'none';
+  document.getElementById('activity-wrap').style.display = '';
+  currentIdx = 0;
+  render(0);
+}
+
+document.getElementById('btn-start').addEventListener('click', startActivity);
+
+showIntro();
+</script>
+</body>
+</html>
