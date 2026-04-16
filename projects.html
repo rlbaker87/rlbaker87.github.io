@@ -29,7 +29,7 @@
         .projects-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 80px 20px 40px;
         }
 
         .project-card {
@@ -168,6 +168,26 @@
             font-size: 1em;
         }
 
+        .see-more-wrap {
+            text-align: center;
+            padding: 10px 20px 60px;
+        }
+
+        .see-more-link {
+            display: inline-block;
+            color: #00B4A6;
+            font-size: 1.05em;
+            font-weight: 600;
+            border-bottom: 2px solid #00B4A6;
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .see-more-link:hover {
+            color: #1B365D;
+            border-color: #1B365D;
+        }
+
         @media (max-width: 768px) {
             .projects-hero h1 {
                 font-size: 2.2em;
@@ -290,7 +310,7 @@
                         <span class="result-label">Average Session Quality Rating</span>
                     </div>
                     <div class="result-item">
-                        <span class="result-number">$60K+</span>
+                        <span class="result-number">$50K+</span>
                         <span class="result-label">Budget Managed</span>
                     </div>
                     <div class="result-item">
@@ -413,13 +433,17 @@
 
     </div>
 
+    <!-- See More Work -->
+    <div class="see-more-wrap">
+        <a href="more-projects.html" class="see-more-link">See More Work →</a>
+    </div>
+
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="section-container">
             <h2>Interested in What Learning Can Do?</h2>
             <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
             <div class="cta-buttons">
-                <a href="more-projects.html" class="btn btn-secondary">See More Work</a>
                 <a href="contact.html" class="btn btn-primary">Get In Touch</a>
                 <a href="about.html" class="btn btn-secondary">Learn More About Me</a>
             </div>
