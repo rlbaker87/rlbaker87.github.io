@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extended portfolio of learning design work by Robert Baker — interactive demos, eLearning samples, and multimedia projects.">
+    <title>More Projects | Robert Baker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .more-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .more-hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .more-hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.92;
+            line-height: 1.7;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #FFFFFF;
+        }
+
+        /* ── Tile Grid ── */
+        .tile-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 20px 80px;
+        }
+
+        .tile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .tile {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid #E9ECEF;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,180,166,0.15);
+        }
+
+        .tile-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+            background: #F8F9FA;
+            flex-shrink: 0;
+        }
+
+        /* HIPAA thumbnail — rendered from interaction intro */
+        .thumb-hipaa {
+            background: #1B365D;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0;
+            height: 100%;
+        }
+
+        .thumb-hipaa .t-header {
+            background: #1B365D;
+            padding: 14px 16px 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .thumb-hipaa .t-badge {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: rgba(0,180,166,0.3);
+            color: #FFFFFF;
+            padding: 2px 7px;
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 6px;
+            width: fit-content;
+        }
+
+        .thumb-hipaa .t-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #FFFFFF;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.3;
+        }
+
+        .thumb-hipaa .t-body {
+            background: #FFFFFF;
+            padding: 10px 16px 12px;
+        }
+
+        .thumb-hipaa .t-line {
+            height: 5px;
+            border-radius: 3px;
+            background: #E9ECEF;
+            margin-bottom: 5px;
+        }
+
+        .thumb-hipaa .t-line.short { width: 60%; }
+        .thumb-hipaa .t-line.medium { width: 80%; }
+        .thumb-hipaa .t-line.long { width: 100%; }
+
+        .thumb-hipaa .t-task {
+            margin-top: 8px;
+            background: #F8F9FA;
+            border-left: 3px solid #00B4A6;
+            padding: 5px 8px;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .thumb-hipaa .t-task-line {
+            height: 4px;
+            border-radius: 2px;
+            background: #E9ECEF;
+            margin-bottom: 4px;
+        }
+
+        .thumb-hipaa .t-btn {
+            display: block;
+            margin-top: 10px;
+            margin-left: auto;
+            background: #00B4A6;
+            color: #FFFFFF;
+            font-size: 8px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: fit-content;
+        }
+
+        /* Under construction thumbnail */
+        .thumb-construction {
+            background: #F8F9FA;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-bottom: 1px solid #E9ECEF;
+        }
+
+        .thumb-construction .construction-icon {
+            font-size: 2em;
+            opacity: 0.4;
+        }
+
+        .thumb-construction .construction-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #6C757D;
+        }
+
+        /* Tile tag strip */
+        .tile-tag-strip {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .tile-tag {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: #00B4A6;
+            color: #FFFFFF;
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        .tile-tag.construction {
+            background: #E9ECEF;
+            color: #6C757D;
+        }
+
+        /* Tile body */
+        .tile-body {
+            padding: 20px 22px 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tile-title {
+            font-size: 1.05em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 6px;
+            line-height: 1.35;
+        }
+
+        .tile-desc {
+            font-size: 0.88em;
+            color: #6C757D;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .tile-footer {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .tile-tools {
+            font-size: 0.78em;
+            color: #6C757D;
+            font-style: italic;
+        }
+
+        .tile-cta {
+            display: inline-block;
+            background: #1B365D;
+            color: #FFFFFF;
+            font-size: 0.82em;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: 4px;
+            transition: background 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tile-cta:hover {
+            background: #00B4A6;
+            color: #FFFFFF;
+        }
+
+        .tile-cta.disabled {
+            background: #E9ECEF;
+            color: #6C757D;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* Back to projects section */
+        .back-section {
+            text-align: center;
+            padding: 0 20px 70px;
+        }
+
+        .back-section a {
+            color: #00B4A6;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .back-section a:hover {
+            color: #1B365D;
+        }
+
+        @media (max-width: 900px) {
+            .tile-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 580px) {
+            .tile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .more-hero h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="more-hero">
+        <div>
+            <a href="projects.html" class="back-link">← Back to Featured Projects</a>
+            <h1>More Work</h1>
+            <p>Additional samples, interactive demos, and learning deliverables from across my portfolio.</p>
+        </div>
+    </section>
+
+    <!-- Tile Grid -->
+    <div class="tile-section">
+        <div class="tile-grid">
+
+            <!-- Tile 1: HIPAA Social Media — LIVE -->
+            <div class="tile">
+                <div class="tile-thumb">
+                    <!-- Miniature render of the HIPAA intro screen -->
+                    <div class="thumb-hipaa">
+                        <div class="t-header">
+                            <span class="t-badge">Privacy &amp; HIPAA</span>
+                            <div class="t-title">Social Media &amp; Patient Privacy</div>
+                        </div>
+                        <div class="t-body">
+                            <div class="t-line long"></div>
+                            <div class="t-line medium"></div>
+                            <div class="t-line short"></div>
+                            <div class="t-task">
+                                <div class="t-task-line" style="width:90%"></div>
+                                <div class="t-task-line" style="width:70%"></div>
+                            </div>
+                            <div class="t-btn">Start Activity →</div>
+                        </div>
+                    </div>
+                    <div class="tile-tag-strip">
+                        <span class="tile-tag">Interactive Demo</span>
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-title">HIPAA in Practice: Social Media &amp; Patient Privacy</div>
+                    <div class="tile-desc">Scenario-based interaction placing the learner in the role of a Compliance Officer reviewing real social media posts for HIPAA violations. Built as a custom HTML block for Articulate Rise 360.</div>
+                    <div class="tile-footer">
+                        <span class="tile-tools">HTML / CSS / JavaScript</span>
+                        <a href="projects/hipaa-social-media.html" class="tile-cta">View Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tile 2: Animaker Videos -->
+            <div class="tile">
+                <div class="tile-thumb">
+                    <div class="thumb-construction">
+                        <div class="construction-icon">🎬</div>
+                        <div class="construction-label">Coming Soon</div>
+                    </div>
+                    <div class="tile-tag-strip">
+                        <span class="tile-tag construction">Video</span>
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-title">Animaker Training Videos</div>
+                    <div class="tile-desc">Animated explainer videos designed for healthcare onboarding and compliance topics, built using Animaker.</div>
+                    <div class="tile-footer">
+                        <span class="tile-tools">Animaker</span>
+                        <span class="tile-cta disabled">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tile 3: Fire Safety -->
+            <div class="tile">
+                <div class="tile-thumb">
+                    <div class="thumb-construction">
+                        <div class="construction-icon">🔥</div>
+                        <div class="construction-label">Coming Soon</div>
+                    </div>
+                    <div class="tile-tag-strip">
+                        <span class="tile-tag construction">Video</span>
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-title">Fire Safety Training Video</div>
+                    <div class="tile-desc">Instructional video covering kitchen fire safety and emergency response protocols for food service environments in a healthcare setting.</div>
+                    <div class="tile-footer">
+                        <span class="tile-tools">Camtasia</span>
+                        <span class="tile-cta disabled">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tile 4: AI Upskilling -->
+            <div class="tile">
+                <div class="tile-thumb">
+                    <div class="thumb-construction">
+                        <div class="construction-icon">🤖</div>
+                        <div class="construction-label">Coming Soon</div>
+                    </div>
+                    <div class="tile-tag-strip">
+                        <span class="tile-tag construction">Program Materials</span>
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-title">AI Upskilling Program Materials</div>
+                    <div class="tile-desc">Facilitation guides and session frameworks from the enterprise AI upskilling program, including Prompt Clinic design and departmental AI fluency strategy.</div>
+                    <div class="tile-footer">
+                        <span class="tile-tools">Microsoft CoPilot / PowerPoint</span>
+                        <span class="tile-cta disabled">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tile 5: Systems Training -->
+            <div class="tile">
+                <div class="tile-thumb">
+                    <div class="thumb-construction">
+                        <div class="construction-icon">🖥️</div>
+                        <div class="construction-label">Coming Soon</div>
+                    </div>
+                    <div class="tile-tag-strip">
+                        <span class="tile-tag construction">eLearning</span>
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-title">Systems Training — Storyline</div>
+                    <div class="tile-desc">Software adoption and systems training built in Articulate Storyline 360, designed to support enterprise-wide technology rollouts.</div>
+                    <div class="tile-footer">
+                        <span class="tile-tools">Articulate Storyline 360</span>
+                        <span class="tile-cta disabled">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tile 6: PPE Activity -->
+            <div class="tile">
+                <div class="tile-thumb">
+                    <div class="thumb-construction">
+                        <div class="construction-icon">🦺</div>
+                        <div class="construction-label">Coming Soon</div>
+                    </div>
+                    <div class="tile-tag-strip">
+                        <span class="tile-tag construction">eLearning</span>
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-title">PPE Selection Activity</div>
+                    <div class="tile-desc">Interactive Storyline activity requiring learners to select appropriate personal protective equipment for varied healthcare scenarios.</div>
+                    <div class="tile-footer">
+                        <span class="tile-tools">Articulate Storyline 360</span>
+                        <span class="tile-cta disabled">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Back link -->
+    <div class="back-section">
+        <a href="projects.html">← Back to Featured Projects</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
