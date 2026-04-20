@@ -551,6 +551,62 @@ body{
   .intro-header,.intro-body,.intro-footer{padding-left:16px;padding-right:16px;}
 }
 
+/* ── Results Screen ── */
+.results-screen{
+  border:1px solid var(--card-border);
+  border-radius:6px;
+  overflow:hidden;
+  display:none;
+}
+.results-screen.show{display:block;}
+.results-header{
+  background:var(--navy);
+  color:var(--white);
+  padding:20px 24px 18px;
+}
+.results-header .badge{
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  background:rgba(0,180,166,0.25);color:var(--white);padding:3px 10px;border-radius:3px;
+  display:inline-block;margin-bottom:10px;
+}
+.results-header h2{font-size:20px;font-weight:700;color:var(--white);margin:0;}
+.results-body{background:var(--white);padding:28px 28px 24px;}
+.score-summary{
+  display:flex;align-items:center;gap:20px;
+  background:var(--bg-light);border-radius:8px;padding:20px 24px;margin-bottom:24px;
+}
+.score-circle{
+  width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:1.5em;font-weight:700;color:var(--white);
+}
+.score-circle.perfect{background:var(--green);}
+.score-circle.good{background:var(--teal);}
+.score-circle.needs-work{background:var(--red);}
+.score-text h3{font-size:1.1em;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.score-text p{font-size:0.9em;color:var(--text-mid);line-height:1.5;margin:0;}
+.breakdown-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.breakdown-item{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--bg-light);border-radius:6px;padding:14px 16px;
+}
+.breakdown-icon{
+  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:0.9em;flex-shrink:0;margin-top:1px;
+}
+.breakdown-icon.correct{background:#e8f5e9;color:var(--green);}
+.breakdown-icon.incorrect{background:#fdecea;color:var(--red);}
+.breakdown-label{font-size:0.95em;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.breakdown-detail{font-size:0.85em;color:var(--text-mid);line-height:1.5;}
+.results-footer{padding:0 28px 28px;background:var(--white);display:flex;justify-content:flex-end;}
+.btn-try-again-final{
+  background:var(--white);color:var(--navy);border:2px solid var(--navy);
+  border-radius:5px;padding:9px 22px;font-family:var(--font);font-size:15px;
+  font-weight:700;cursor:pointer;min-height:44px;transition:background 0.15s;
+}
+.btn-try-again-final:hover{background:var(--bg-light);}
+.btn-try-again-final:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+
 /* ── Portfolio chrome ── */
 .navbar{background-color:#1B365D;padding:15px 0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
 .nav-container{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;}
@@ -615,12 +671,11 @@ footer{background-color:#343A40;color:#FFFFFF;padding:40px 20px;}
 
 <div class="interaction-wrap">
   <div class="interaction-intro">
-    <p>Compliance training on HIPAA privacy often stops at definitions (what PHI is, what the rules require) without asking team members to apply that knowledge in realistic situations. This interaction was designed to close that gap. Rather than selecting from a list of answers, learners click directly on the words or phrases that constitute violations inside a realistic social media post.</p>
+    <p>Compliance training on HIPAA privacy often stops at definitions — what PHI is, what the rules require — without asking team members to apply that knowledge in realistic situations. This interaction was designed to close that gap. Rather than selecting from a list of answers, learners click directly on the words or phrases that constitute violations inside a realistic social media post.</p>
     <p>Built as a custom HTML block for Articulate Rise 360, deployable as a standalone demo or embedded directly in an eLearning course.</p>
   </div>
 
   <div id="app" role="main">
-<div id="app" role="main">
 
   <!-- Intro Screen -->
   <div id="intro-screen" class="intro-screen">
@@ -657,6 +712,21 @@ footer{background-color:#343A40;color:#FFFFFF;padding:40px 20px;}
     </div>
 
     <div class="scenario-wrap" id="scenario-area" aria-live="polite"></div>
+  </div>
+
+  <!-- Results Screen (hidden until activity complete) -->
+  <div id="results-screen" class="results-screen">
+    <div class="results-header">
+      <span class="badge">Privacy &amp; HIPAA</span>
+      <h2>Activity Complete</h2>
+    </div>
+    <div class="results-body">
+      <div class="score-summary" id="score-summary"></div>
+      <div class="breakdown-list" id="breakdown-list"></div>
+    </div>
+    <div class="results-footer">
+      <button class="btn-try-again-final" id="btn-try-again-final" type="button">Try Again</button>
+    </div>
   </div>
 
 </div>
@@ -760,6 +830,7 @@ const scenarios = [
 // ── State ──────────────────────────────────────────────────────────────────────
 let currentIdx = 0;
 let completionFired = false;
+let scoreResults = []; // tracks {label, correct} per scenario
 
 // ── Render ─────────────────────────────────────────────────────────────────────
 function render(idx) {
@@ -882,16 +953,11 @@ function render(idx) {
     <div class="next-btn-row">
       <button class="btn-next" id="btn-next" type="button">Next Scenario →</button>
     </div>
-    ` : ''}
-
-    ${s.isFinal ? `
-      <div class="final-note" id="final-note">
-        Activity complete. Use the <strong>Continue</strong> button in the course to advance. If you want to do the activity again, click <strong>Try Again</strong> below to start from Scenario 1.
-      </div>
-      <div class="next-btn-row">
-        <button class="btn-try-again" id="btn-try-again" type="button">Try Again</button>
-      </div>
-    ` : ''}
+    ` : `
+    <div class="next-btn-row">
+      <button class="btn-next" id="btn-next" type="button">Continue →</button>
+    </div>
+    `}
   `;
 
   // Focus management
@@ -923,7 +989,6 @@ function attachEvents(s) {
       if (submitted) return;
       submitted = true;
 
-      // Deselect any phrases and lock everything
       selectables.forEach(b => {
         b.setAttribute('aria-pressed', 'false');
         b.classList.remove('selected');
@@ -934,11 +999,10 @@ function attachEvents(s) {
       btnNoViol.disabled = true;
       btnSubmit.disabled = true;
 
-      // Evaluate and reveal
       const isCorrect = evaluate(s, selectables, btnNoViol);
+      scoreResults.push({ label: s.label, correct: isCorrect });
       revealAnswers(s, selectables);
 
-      // Show feedback
       const fb = isCorrect ? s.feedbackCorrect : s.feedbackIncorrect;
       feedback.innerHTML = `<strong class="fb-label">${escHtml(fb.label)}</strong>${escHtml(fb.text)}`;
       feedback.className = `feedback-panel show ${isCorrect ? 'correct' : 'incorrect'}`;
@@ -946,21 +1010,9 @@ function attachEvents(s) {
 
       if (btnNext) btnNext.classList.add('show');
 
-      if (s.isFinal) {
-        const finalNote = document.getElementById('final-note');
-        const btnTryAgain = document.getElementById('btn-try-again');
-        if (finalNote) finalNote.classList.add('show');
-        if (btnTryAgain) {
-          btnTryAgain.classList.add('show');
-          btnTryAgain.addEventListener('click', () => {
-            completionFired = true;
-            showIntro();
-          });
-        }
-        if (!completionFired) {
-          completionFired = true;
-          window.parent.postMessage({ type: 'complete' }, '*');
-        }
+      if (s.isFinal && !completionFired) {
+        completionFired = true;
+        window.parent.postMessage({ type: 'complete' }, '*');
       }
     });
   }
@@ -977,6 +1029,7 @@ function attachEvents(s) {
     btnSubmit.disabled = true;
 
     const isCorrect = evaluate(s, selectables, btnNoViol);
+    scoreResults.push({ label: s.label, correct: isCorrect });
     revealAnswers(s, selectables);
 
     const fb = isCorrect ? s.feedbackCorrect : s.feedbackIncorrect;
@@ -986,30 +1039,74 @@ function attachEvents(s) {
 
     if (btnNext) btnNext.classList.add('show');
 
-    if (s.isFinal) {
-      const finalNote = document.getElementById('final-note');
-      const btnTryAgain = document.getElementById('btn-try-again');
-      if (finalNote) finalNote.classList.add('show');
-      if (btnTryAgain) {
-        btnTryAgain.classList.add('show');
-        btnTryAgain.addEventListener('click', () => {
-          completionFired = true;
-          showIntro();
-        });
-      }
-      if (!completionFired) {
-        completionFired = true;
-        window.parent.postMessage({ type: 'complete' }, '*');
-      }
+    if (s.isFinal && !completionFired) {
+      completionFired = true;
+      window.parent.postMessage({ type: 'complete' }, '*');
     }
   });
 
   if (btnNext) {
     btnNext.addEventListener('click', () => {
-      currentIdx++;
-      render(currentIdx);
+      if (s.isFinal) {
+        showResults();
+      } else {
+        currentIdx++;
+        render(currentIdx);
+      }
     });
   }
+}
+
+function showResults() {
+  document.getElementById('activity-wrap').style.display = 'none';
+  const resultsScreen = document.getElementById('results-screen');
+  resultsScreen.classList.add('show');
+
+  const total = scoreResults.length;
+  const correct = scoreResults.filter(r => r.correct).length;
+
+  // Score circle class
+  const circleClass = correct === total ? 'perfect' : correct >= total / 2 ? 'good' : 'needs-work';
+
+  // Summary message
+  const messages = {
+    3: 'Excellent work. You identified all HIPAA compliance issues correctly — including recognizing a compliant post and catching a violation hidden in a comment.',
+    2: 'Good effort. You caught most of the issues, but review the scenario you missed to make sure you can recognize that type of violation in practice.',
+    1: 'This material takes practice. Review each scenario carefully and try again — pay particular attention to what counts as a patient identifier and how comments can introduce risk.',
+    0: 'Take another look at the scenarios. Focus on what qualifies as a patient identifier and remember that comments on social media posts carry the same HIPAA obligations as original posts.'
+  };
+
+  document.getElementById('score-summary').innerHTML = `
+    <div class="score-circle ${circleClass}">${correct}/${total}</div>
+    <div class="score-text">
+      <h3>${correct === total ? 'All correct!' : correct + ' of ' + total + ' correct'}</h3>
+      <p>${messages[correct] || messages[0]}</p>
+    </div>
+  `;
+
+  // Breakdown
+  const breakdownLabels = [
+    'Scenario 1 — Identifiers in a post (age, location, care context)',
+    'Scenario 2 — Recognizing a compliant post',
+    'Scenario 3 — Violation introduced through a comment'
+  ];
+
+  document.getElementById('breakdown-list').innerHTML = scoreResults.map((r, i) => `
+    <div class="breakdown-item">
+      <div class="breakdown-icon ${r.correct ? 'correct' : 'incorrect'}">${r.correct ? '✓' : '✗'}</div>
+      <div>
+        <div class="breakdown-label">${breakdownLabels[i] || r.label}</div>
+        <div class="breakdown-detail">${r.correct ? 'Correct' : 'Incorrect — review this scenario when you try again'}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Try again button
+  document.getElementById('btn-try-again-final').addEventListener('click', () => {
+    scoreResults = [];
+    resultsScreen.classList.remove('show');
+    showIntro();
+  });
 }
 
 function evaluate(s, selectables, btnNoViol) {
@@ -1054,6 +1151,8 @@ function escHtml(str) {
 function showIntro() {
   document.getElementById('intro-screen').style.display = '';
   document.getElementById('activity-wrap').style.display = 'none';
+  document.getElementById('results-screen').classList.remove('show');
+  currentIdx = 0;
 }
 
 function startActivity() {
@@ -1072,7 +1171,7 @@ showIntro();
   <div class="tools-box-portfolio">
     <strong>Role:</strong> Instructional Designer and Developer<br>
     <strong>Tools:</strong> HTML, CSS, JavaScript, Articulate Rise 360<br>
-    <strong>Status:</strong> In SME review, built for Annual Compliance Training reaching 30,000+ team members
+    <strong>Status:</strong> In SME review — built for Annual Compliance Training reaching 30,000+ team members
   </div>
 
 </div>
