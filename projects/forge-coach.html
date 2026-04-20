@@ -105,7 +105,7 @@
         .project-body {
             max-width: 900px;
             margin: 0 auto;
-            padding: 60px 20px 80px;
+            padding: 80px 20px 80px;
         }
 
         /* ── Photo grid ── */
@@ -348,6 +348,43 @@
             .metrics-bar { grid-template-columns: repeat(2, 1fr); }
             .slides-grid { grid-template-columns: 1fr; }
         }
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        }
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 2.2em;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10000;
+        }
+        .lightbox-close:hover { color: #00B4A6; }
+        .zoomable {
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+        .zoomable:hover { opacity: 0.88; }
     </style>
 </head>
 <body>
@@ -366,7 +403,7 @@
 
     <!-- Hero -->
     <section class="project-hero">
-        <<img src="forge-coach/photo-hands-legos.jpg" alt="Innovation Forge leadership simulation" class="hero-img">
+        <img src="forge-coach/photo-hands-legos.jpg" alt="Innovation Forge leadership simulation" class="hero-img">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <a href="../projects.html" class="back-link">← Back to Projects</a>
@@ -534,6 +571,31 @@
             <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
         </div>
     </footer>
-
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    </div>
+    <script>
+        const overlay = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('lightbox-close');
+    
+        document.querySelectorAll('.photo-grid img, .slide-item img, .agent-logo').forEach(img => {
+            img.classList.add('zoomable');
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                overlay.classList.add('active');
+            });
+        });
+    
+        closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.classList.remove('active');
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') overlay.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
