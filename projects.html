@@ -52,7 +52,7 @@
             position: absolute;
             inset: 0;
             display: grid;
-            grid-template-columns: 1fr 160px 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 0;
         }
         .collage-photo {
@@ -62,18 +62,20 @@
             display: block;
         }
         .collage-logo-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #1B365D;
-            gap: 10px;
-            padding: 16px;
         }
         .collage-logo-center img {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             object-fit: contain;
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,0.6));
         }
         .collage-logo-center .collage-title {
             color: #FFFFFF;
@@ -369,11 +371,13 @@
             <div class="featured-image">
                 <div class="collage-bg">
                     <img src="projects/forge-coach/photo-hands-legos.jpg" alt="" class="collage-photo">
-                    <div class="collage-logo-center">
-                        <img src="projects/forge-coach/logo.png" alt="Forge Coach Logo">
-                    </div>
                     <img src="projects/forge-coach/photo-bridge-stress-test.jpg" alt="" class="collage-photo">
                 </div>
+                <div class="collage-logo-center">
+                    <img src="projects/forge-coach/logo.png" alt="Forge Coach Logo">
+                </div>
+                <span class="featured-image-tag">AI-Integrated Learning</span>
+            </div>
                 <span class="featured-image-tag">AI-Integrated Learning</span>
             </div>
             </div>
