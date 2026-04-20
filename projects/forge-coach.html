@@ -109,12 +109,18 @@
         }
 
         /* ── Photo grid ── */
+        .photo-grid-wrap {
+            height: 480px;
+            overflow: hidden;
+            border-radius: 6px;
+            margin-bottom: 60px;
+        }
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-bottom: 60px;
-            min-height: 440px;
+            margin-bottom: 0;
+            height: 100%;
         }
         .photo-grid img,
         .photo-box {
@@ -344,6 +350,7 @@
         }
         @media (max-width: 600px) {
             .project-hero h1 { font-size: 1.9em; }
+            .photo-grid-wrap { height: 600px; }
             .photo-grid { grid-template-columns: 1fr 1fr; }
             .grid-wide { grid-column: span 2; }
             .metrics-bar { grid-template-columns: repeat(2, 1fr); }
@@ -441,27 +448,29 @@
     <div class="project-body">
 
         <!-- Photo Grid -->
-        <div class="photo-grid">
-            <div class="photo-box grid-wide">
-                <img src="forge-coach/photo-hands-legos.jpg" alt="Participants holding Lego pieces">
-            </div>
-            <div class="photo-box">
-                <img src="forge-coach/photo-table-work.jpg" alt="Table with coffee, Legos, and papers">
-            </div>
-            <div class="photo-box">
-                <img src="forge-coach/photo-focused-legos.jpg" alt="Participants focused on Lego build">
-            </div>
-            <div class="photo-box">
-                <img src="forge-coach/photo-bridge-closeup.jpg" alt="Close-up of Lego bridge on worksheet">
-            </div>
-            <div class="photo-box">
-                <img src="forge-coach/photo-bridge-crude.jpg" alt="Early-stage bridge construction">
-            </div>
-            <div class="photo-box">
-                <img src="forge-coach/photo-bridge-finished.jpg" alt="Completed Lego bridge">
-            </div>
-            <div class="photo-box grid-wide">
-                <img src="forge-coach/photo-bridge-stress-test.jpg" alt="Bridge stress test with Starry can">
+        <div class="photo-grid-wrap">
+            <div class="photo-grid">
+                <div class="photo-box grid-wide">
+                    <img src="forge-coach/photo-hands-legos.jpg" alt="Participants holding Lego pieces">
+                </div>
+                <div class="photo-box">
+                    <img src="forge-coach/photo-table-work.jpg" alt="Table with coffee, Legos, and papers">
+                </div>
+                <div class="photo-box">
+                    <img src="forge-coach/photo-focused-legos.jpg" alt="Participants focused on Lego build">
+                </div>
+                <div class="photo-box">
+                    <img src="forge-coach/photo-bridge-closeup.jpg" alt="Close-up of Lego bridge on worksheet">
+                </div>
+                <div class="photo-box">
+                    <img src="forge-coach/photo-bridge-crude.jpg" alt="Early-stage bridge construction">
+                </div>
+                <div class="photo-box">
+                    <img src="forge-coach/photo-bridge-finished.jpg" alt="Completed Lego bridge">
+                </div>
+                <div class="photo-box grid-wide">
+                    <img src="forge-coach/photo-bridge-stress-test.jpg" alt="Bridge stress test with Starry can">
+                </div>
             </div>
         </div>
 
