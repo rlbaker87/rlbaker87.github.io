@@ -3,18 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Forge Coach: Prisma Health's First AI-Integrated Leadership Training — Robert Baker Portfolio">
-    <title>Forge Coach | Robert Baker</title>
+    <meta name="description" content="Innovation Forge — AI-Integrated Leadership Simulation | Robert Baker Portfolio">
+    <title>Innovation Forge | Robert Baker</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
+
+        /* ── Hero ── */
         .project-hero {
-            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            position: relative;
             color: #FFFFFF;
-            padding: 50px 20px 40px;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            align-items: flex-end;
         }
-        .project-hero-inner {
+        .hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(27,54,93,0.92) 0%, rgba(27,54,93,0.5) 60%, rgba(27,54,93,0.15) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
             max-width: 900px;
             margin: 0 auto;
+            padding: 40px 20px 50px;
         }
         .back-link {
             display: inline-flex;
@@ -25,47 +47,88 @@
             font-weight: 600;
             margin-bottom: 24px;
             transition: color 0.2s;
+            text-decoration: none;
+            display: block;
         }
         .back-link:hover { color: #FFFFFF; }
         .project-tag-hero {
             display: inline-block;
-            background: rgba(0,180,166,0.3);
+            background: rgba(0,180,166,0.35);
             color: #FFFFFF;
             font-size: 0.8em;
             font-weight: 700;
             padding: 4px 14px;
             border-radius: 20px;
-            margin-bottom: 16px;
-        }
-        .project-hero h1 {
-            font-size: 2.4em;
-            font-weight: 700;
-            line-height: 1.25;
             margin-bottom: 14px;
         }
-        .project-hero .hero-subtitle {
-            font-size: 1.1em;
+        .project-hero h1 {
+            font-size: 2.6em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: #FFFFFF;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
             opacity: 0.9;
             line-height: 1.7;
+            max-width: 720px;
         }
 
+        /* ── Metrics bar ── */
+        .metrics-bar {
+            background: #1B365D;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+        }
+        .metric {
+            padding: 22px 16px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .metric:last-child { border-right: none; }
+        .metric-num {
+            font-size: 1.7em;
+            font-weight: 700;
+            color: #00B4A6;
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+        .metric-label {
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        /* ── Body ── */
         .project-body {
             max-width: 900px;
             margin: 0 auto;
             padding: 60px 20px 80px;
         }
 
-        /* Photo grid */
+        /* ── Photo grid ── */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 50px;
+            gap: 10px;
+            margin-bottom: 60px;
         }
+        .photo-grid img,
+        .photo-box {
+            width: 100%;
+            border-radius: 6px;
+            display: block;
+        }
+        .photo-grid img {
+            height: 100%;
+            object-fit: cover;
+        }
+        .grid-wide { grid-column: span 2; }
         .photo-box {
             aspect-ratio: 4/3;
             background: #E9ECEF;
-            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -78,42 +141,10 @@
             padding: 10px;
             font-weight: 600;
         }
-        .photo-box.wide {
-            grid-column: span 2;
-            aspect-ratio: 16/7;
-        }
+        .photo-box.grid-wide { aspect-ratio: 16/7; }
 
-        /* Metrics bar */
-        .metrics-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 0;
-            background: #1B365D;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 50px;
-        }
-        .metric {
-            padding: 24px 20px;
-            text-align: center;
-            border-right: 1px solid rgba(255,255,255,0.1);
-        }
-        .metric:last-child { border-right: none; }
-        .metric-num {
-            font-size: 2em;
-            font-weight: 700;
-            color: #00B4A6;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .metric-label {
-            font-size: 0.82em;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.4;
-        }
-
-        /* Sections */
-        .section { margin-bottom: 40px; }
+        /* ── Sections ── */
+        .section { margin-bottom: 44px; }
         .section h2 {
             font-size: 1.4em;
             font-weight: 700;
@@ -128,6 +159,7 @@
             color: #343A40;
             margin-bottom: 14px;
         }
+        .section p:last-child { margin-bottom: 0; }
 
         .solution-list {
             list-style: none;
@@ -143,19 +175,146 @@
             border-radius: 4px;
             color: #343A40;
             font-size: 1em;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
+        /* ── Outage callout ── */
+        .callout-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 24px 28px;
+            border-radius: 6px;
+            margin: 28px 0 0;
+        }
+        .callout-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .callout-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin: 0;
+        }
+
+        /* ── Agent showcase ── */
+        .agent-showcase {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 24px;
+            align-items: center;
+            background: #F8F9FA;
+            border-radius: 10px;
+            padding: 24px 28px;
+            margin: 24px 0 28px;
+            border: 1px solid #E9ECEF;
+        }
+        .agent-logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .agent-logo-placeholder {
+            width: 90px;
+            height: 90px;
+            background: #E9ECEF;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2em;
+            border: 2px dashed #CED4DA;
+        }
+        .agent-info h3 {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 6px;
+        }
+        .agent-info p {
+            font-size: 0.95em;
+            color: #343A40;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ── Slides ── */
+        .slides-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .slide-item img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #E9ECEF;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: block;
+        }
+        .slide-caption {
+            font-size: 0.82em;
+            color: #6C757D;
+            margin-top: 8px;
+            text-align: center;
+            display: block;
+        }
+        .slide-placeholder {
+            aspect-ratio: 16/9;
+            background: #E9ECEF;
+            border-radius: 8px;
+            border: 2px dashed #CED4DA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide-placeholder p {
+            font-size: 0.8em;
+            color: #6C757D;
+            font-weight: 600;
+        }
+
+        /* ── Results ── */
         .results-box {
             background: #FFF3CD;
             border-left: 5px solid #F07B3F;
             padding: 28px 30px;
             border-radius: 6px;
-            margin-bottom: 40px;
+            margin-bottom: 44px;
         }
         .results-box h2 {
+            font-size: 1.4em;
+            font-weight: 700;
             color: #F07B3F;
-            border-bottom-color: rgba(240,123,63,0.2);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(240,123,63,0.2);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .result-item { text-align: center; }
+        .result-number {
+            font-size: 1.9em;
+            font-weight: 700;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 6px;
+            line-height: 1.1;
+        }
+        .result-label {
+            color: #343A40;
+            font-size: 0.85em;
+            line-height: 1.4;
         }
         .results-box p {
             color: #343A40;
@@ -164,6 +323,7 @@
             margin: 0;
         }
 
+        /* ── Tools ── */
         .tools-box {
             background: #E9ECEF;
             padding: 20px 24px;
@@ -174,41 +334,19 @@
         }
         .tools-box strong { color: #1B365D; }
 
-        /* Assets section */
-        .assets-section {
-            background: #F8F9FA;
-            border: 1px solid #E9ECEF;
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 40px;
-            text-align: center;
+        @media (max-width: 768px) {
+            .metrics-bar { grid-template-columns: repeat(3, 1fr); }
+            .metric:nth-child(3) { border-right: none; }
+            .results-grid { grid-template-columns: repeat(2, 1fr); }
+            .agent-showcase { grid-template-columns: 1fr; text-align: center; }
+            .agent-logo { margin: 0 auto; }
         }
-        .assets-section p {
-            color: #6C757D;
-            font-size: 0.95em;
-            margin-bottom: 16px;
-        }
-        .asset-btn {
-            display: inline-block;
-            background: #1B365D;
-            color: #FFFFFF;
-            font-weight: 700;
-            font-size: 0.95em;
-            padding: 11px 26px;
-            border-radius: 6px;
-            transition: background 0.2s;
-        }
-        .asset-btn:hover { background: #00B4A6; color: #FFFFFF; }
-
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
+            .project-hero h1 { font-size: 1.9em; }
             .photo-grid { grid-template-columns: 1fr 1fr; }
-            .photo-box.wide { grid-column: span 2; }
-            .project-hero h1 { font-size: 1.8em; }
+            .grid-wide { grid-column: span 2; }
             .metrics-bar { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 480px) {
-            .photo-grid { grid-template-columns: 1fr; }
-            .photo-box.wide { grid-column: span 1; aspect-ratio: 4/3; }
+            .slides-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -226,80 +364,148 @@
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="project-hero">
-        <div class="project-hero-inner">
+        <img src="forge-coach/meet-forge-coach.jpg" alt="Meet Forge Coach — AI Leadership Consultant" class="hero-img">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
             <a href="../projects.html" class="back-link">← Back to Projects</a>
-            <span class="project-tag-hero">AI-Integrated Learning</span>
-            <h1>Forge Coach: Prisma Health's First AI-Integrated Leadership Training</h1>
-            <p class="hero-subtitle">Designing and building a custom AI coaching agent for senior healthcare leaders at the annual Learning and Leadership Symposium</p>
+            <span class="project-tag-hero">AI-Integrated Leadership Simulation</span>
+            <h1>Innovation Forge</h1>
+            <p class="hero-subtitle">A hands-on leadership simulation that puts healthcare executives through a rotating command structure, a Lego bridge-building crisis, and a live AI coaching agent — all in 60 minutes.</p>
         </div>
     </section>
+
+    <!-- Metrics -->
+    <div class="metrics-bar">
+        <div class="metric">
+            <span class="metric-num">4.5/5</span>
+            <span class="metric-label">Participant Engagement</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">4.66/5</span>
+            <span class="metric-label">Likelihood to Apply Skills</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">4.34/5</span>
+            <span class="metric-label">Overall Satisfaction</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">80+</span>
+            <span class="metric-label">Director-Level Participants</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">2</span>
+            <span class="metric-label">Concurrent Sessions</span>
+        </div>
+    </div>
 
     <div class="project-body">
 
         <!-- Photo Grid -->
         <div class="photo-grid">
-            <div class="photo-box wide"><p>📸 Session Photo<br>Coming Soon</p></div>
-            <div class="photo-box"><p>📸 Photo<br>Coming Soon</p></div>
-            <div class="photo-box"><p>📸 Photo<br>Coming Soon</p></div>
-            <div class="photo-box"><p>📸 Photo<br>Coming Soon</p></div>
-            <div class="photo-box wide"><p>📸 Session Photo<br>Coming Soon</p></div>
-        </div>
-
-        <!-- Metrics -->
-        <div class="metrics-bar">
-            <div class="metric">
-                <span class="metric-num">4.7/5</span>
-                <span class="metric-label">Attendee Rating</span>
+            <div class="photo-box grid-wide">
+                <img src="forge-coach/photo-hands-legos.jpg" alt="Participants holding Lego pieces">
             </div>
-            <div class="metric">
-                <span class="metric-num">75+</span>
-                <span class="metric-label">Senior Leaders</span>
+            <div class="photo-box">
+                <img src="forge-coach/photo-table-work.jpg" alt="Table with coffee, Legos, and papers">
             </div>
-            <div class="metric">
-                <span class="metric-num">First</span>
-                <span class="metric-label">AI-Integrated Training at Prisma Health</span>
+            <div class="photo-box">
+                <img src="forge-coach/photo-focused-legos.jpg" alt="Participants focused on Lego build">
             </div>
-            <div class="metric">
-                <span class="metric-num">60</span>
-                <span class="metric-label">Minute Session</span>
+            <div class="photo-box">
+                <img src="forge-coach/photo-bridge-closeup.jpg" alt="Close-up of Lego bridge on worksheet">
+            </div>
+            <div class="photo-box">
+                <img src="forge-coach/photo-bridge-crude.jpg" alt="Early-stage bridge construction">
+            </div>
+            <div class="photo-box">
+                <img src="forge-coach/photo-bridge-finished.jpg" alt="Completed Lego bridge">
+            </div>
+            <div class="photo-box grid-wide">
+                <img src="forge-coach/photo-bridge-stress-test.jpg" alt="Bridge stress test with Starry can">
             </div>
         </div>
 
         <!-- Challenge -->
         <div class="section">
             <h2>The Challenge</h2>
-            <p>Design a 60-minute leadership development experience for director-level and above healthcare leaders that builds practical AI fluency while developing strategic communication and problem-solving skills — without it feeling like a technology training session.</p>
+            <p>Prisma Health's 2025 Leadership Symposium needed an activity that went beyond typical team-building. The Learning and Development Team wanted something that would put director-level and above participants in real decision-making pressure while also introducing them to AI as a practical leadership tool.</p>
+            <p>The challenge was designing an experience that felt urgent and immersive without becoming chaotic — and that taught prompt engineering skills without ever mentioning prompt engineering.</p>
         </div>
 
         <!-- Solution -->
         <div class="section">
             <h2>Solution</h2>
             <ul class="solution-list">
-                <li>Built a custom Microsoft CoPilot agent (Forge Coach) using a hybrid prompt architecture designed around Socratic coaching methodology — guiding teams to discover solutions rather than providing answers directly</li>
-                <li>Used ChatGPT, Claude, and Perplexity to build, stress-test, and refine the agent before deployment, ensuring it could handle the range of scenarios leaders would present</li>
-                <li>Designed a hands-on Lego-based crisis simulation where teams consult Forge Coach in real time to work through strategic communication challenges</li>
-                <li>Developed the "5 P's of Prompting" framework (Prime, Persona, Privacy, Product, Polish) as a transferable skill tool leaders could apply immediately after the session</li>
-                <li>Facilitated the session alongside department leadership for an audience of senior healthcare leaders</li>
+                <li>Designed a Lego bridge construction scenario framed as a medical transport emergency, where teams had to restore critical routes between facilities under a strict 20-minute build clock with limited pieces and a scoring system that penalized inefficiency.</li>
+                <li>Built a rotating leadership system that cycled participants through Lead Designer, Lead Builder, and Builder roles every three minutes — creating six to seven leadership transitions per team and forcing rapid knowledge transfer that mirrors real succession planning.</li>
+                <li>Developed Forge Coach, a custom AI agent deployed through Microsoft CoPilot Studio, serving as both a structural engineering advisor and a leadership coach. Access was limited to the Lead Designer each cycle, making AI consultation a strategic resource rather than a free-for-all.</li>
+                <li>Stress-tested the agent against other generative AI tools and a calibrated team review process, discovering that pure Socratic questioning frustrated participants under time pressure. Pivoted to a hybrid approach that balanced guiding questions with targeted direct guidance.</li>
+                <li>Produced a full facilitator guide, condensed one-page day-of script, printed role briefs, river template workspace, warehouse visit tracker, and scoring guide — all print-friendly and designed for facilitators with no prior technical background.</li>
             </ul>
+
+            <div class="callout-box">
+                <span class="callout-label">Real-World Problem Solving</span>
+                <p>A five-minute CoPilot outage occurred during the live event — entirely outside our control and unrelated to the agent's design. Because contingency protocols were built into the facilitator guide from the start, the team pivoted to non-AI delivery without disrupting the session. Attendance also exceeded registration across both sessions, requiring real-time facilitation adjustments on the floor. Both situations were handled without participant impact.</p>
+            </div>
+        </div>
+
+        <!-- Forge Coach Agent -->
+        <div class="section">
+            <h2>Meet Forge Coach</h2>
+            <div class="agent-showcase">
+                <img src="forge-coach/logo.png" alt="Forge Coach AI Agent Logo" class="agent-logo"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="agent-logo-placeholder" style="display:none;">🤖</div>
+                <div class="agent-info">
+                    <h3>Forge Coach — AI Lego &amp; Leadership Consultant</h3>
+                    <p>Engineering guidance and leadership coaching built into a single agent. Crisis-focused for high-pressure environments. Built in Microsoft CoPilot Studio and refined through structured stress testing to balance Socratic coaching with direct guidance under time pressure.</p>
+                </div>
+            </div>
+
+            <div class="slides-grid">
+                <div class="slide-item">
+                    <img src="forge-coach/meet-forge-coach.jpg" alt="Meet Forge Coach slide"
+                         onerror="this.parentElement.innerHTML='<div class=\'slide-placeholder\'><p>Slide Coming Soon</p></div><span class=\'slide-caption\'>Session introduction — Meet Forge Coach</span>'">
+                    <span class="slide-caption">Session introduction — Meet Forge Coach</span>
+                </div>
+                <div class="slide-item">
+                    <img src="forge-coach/questions-slide.jpg" alt="Questions slide with Lego figures"
+                         onerror="this.parentElement.innerHTML='<div class=\'slide-placeholder\'><p>Slide Coming Soon</p></div><span class=\'slide-caption\'>Q&amp;A closer — Lego figures with Questions sign</span>'">
+                    <span class="slide-caption">Q&amp;A closer — Lego figures with "Questions?" sign</span>
+                </div>
+            </div>
         </div>
 
         <!-- Results -->
         <div class="results-box">
             <h2>Impact and Results</h2>
-            <p>Rated 4.7/5 by attendees. Demonstrated how AI can enhance human collaboration and strategic thinking rather than replace it. The session now serves as the departmental model for future AI-integrated learning initiatives across the enterprise — including the formal case study used when developing subsequent AI agent builds.</p>
-        </div>
-
-        <!-- Assets -->
-        <div class="assets-section">
-            <p>Session materials, PPT slides, and screen recording available upon request.</p>
-            <a href="../contact.html" class="asset-btn">Request Project Materials</a>
+            <div class="results-grid">
+                <div class="result-item">
+                    <span class="result-number">4.5/5</span>
+                    <span class="result-label">Participant Engagement</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">4.66/5</span>
+                    <span class="result-label">Likelihood to Apply Skills</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">4.34/5</span>
+                    <span class="result-label">Overall Satisfaction</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">80+</span>
+                    <span class="result-label">Director-Level Participants</span>
+                </div>
+            </div>
+            <p>Attendance exceeded registration across two concurrent sessions, requiring real-time facilitation adjustments. The session introduced AI as a practical leadership tool without ever framing it as a technology training — participants engaged with Forge Coach as a thought partner, not a novelty. Now serves as a departmental case study for AI-integrated learning design.</p>
         </div>
 
         <!-- Role & Tools -->
         <div class="tools-box">
-            <strong>Role:</strong> Lead Designer and AI Integration Specialist<br>
-            <strong>Tools:</strong> Microsoft CoPilot Agent Development, ChatGPT, Claude, Perplexity, Prompt Engineering, Experiential Learning Design, Lego Serious Play Methodology
+            <strong>Role:</strong> Lead Designer — activity design, AI agent development, stress test coordination, system prompt refinement, facilitator material production, and logistics coordination. Co-facilitated with department colleagues.<br><br>
+            <strong>Tools:</strong> Microsoft CoPilot Studio, Microsoft 365, Lego construction kits, printed role briefs and workspace templates, Claude (used during development and stress testing for agent calibration and prompt analysis)
         </div>
 
     </div>
