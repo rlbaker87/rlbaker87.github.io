@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Upskilling Program — A practice-first AI upskilling program for a healthcare L&D team | Robert Baker Portfolio">
+    <title>AI Upskilling Program | Robert Baker</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+
+        /* ── Hero ── */
+        .project-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 70px 20px 60px;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-block;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+        .back-link:hover { color: #FFFFFF; }
+        .project-tag-hero {
+            display: inline-block;
+            background: rgba(0,180,166,0.35);
+            color: #FFFFFF;
+            font-size: 0.8em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .project-hero h1 {
+            font-size: 2.6em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: #FFFFFF;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
+            opacity: 0.9;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+
+        /* ── Metrics bar ── */
+        .metrics-bar {
+            background: #1B365D;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+        }
+        .metric {
+            padding: 22px 16px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .metric:last-child { border-right: none; }
+        .metric-num {
+            font-size: 1.7em;
+            font-weight: 700;
+            color: #00B4A6;
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+        .metric-label {
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        /* ── Body ── */
+        .project-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* ── Artifact placeholder zones ── */
+        .artifact-zone {
+            background: #F8F9FA;
+            border: 2px dashed #CED4DA;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .artifact-zone .az-icon { font-size: 2em; margin-bottom: 10px; }
+        .artifact-zone p {
+            font-size: 0.88em;
+            color: #6C757D;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        /* ── Sections ── */
+        .section { margin-bottom: 44px; }
+        .section h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E9ECEF;
+        }
+        .section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin-bottom: 14px;
+        }
+        .section p:last-child { margin-bottom: 0; }
+
+        .solution-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .solution-list li {
+            padding: 14px 18px;
+            background: #F8F9FA;
+            border-left: 4px solid #00B4A6;
+            border-radius: 4px;
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        /* ── Callout box ── */
+        .callout-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 24px 28px;
+            border-radius: 6px;
+            margin: 28px 0 0;
+        }
+        .callout-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .callout-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin: 0;
+        }
+
+        /* ── Program structure cards ── */
+        .program-structure {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .structure-card {
+            background: #F8F9FA;
+            border-radius: 8px;
+            padding: 20px;
+            border-top: 4px solid #00B4A6;
+            text-align: center;
+        }
+        .structure-card.orange { border-top-color: #F07B3F; }
+        .structure-card.navy { border-top-color: #1B365D; }
+        .structure-num {
+            font-size: 2em;
+            font-weight: 700;
+            color: #1B365D;
+            display: block;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .structure-label {
+            font-size: 0.82em;
+            font-weight: 700;
+            color: #343A40;
+            display: block;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .structure-desc {
+            font-size: 0.88em;
+            color: #6C757D;
+            line-height: 1.5;
+        }
+
+        /* ── Infrastructure grid ── */
+        .infra-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .infra-card {
+            background: #FFFFFF;
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 18px;
+            border-left: 4px solid #00B4A6;
+        }
+        .infra-card h4 {
+            font-size: 0.92em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 6px;
+        }
+        .infra-card p {
+            font-size: 0.85em;
+            color: #6C757D;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ── Results ── */
+        .results-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 28px 30px;
+            border-radius: 6px;
+            margin-bottom: 44px;
+        }
+        .results-box h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #F07B3F;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(240,123,63,0.2);
+        }
+        .results-note {
+            font-size: 0.82em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .results-table th {
+            text-align: left;
+            padding: 10px 14px;
+            background: rgba(240,123,63,0.1);
+            color: #1B365D;
+            font-weight: 700;
+            font-size: 0.82em;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .results-table td {
+            padding: 12px 14px;
+            color: #343A40;
+            border-bottom: 1px solid rgba(240,123,63,0.15);
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        .results-table tr:last-child td { border-bottom: none; }
+        .td-baseline { color: #6C757D; }
+        .td-target { color: #F07B3F; font-weight: 600; }
+        .results-box p {
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ── Tools ── */
+        .tools-box {
+            background: #E9ECEF;
+            padding: 20px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            color: #343A40;
+            line-height: 1.8;
+        }
+        .tools-box strong { color: #1B365D; }
+
+        /* ── Lightbox ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        }
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 2.2em;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10000;
+        }
+        .lightbox-close:hover { color: #00B4A6; }
+        .zoomable { cursor: zoom-in; transition: opacity 0.2s; }
+        .zoomable:hover { opacity: 0.88; }
+
+        @media (max-width: 768px) {
+            .metrics-bar { grid-template-columns: repeat(3, 1fr); }
+            .metric:nth-child(3) { border-right: none; }
+            .program-structure { grid-template-columns: 1fr; }
+            .infra-grid { grid-template-columns: 1fr; }
+            .artifact-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .project-hero h1 { font-size: 1.9em; }
+            .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <a href="../projects.html" class="back-link">← Back to Projects</a>
+            <span class="project-tag-hero">AI Workforce Development</span>
+            <h1>AI Upskilling Program</h1>
+            <p class="hero-subtitle">A practice-first AI upskilling program designed for a healthcare L&D team operating under real governance constraints — built to run alongside production work, not instead of it.</p>
+        </div>
+    </section>
+
+    <!-- Metrics bar -->
+    <div class="metrics-bar">
+        <div class="metric">
+            <span class="metric-num">10</span>
+            <span class="metric-label">Sessions Over 6 Months</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">70/20/10</span>
+            <span class="metric-label">Learning Model</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">4</span>
+            <span class="metric-label">AI Champions</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">100%</span>
+            <span class="metric-label">Team Using Unapproved Tools at Baseline</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">Active</span>
+            <span class="metric-label">Program Status — Early 2026</span>
+        </div>
+    </div>
+
+    <div class="project-body">
+
+        <!-- Hero artifact placeholder -->
+        <div class="artifact-zone" style="margin-bottom: 60px;">
+            <div class="az-icon">🧪</div>
+            <p>Session photo or program overview graphic<br>Add after rebranding</p>
+        </div>
+
+        <!-- Challenge -->
+        <div class="section">
+            <h2>The Challenge</h2>
+            <p>The Learning Design and Technology team at a large regional health system was already using AI tools, but without shared standards, approved platforms, or any governance structure. Every team member reported using at least one unapproved tool. The team needed a program that could build consistent skills and responsible habits without pulling people away from active production work for extended training blocks.</p>
+            <p>The solution couldn't be a course. It had to be a system — one that built capability incrementally, created peer accountability, and produced infrastructure that would outlast the program itself.</p>
+        </div>
+
+        <!-- Solution -->
+        <div class="section">
+            <h2>Solution</h2>
+            <p>This is a 10-session series designed around how the team actually works — in short windows, under real deadlines, with real tools.</p>
+
+            <div class="program-structure">
+                <div class="structure-card">
+                    <span class="structure-num">70%</span>
+                    <span class="structure-label">Real Work Application</span>
+                    <span class="structure-desc">Every session applies directly to tasks team members are already doing</span>
+                </div>
+                <div class="structure-card orange">
+                    <span class="structure-num">20%</span>
+                    <span class="structure-label">Peer Learning</span>
+                    <span class="structure-desc">Structured sharing, prompt swaps, and success story documentation</span>
+                </div>
+                <div class="structure-card navy">
+                    <span class="structure-num">10%</span>
+                    <span class="structure-label">Formal Instruction</span>
+                    <span class="structure-desc">Short, targeted input — frameworks, governance guidance, new tool orientation</span>
+                </div>
+            </div>
+
+            <ul class="solution-list">
+                <li>Designed 10 fully self-contained 60-minute sessions running twice a month over six months. Self-contained structure means capacity constraints or schedule conflicts never permanently disqualify a participant — anyone can re-enter without being lost.</li>
+                <li>Built an AI Champions peer-leadership model with four internal Champions driving facilitation and sustaining adoption between sessions, eliminating dependence on any single facilitator or outside trainer and distributing ownership across the team.</li>
+                <li>Adapted governance frameworks from peer healthcare organizations into a Green/Yellow/Red decision tree mapped to the organization's existing ITS three-tier framework — rather than building compliance guidance from scratch or waiting on formal policy development.</li>
+                <li>Positioned governance as a relationship-building tool with ITS and Information Security, not a compliance exercise — treating IT partners as collaborators in the program rather than gatekeepers to route around.</li>
+                <li>Constructed shared infrastructure during the program itself: a SharePoint-based Prompt Library organized by ADDIE phase, a Success Stories database with a standard impact template, and an AI Verification Log for content governance. These are live tools built alongside the work, not end-of-program deliverables.</li>
+                <li>Applied a Kirkpatrick four-level evaluation plan with pulse checks after every session, ATD competency self-assessments at sessions 1, 5, and 10, and time-savings tracking tied to named recurring tasks the team performs every week.</li>
+            </ul>
+
+            <div class="callout-box">
+                <span class="callout-label">Why This Approach</span>
+                <p>Most AI upskilling programs treat governance as an afterthought and build toward a future state the team can't sustain. This program builds the governance relationship and the shared infrastructure at the same time as the skills — so what's left at program close is a working system, not a slide deck.</p>
+            </div>
+        </div>
+
+        <!-- Infrastructure -->
+        <div class="section">
+            <h2>Shared Infrastructure Built During the Program</h2>
+            <p>These tools are live and in use from session one — not artifacts delivered at program close.</p>
+            <div class="infra-grid">
+                <div class="infra-card">
+                    <h4>Prompt Library</h4>
+                    <p>SharePoint-based library organized by ADDIE phase. Team-contributed, tagged, and searchable. Target: 20+ entries by month 6.</p>
+                </div>
+                <div class="infra-card">
+                    <h4>Success Stories Database</h4>
+                    <p>Standardized impact template for documenting real AI wins. Feeds evaluation data and builds internal evidence for continued investment.</p>
+                </div>
+                <div class="infra-card">
+                    <h4>AI Verification Log</h4>
+                    <p>Content governance documentation for AI-assisted outputs. Supports audit readiness and establishes responsible use habits as standard practice.</p>
+                </div>
+            </div>
+
+            <div class="artifact-grid">
+                <div class="artifact-zone">
+                    <div class="az-icon">🟢</div>
+                    <p>Green/Yellow/Red Decision Tree<br>Add screenshot after rebranding</p>
+                </div>
+                <div class="artifact-zone">
+                    <div class="az-icon">📚</div>
+                    <p>Prompt Library Screenshot<br>Add after rebranding</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Session Materials -->
+        <div class="section">
+            <h2>Session Materials</h2>
+            <p>Each session includes a facilitator guide, participant activity, and pulse check. Sessions are self-contained and designed for co-facilitation by AI Champions.</p>
+            <div class="artifact-grid">
+                <div class="artifact-zone">
+                    <div class="az-icon">📋</div>
+                    <p>Sample Session Slide Deck<br>Add after rebranding</p>
+                </div>
+                <div class="artifact-zone">
+                    <div class="az-icon">🎯</div>
+                    <p>Facilitation Guide Sample<br>Add after rebranding</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results-box">
+            <h2>Impact &amp; Results</h2>
+            <span class="results-note">Program in progress — targets from baseline data. Outcomes measured at session 5 and session 10.</span>
+
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Measure</th>
+                        <th>Baseline</th>
+                        <th>Target — Month 6</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Time saved per person per week on AI-assisted tasks</td>
+                        <td class="td-baseline">0–1 hours</td>
+                        <td class="td-target">3–5 hours</td>
+                    </tr>
+                    <tr>
+                        <td>ATD Integration level — AI embedded in regular workflow</td>
+                        <td class="td-baseline">56%</td>
+                        <td class="td-target">90%+</td>
+                    </tr>
+                    <tr>
+                        <td>ATD Innovation level — can teach others, build agents, create new workflows</td>
+                        <td class="td-baseline">22–44%</td>
+                        <td class="td-target">70%+</td>
+                    </tr>
+                    <tr>
+                        <td>Prompt Library entries across all task types</td>
+                        <td class="td-baseline">0</td>
+                        <td class="td-target">20+</td>
+                    </tr>
+                    <tr>
+                        <td>Documented success stories with impact data</td>
+                        <td class="td-baseline">0</td>
+                        <td class="td-target">10+</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Outcome data will be updated at program close. Baseline data collected via ATD AI competency self-assessment administered at session 1.</p>
+        </div>
+
+        <!-- Role & Tools -->
+        <div class="tools-box">
+            <strong>Role:</strong> Program designer and lead facilitator. Led needs assessment, curriculum architecture, governance framework adaptation, infrastructure build, and evaluation design. Co-facilitated sessions with the AI Champions team.<br><br>
+            <strong>Tools:</strong> Microsoft Teams and SharePoint, Microsoft Forms, Articulate Rise 360, Articulate Storyline, Cornerstone LMS, Microsoft Copilot, Claude
+        </div>
+
+    </div>
+
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Interested in What Learning Can Do?</h2>
+            <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const overlay = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('lightbox-close');
+
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                overlay.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.classList.remove('active');
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') overlay.classList.remove('active');
+        });
+    </script>
+
+</body>
+</html>
