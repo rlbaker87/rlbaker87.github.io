@@ -80,13 +80,62 @@ a {
 .hero {
     background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
     color: #FFFFFF;
-    padding: 100px 20px;
-    text-align: center;
+    padding: 80px 20px;
 }
 
 .hero-content {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
+}
+
+/* Two-column split layout */
+.hero-split {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    text-align: left;
+}
+
+.hero-photo-col {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-photo-ring {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.35);
+    outline: 3px solid #00B4A6;
+    outline-offset: 4px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+}
+
+.hero-headshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+/* Fallback placeholder when image is missing */
+.hero-photo-placeholder::after {
+    content: "RB";
+    font-size: 4em;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-text-col {
+    flex: 1;
 }
 
 .hero h1 {
@@ -97,7 +146,7 @@ a {
 }
 
 .hero .tagline {
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: 600;
     margin-bottom: 15px;
     color: #FFFFFF;
@@ -105,16 +154,16 @@ a {
 }
 
 .hero .subtitle {
-    font-size: 1.2em;
+    font-size: 1.15em;
     margin-bottom: 30px;
     opacity: 0.9;
     line-height: 1.8;
 }
 
 .cta-buttons {
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -261,7 +310,7 @@ a {
 }
 
 .expertise-card li:before {
-    content: "→";
+    content: "â†’";
     position: absolute;
     left: 0;
     color: #00B4A6;
@@ -400,6 +449,22 @@ footer {
     .nav-menu {
         flex-direction: column;
         gap: 10px;
+    }
+
+    /* Stack hero vertically on mobile */
+    .hero-split {
+        flex-direction: column;
+        text-align: center;
+        gap: 35px;
+    }
+
+    .hero-photo-ring {
+        width: 180px;
+        height: 180px;
+    }
+
+    .cta-buttons {
+        justify-content: center;
     }
 
     .hero h1 {
