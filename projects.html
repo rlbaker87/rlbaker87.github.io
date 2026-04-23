@@ -77,21 +77,6 @@
             object-fit: contain;
             filter: drop-shadow(0 4px 16px rgba(0,0,0,0.6));
         }
-        .collage-logo-center .collage-title {
-            color: #FFFFFF;
-            font-size: 0.85em;
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.3;
-        }
-        .collage-tag {
-            background: #00B4A6;
-            color: #FFFFFF;
-            font-size: 0.7em;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 20px;
-        }
         .featured-image {
             width: 100%;
             height: 320px;
@@ -101,21 +86,6 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-        }
-        .featured-image-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            opacity: 0.3;
-        }
-        .featured-image-placeholder .ph-icon { font-size: 3em; }
-        .featured-image-placeholder p {
-            color: #FFFFFF;
-            font-size: 0.9em;
-            font-weight: 600;
-            letter-spacing: 0.06em;
         }
         .featured-image-tag {
             position: absolute;
@@ -203,34 +173,46 @@
             padding-bottom: 12px;
             border-bottom: 2px solid #E9ECEF;
         }
-        .carousel-nav {
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-        .carousel-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 2px solid #E9ECEF;
-            background: #FFFFFF;
-            color: #1B365D;
-            font-size: 1em;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-        .carousel-btn:hover { border-color: #00B4A6; color: #00B4A6; }
-        .carousel-btn:disabled { opacity: 0.3; cursor: default; }
 
+        /* ── Overlaid arrow buttons ── */
+        .carousel-wrapper {
+            position: relative;
+        }
         .carousel-track-outer { overflow: hidden; }
         .carousel-track {
             display: flex;
             gap: 24px;
             transition: transform 0.35s ease;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(27, 54, 93, 0.6);
+            color: #FFFFFF;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: background 0.2s, opacity 0.2s;
+            opacity: 0;
+        }
+        .carousel-wrapper:hover .carousel-arrow { opacity: 1; }
+        .carousel-arrow:hover { background: rgba(27, 54, 93, 0.88); }
+        .carousel-arrow:disabled { opacity: 0 !important; cursor: default; pointer-events: none; }
+        .carousel-arrow.arrow-prev { left: 8px; }
+        .carousel-arrow.arrow-next { right: 8px; }
+
+        /* Always visible on mobile */
+        @media (max-width: 768px) {
+            .carousel-arrow { opacity: 0.75; }
+            .carousel-arrow:disabled { opacity: 0 !important; }
         }
 
         /* ── Tiles ── */
@@ -379,10 +361,10 @@
                 </div>
             </div>
             <div class="featured-body">
-                    <span style="display: inline-block; background-color: #00B4A6; color: #FFFFFF; padding: 6px 18px; border-radius: 20px; font-size: 0.9em; font-weight: 600; margin-bottom: 15px;">AI-Integrated Learning</span>
-                    <h2>Innovation Forge</h2>
+                <span style="display: inline-block; background-color: #00B4A6; color: #FFFFFF; padding: 6px 18px; border-radius: 20px; font-size: 0.9em; font-weight: 600; margin-bottom: 15px;">AI-Integrated Learning</span>
+                <h2>Innovation Forge</h2>
                 <h3 class="subtitle">Prisma Health's First AI-Integrated Leadership Training</h3>
-                <p class="featured-summary">A 60-minute leadership simulation that put 80+ director-level and above healthcare leaders through a rotating command structure, a Lego bridge-building crisis framed as a medical transport emergency, and live consultation with a custom-built AI coaching agent, without ever mentioning prompt engineering.</p>
+                <p class="featured-summary">A 60-minute leadership simulation that put 80+ director-level and above healthcare leaders through a rotating command structure, a Lego bridge-building crisis framed as a medical transport emergency, and live consultation with a custom-built AI coaching agent — without ever mentioning prompt engineering.</p>
                 <div class="featured-meta">
                     <div class="meta-item">
                         <span class="meta-label">Likelihood to Apply Skills</span>
@@ -409,152 +391,163 @@
     <!-- Other Featured Projects -->
     <div class="carousel-section">
         <h2 class="carousel-subheader">Other Featured Projects</h2>
-        <div class="carousel-nav">
-            <button class="carousel-btn" id="feat-prev" aria-label="Previous">&#8592;</button>
-            <button class="carousel-btn" id="feat-next" aria-label="Next">&#8594;</button>
-        </div>
-        <div class="carousel-track-outer">
-            <div class="carousel-track" id="feat-track">
+        <div class="carousel-wrapper">
+            <button class="carousel-arrow arrow-prev" id="feat-prev" aria-label="Previous">&#8592;</button>
+            <div class="carousel-track-outer">
+                <div class="carousel-track" id="feat-track">
 
-                <a href="projects/symposium.html" class="carousel-tile">
-                    <div class="tile-thumb">
-                        <div class="tile-thumb-placeholder"><span>🎯</span><p>Photo Coming Soon</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag">Program Management</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">Annual Learning and Leadership Symposium</div>
-                        <div class="tile-desc">Project Manager for a 400+ attendee enterprise leadership event across six cross-functional teams</div>
-                    </div>
-                </a>
+                    <a href="projects/ai-upskilling.html" class="carousel-tile">
+                        <div class="tile-thumb" style="background:#1B365D;">
+                            <div class="tile-thumb-placeholder"><span>🤖</span><p>AI Upskilling</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag">AI Workforce Development</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">AI Upskilling Program</div>
+                            <div class="tile-desc">A 10-session practice-first program built on peer leadership and real-work application for a healthcare L&D team</div>
+                        </div>
+                    </a>
 
-                <a href="projects/compliance-training.html" class="carousel-tile">
-                    <div class="tile-thumb">
-                        <div class="tile-thumb-placeholder"><span>📋</span><p>Photo Coming Soon</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag">Enterprise Learning</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">Annual Compliance Training Redesign</div>
-                        <div class="tile-desc">Redesigned mandatory compliance training for 30,000+ team members across two states</div>
-                    </div>
-                </a>
+                    <a href="projects/symposium.html" class="carousel-tile">
+                        <div class="tile-thumb">
+                            <div class="tile-thumb-placeholder"><span>🎯</span><p>Photo Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag">Program Management</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">Annual Learning and Leadership Symposium</div>
+                            <div class="tile-desc">Project Manager for a 400+ attendee enterprise leadership event across six cross-functional teams</div>
+                        </div>
+                    </a>
 
-                <a href="projects/microlearning-strategy.html" class="carousel-tile">
-                    <div class="tile-thumb">
-                        <div class="tile-thumb-placeholder"><span>⚡</span><p>Photo Coming Soon</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag">Strategic Initiative</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">Enterprise Microlearning Strategy</div>
-                        <div class="tile-desc">Built a scalable microlearning framework and toolkit for a 30,000+ employee organization from scratch</div>
-                    </div>
-                </a>
+                    <a href="projects/microlearning-strategy.html" class="carousel-tile">
+                        <div class="tile-thumb">
+                            <div class="tile-thumb-placeholder"><span>⚡</span><p>Photo Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag">Strategic Initiative</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">Enterprise Microlearning Strategy</div>
+                            <div class="tile-desc">Built a scalable microlearning framework and toolkit for a 30,000+ employee organization from scratch</div>
+                        </div>
+                    </a>
 
-                <a href="projects/safety-training.html" class="carousel-tile">
-                    <div class="tile-thumb">
-                        <div class="tile-thumb-placeholder"><span>🦺</span><p>Photo Coming Soon</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag">High-Risk Training</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">Safety and Emergency Response Training</div>
-                        <div class="tile-desc">Life-critical training across high-risk environments from warehouse operations to contaminated patient care</div>
-                    </div>
-                </a>
+                    <a href="projects/compliance-training.html" class="carousel-tile">
+                        <div class="tile-thumb">
+                            <div class="tile-thumb-placeholder"><span>📋</span><p>Photo Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag">Enterprise Learning</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">Annual Compliance Training Redesign</div>
+                            <div class="tile-desc">Redesigned mandatory compliance training for 30,000+ team members across two states</div>
+                        </div>
+                    </a>
 
+                    <a href="projects/safety-training.html" class="carousel-tile">
+                        <div class="tile-thumb">
+                            <div class="tile-thumb-placeholder"><span>🦺</span><p>Photo Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag">High-Risk Training</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">Safety and Emergency Response Training</div>
+                            <div class="tile-desc">Life-critical training across high-risk environments from warehouse operations to contaminated patient care</div>
+                        </div>
+                    </a>
+
+                </div>
             </div>
+            <button class="carousel-arrow arrow-next" id="feat-next" aria-label="Next">&#8594;</button>
         </div>
     </div>
 
     <!-- More Work -->
     <div class="carousel-section">
         <h2 class="carousel-subheader">More Work</h2>
-        <div class="carousel-nav">
-            <button class="carousel-btn" id="more-prev" aria-label="Previous">&#8592;</button>
-            <button class="carousel-btn" id="more-next" aria-label="Next">&#8594;</button>
-        </div>
-        <div class="carousel-track-outer">
-            <div class="carousel-track" id="more-track">
+        <div class="carousel-wrapper">
+            <button class="carousel-arrow arrow-prev" id="more-prev" aria-label="Previous">&#8592;</button>
+            <div class="carousel-track-outer">
+                <div class="carousel-track" id="more-track">
 
-                <a href="projects/hipaa-social-media.html" class="carousel-tile">
-                    <div class="tile-thumb">
-                        <div class="thumb-hipaa">
-                            <div class="t-header">
-                                <span class="t-badge">Privacy &amp; HIPAA</span>
-                                <div class="t-title">Social Media &amp; Patient Privacy</div>
-                            </div>
-                            <div class="t-body">
-                                <div class="t-line" style="width:100%"></div>
-                                <div class="t-line" style="width:80%"></div>
-                                <div class="t-task">
-                                    <div class="t-line" style="width:90%;margin-bottom:3px"></div>
-                                    <div class="t-line" style="width:70%;margin-bottom:0"></div>
+                    <a href="projects/hipaa-social-media.html" class="carousel-tile">
+                        <div class="tile-thumb">
+                            <div class="thumb-hipaa">
+                                <div class="t-header">
+                                    <span class="t-badge">Privacy &amp; HIPAA</span>
+                                    <div class="t-title">Social Media &amp; Patient Privacy</div>
                                 </div>
-                                <div class="t-btn">Start Activity →</div>
+                                <div class="t-body">
+                                    <div class="t-line" style="width:100%"></div>
+                                    <div class="t-line" style="width:80%"></div>
+                                    <div class="t-task">
+                                        <div class="t-line" style="width:90%;margin-bottom:3px"></div>
+                                        <div class="t-line" style="width:70%;margin-bottom:0"></div>
+                                    </div>
+                                    <div class="t-btn">Start Activity →</div>
+                                </div>
                             </div>
+                            <div class="tile-tag-strip"><span class="tile-tag">Interactive Demo</span></div>
                         </div>
-                        <div class="tile-tag-strip"><span class="tile-tag">Interactive Demo</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">HIPAA in Practice: Social Media &amp; Patient Privacy</div>
-                        <div class="tile-desc">Custom HTML phrase-select interaction built for Articulate Rise 360</div>
-                    </div>
-                </a>
+                        <div class="tile-body">
+                            <div class="tile-title">HIPAA in Practice: Social Media &amp; Patient Privacy</div>
+                            <div class="tile-desc">Custom HTML phrase-select interaction built for Articulate Rise 360</div>
+                        </div>
+                    </a>
 
-                <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
-                    <div class="tile-thumb" style="background:#F8F9FA;">
-                        <div class="tile-thumb-placeholder"><span>🎬</span><p>Coming Soon</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag muted">Video</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">Animaker Training Videos</div>
-                        <div class="tile-desc">Animated explainer videos for healthcare onboarding and compliance</div>
-                    </div>
-                </a>
+                    <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
+                        <div class="tile-thumb" style="background:#F8F9FA;">
+                            <div class="tile-thumb-placeholder"><span>🎬</span><p>Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag muted">Video</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">Animaker Training Videos</div>
+                            <div class="tile-desc">Animated explainer videos for healthcare onboarding and compliance</div>
+                        </div>
+                    </a>
 
-                <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
-                    <div class="tile-thumb" style="background:#F8F9FA;">
-                        <div class="tile-thumb-placeholder"><span>🔥</span><p>Coming Soon</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag muted">Video</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">Fire Safety Training Video</div>
-                        <div class="tile-desc">Kitchen fire safety and emergency response for food service environments</div>
-                    </div>
-                </a>
+                    <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
+                        <div class="tile-thumb" style="background:#F8F9FA;">
+                            <div class="tile-thumb-placeholder"><span>🔥</span><p>Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag muted">Video</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">Fire Safety Training Video</div>
+                            <div class="tile-desc">Kitchen fire safety and emergency response for food service environments</div>
+                        </div>
+                    </a>
 
-                <a href="projects/ai-upskilling.html" class="carousel-tile">
-                    <div class="tile-thumb" style="background:#1B365D;">
-                        <div class="tile-thumb-placeholder"><span>🤖</span><p>AI Upskilling</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag">AI Workforce Development</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">AI Upskilling Program</div>
-                        <div class="tile-desc">A 10-session practice-first program built on peer leadership and real-work application for a healthcare L&D team</div>
-                    </div>
-                </a>
+                    <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
+                        <div class="tile-thumb" style="background:#F8F9FA;">
+                            <div class="tile-thumb-placeholder"><span>🖥️</span><p>Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag muted">eLearning</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">Systems Training — Storyline</div>
+                            <div class="tile-desc">Software adoption training for enterprise-wide technology rollouts</div>
+                        </div>
+                    </a>
 
-                <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
-                    <div class="tile-thumb" style="background:#F8F9FA;">
-                        <div class="tile-thumb-placeholder"><span>🖥️</span><p>Coming Soon</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag muted">eLearning</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">Systems Training — Storyline</div>
-                        <div class="tile-desc">Software adoption training for enterprise-wide technology rollouts</div>
-                    </div>
-                </a>
+                    <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
+                        <div class="tile-thumb" style="background:#F8F9FA;">
+                            <div class="tile-thumb-placeholder"><span>🦺</span><p>Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag muted">eLearning</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">PPE Selection Activity</div>
+                            <div class="tile-desc">Interactive Storyline activity for healthcare PPE scenario selection</div>
+                        </div>
+                    </a>
 
-                <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
-                    <div class="tile-thumb" style="background:#F8F9FA;">
-                        <div class="tile-thumb-placeholder"><span>🦺</span><p>Coming Soon</p></div>
-                        <div class="tile-tag-strip"><span class="tile-tag muted">eLearning</span></div>
-                    </div>
-                    <div class="tile-body">
-                        <div class="tile-title">PPE Selection Activity</div>
-                        <div class="tile-desc">Interactive Storyline activity for healthcare PPE scenario selection</div>
-                    </div>
-                </a>
+                    <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
+                        <div class="tile-thumb" style="background:#F8F9FA;">
+                            <div class="tile-thumb-placeholder"><span>🤖</span><p>Coming Soon</p></div>
+                            <div class="tile-tag-strip"><span class="tile-tag muted">Coming Soon</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">More Coming Soon</div>
+                            <div class="tile-desc">Additional projects and artifacts in progress</div>
+                        </div>
+                    </a>
 
+                </div>
             </div>
+            <button class="carousel-arrow arrow-next" id="more-next" aria-label="Next">&#8594;</button>
         </div>
     </div>
 
