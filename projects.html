@@ -178,7 +178,7 @@
         .carousel-wrapper {
             position: relative;
         }
-        .carousel-track-outer { overflow: hidden; }
+        .carousel-track-outer { overflow: hidden; touch-action: pan-y; }
         .carousel-track {
             display: flex;
             gap: 24px;
@@ -466,6 +466,7 @@
         </div>
     </div>
 
+
     <!-- More Work -->
     <div class="carousel-section">
         <h2 class="carousel-subheader">More Work</h2>
@@ -593,14 +594,16 @@
             });
         }
 
-        function initCarousel(trackId, prevId, nextId) {
+        function initCarousel(trackId, prevId, nextId, enableSwipe) {
             const track = document.getElementById(trackId);
             const prev = document.getElementById(prevId);
             const next = document.getElementById(nextId);
-            const outer = track.parentElement;
+            const outer = track.parentElement;           // carousel-track-outer
+            const wrapper = outer.parentElement;         // carousel-wrapper — fully outside tile zone
             const tiles = track.querySelectorAll('.carousel-tile');
             let current = 0;
             let touchStartX = 0;
+            let isSwiping = false;
 
             function visibleCount() {
                 const w = outer.offsetWidth;
@@ -625,24 +628,33 @@
             if (next) next.addEventListener('click', () => { if (current < maxIndex()) { current++; update(); } });
             window.addEventListener('resize', () => { current = Math.min(current, maxIndex()); update(); });
 
-            // Swipe on the outer container so coordinates stay consistent regardless of track position
-            outer.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-            }, { passive: true });
+            // Swipe — only if enabled for this carousel
+            if (enableSwipe) {
+                wrapper.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].clientX;
+                    isSwiping = false;
+                }, { passive: true });
 
-            outer.addEventListener('touchend', (e) => {
-                const diff = touchStartX - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 40) {
-                    if (diff > 0 && current < maxIndex()) { current++; update(); }
-                    else if (diff < 0 && current > 0) { current--; update(); }
-                }
-            }, { passive: true });
+                wrapper.addEventListener('touchmove', (e) => {
+                    isSwiping = true;
+                }, { passive: true });
+
+                wrapper.addEventListener('touchend', (e) => {
+                    if (!isSwiping) return;
+                    const diff = touchStartX - e.changedTouches[0].clientX;
+                    if (Math.abs(diff) > 40) {
+                        if (diff > 0 && current < maxIndex()) { current++; update(); }
+                        else if (diff < 0 && current > 0) { current--; update(); }
+                    }
+                    isSwiping = false;
+                }, { passive: true });
+            }
 
             update();
         }
 
-        initCarousel('feat-track', 'feat-prev', 'feat-next');
-        initCarousel('more-track', 'more-prev', 'more-next');
+        initCarousel('feat-track', 'feat-prev', 'feat-next', true);
+        initCarousel('more-track', 'more-prev', 'more-next', false);
     </script>
 
 </body>
