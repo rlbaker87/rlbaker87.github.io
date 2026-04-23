@@ -416,7 +416,7 @@
                         </div>
                     </a>
 
-                    <a href="projects/symposium.html" class="carousel-tile">
+                    <a href="projects/symposium.html" class="carousel-tile" style="pointer-events:none;">
                         <div class="tile-thumb">
                             <div class="tile-thumb-placeholder"><span>🎯</span><p>Photo Coming Soon</p></div>
                             <div class="tile-tag-strip"><span class="tile-tag">Program Management</span></div>
@@ -427,7 +427,7 @@
                         </div>
                     </a>
 
-                    <a href="projects/microlearning-strategy.html" class="carousel-tile">
+                    <a href="projects/microlearning-strategy.html" class="carousel-tile" style="pointer-events:none;">
                         <div class="tile-thumb">
                             <div class="tile-thumb-placeholder"><span>⚡</span><p>Photo Coming Soon</p></div>
                             <div class="tile-tag-strip"><span class="tile-tag">Strategic Initiative</span></div>
@@ -438,7 +438,7 @@
                         </div>
                     </a>
 
-                    <a href="projects/compliance-training.html" class="carousel-tile">
+                    <a href="projects/compliance-training.html" class="carousel-tile" style="pointer-events:none;">
                         <div class="tile-thumb">
                             <div class="tile-thumb-placeholder"><span>📋</span><p>Photo Coming Soon</p></div>
                             <div class="tile-tag-strip"><span class="tile-tag">Enterprise Learning</span></div>
@@ -449,7 +449,7 @@
                         </div>
                     </a>
 
-                    <a href="projects/safety-training.html" class="carousel-tile">
+                    <a href="projects/safety-training.html" class="carousel-tile" style="pointer-events:none;">
                         <div class="tile-thumb">
                             <div class="tile-thumb-placeholder"><span>🦺</span><p>Photo Coming Soon</p></div>
                             <div class="tile-tag-strip"><span class="tile-tag">High-Risk Training</span></div>
@@ -586,15 +586,24 @@
     </footer>
 
     <script>
+        // Hide arrows on touch devices via JS (more reliable than CSS media query alone)
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            document.querySelectorAll('.carousel-arrow').forEach(btn => {
+                btn.style.display = 'none';
+            });
+        }
+
         function initCarousel(trackId, prevId, nextId) {
             const track = document.getElementById(trackId);
             const prev = document.getElementById(prevId);
             const next = document.getElementById(nextId);
+            const outer = track.parentElement;
             const tiles = track.querySelectorAll('.carousel-tile');
             let current = 0;
+            let touchStartX = 0;
 
             function visibleCount() {
-                const w = track.parentElement.offsetWidth;
+                const w = outer.offsetWidth;
                 if (w < 580) return 1;
                 if (w < 900) return 2;
                 return 3;
@@ -608,21 +617,21 @@
                 const gap = 24;
                 const tileW = tiles[0].offsetWidth + gap;
                 track.style.transform = `translateX(-${current * tileW}px)`;
-                prev.disabled = current === 0;
-                next.disabled = current >= maxIndex();
+                if (prev) prev.disabled = current === 0;
+                if (next) next.disabled = current >= maxIndex();
             }
 
-            prev.addEventListener('click', () => { if (current > 0) { current--; update(); } });
-            next.addEventListener('click', () => { if (current < maxIndex()) { current++; update(); } });
+            if (prev) prev.addEventListener('click', () => { if (current > 0) { current--; update(); } });
+            if (next) next.addEventListener('click', () => { if (current < maxIndex()) { current++; update(); } });
             window.addEventListener('resize', () => { current = Math.min(current, maxIndex()); update(); });
 
-            // Touch swipe support
-            let touchStartX = 0;
-            let touchEndX = 0;
-            track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-            track.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                const diff = touchStartX - touchEndX;
+            // Swipe on the outer container so coordinates stay consistent regardless of track position
+            outer.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            outer.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
                 if (Math.abs(diff) > 40) {
                     if (diff > 0 && current < maxIndex()) { current++; update(); }
                     else if (diff < 0 && current > 0) { current--; update(); }
