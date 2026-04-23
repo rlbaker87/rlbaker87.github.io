@@ -188,31 +188,40 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             border: none;
-            background: rgba(27, 54, 93, 0.6);
-            color: #FFFFFF;
-            font-size: 1.1em;
+            background: rgba(248, 249, 250, 0.82);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10;
-            transition: background 0.2s, opacity 0.2s;
+            transition: background 0.2s, opacity 0.2s, box-shadow 0.2s;
             opacity: 0;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
-        .carousel-wrapper:hover .carousel-arrow { opacity: 1; }
-        .carousel-arrow:hover { background: rgba(27, 54, 93, 0.88); }
+        .carousel-arrow svg {
+            width: 22px;
+            height: 22px;
+            stroke: #1B365D;
+            stroke-width: 3.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        .carousel-wrapper:hover .carousel-arrow:not(:disabled) { opacity: 1; }
+        .carousel-arrow:hover { background: rgba(248, 249, 250, 0.97); box-shadow: 0 4px 18px rgba(0,0,0,0.22); }
         .carousel-arrow:disabled { opacity: 0 !important; cursor: default; pointer-events: none; }
         .carousel-arrow.arrow-prev { left: 8px; }
         .carousel-arrow.arrow-next { right: 8px; }
 
-        /* Always visible on mobile */
-        @media (max-width: 768px) {
-            .carousel-arrow { opacity: 0.75; }
-            .carousel-arrow:disabled { opacity: 0 !important; }
+        /* Hide arrows on touch — swipe handles navigation */
+        @media (hover: none) and (pointer: coarse) {
+            .carousel-arrow { display: none !important; }
         }
 
         /* ── Tiles ── */
@@ -392,7 +401,7 @@
     <div class="carousel-section">
         <h2 class="carousel-subheader">Other Featured Projects</h2>
         <div class="carousel-wrapper">
-            <button class="carousel-arrow arrow-prev" id="feat-prev" aria-label="Previous">&#8592;</button>
+            <button class="carousel-arrow arrow-prev" id="feat-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
             <div class="carousel-track-outer">
                 <div class="carousel-track" id="feat-track">
 
@@ -453,7 +462,7 @@
 
                 </div>
             </div>
-            <button class="carousel-arrow arrow-next" id="feat-next" aria-label="Next">&#8594;</button>
+            <button class="carousel-arrow arrow-next" id="feat-next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
         </div>
     </div>
 
@@ -461,7 +470,7 @@
     <div class="carousel-section">
         <h2 class="carousel-subheader">More Work</h2>
         <div class="carousel-wrapper">
-            <button class="carousel-arrow arrow-prev" id="more-prev" aria-label="Previous">&#8592;</button>
+            <button class="carousel-arrow arrow-prev" id="more-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
             <div class="carousel-track-outer">
                 <div class="carousel-track" id="more-track">
 
@@ -547,7 +556,7 @@
 
                 </div>
             </div>
-            <button class="carousel-arrow arrow-next" id="more-next" aria-label="Next">&#8594;</button>
+            <button class="carousel-arrow arrow-next" id="more-next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
         </div>
     </div>
 
@@ -606,6 +615,20 @@
             prev.addEventListener('click', () => { if (current > 0) { current--; update(); } });
             next.addEventListener('click', () => { if (current < maxIndex()) { current++; update(); } });
             window.addEventListener('resize', () => { current = Math.min(current, maxIndex()); update(); });
+
+            // Touch swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0 && current < maxIndex()) { current++; update(); }
+                    else if (diff < 0 && current > 0) { current--; update(); }
+                }
+            }, { passive: true });
+
             update();
         }
 
