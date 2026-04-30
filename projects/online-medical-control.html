@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online Medical Control Training — Scenario-Based Performance Tracking | Robert Baker Portfolio">
+    <title>Online Medical Control Training | Robert Baker</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+
+        /* ── Hero ── */
+        .project-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 70px 20px 60px;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-block;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+        .back-link:hover { color: #FFFFFF; }
+        .project-tag-hero {
+            display: inline-block;
+            background: rgba(0,180,166,0.35);
+            color: #FFFFFF;
+            font-size: 0.8em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .project-hero h1 {
+            font-size: 2.6em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: #FFFFFF;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
+            opacity: 0.9;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+
+        /* ── Metrics bar ── */
+        .metrics-bar {
+            background: #1B365D;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .metric {
+            padding: 22px 16px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .metric:last-child { border-right: none; }
+        .metric-num {
+            font-size: 1.7em;
+            font-weight: 700;
+            color: #00B4A6;
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+        .metric-label {
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        /* ── Body ── */
+        .project-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* ── Sections ── */
+        .section { margin-bottom: 44px; }
+        .section h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E9ECEF;
+        }
+        .section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin-bottom: 14px;
+        }
+        .section p:last-child { margin-bottom: 0; }
+
+        .solution-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .solution-list li {
+            padding: 14px 18px;
+            background: #F8F9FA;
+            border-left: 4px solid #00B4A6;
+            border-radius: 4px;
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        /* ── Callout box ── */
+        .callout-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 24px 28px;
+            border-radius: 6px;
+            margin: 28px 0 0;
+        }
+        .callout-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .callout-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin: 0;
+        }
+
+        /* ── Curriculum grid ── */
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin: 24px 0;
+        }
+        .module-card {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 16px 12px;
+            text-align: center;
+            border-top: 4px solid #00B4A6;
+        }
+        .module-card.capstone { border-top-color: #F07B3F; }
+        .module-num {
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #6C757D;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .module-title {
+            font-size: 0.82em;
+            font-weight: 700;
+            color: #1B365D;
+            line-height: 1.4;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .module-tool {
+            font-size: 0.72em;
+            color: #6C757D;
+            display: block;
+        }
+
+        /* ── Artifact placeholders ── */
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .artifact-zone {
+            background: #F8F9FA;
+            border: 2px dashed #CED4DA;
+            border-radius: 8px;
+            padding: 36px 20px;
+            text-align: center;
+        }
+        .artifact-zone .az-icon { font-size: 2em; margin-bottom: 10px; }
+        .artifact-zone p {
+            font-size: 0.88em;
+            color: #6C757D;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .artifact-zone-wide {
+            background: #F8F9FA;
+            border: 2px dashed #CED4DA;
+            border-radius: 8px;
+            padding: 36px 20px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .artifact-zone-wide .az-icon { font-size: 2em; margin-bottom: 10px; }
+        .artifact-zone-wide p {
+            font-size: 0.88em;
+            color: #6C757D;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ── Results ── */
+        .results-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 28px 30px;
+            border-radius: 6px;
+            margin-bottom: 44px;
+        }
+        .results-box h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #F07B3F;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(240,123,63,0.2);
+        }
+        .results-box p {
+            color: #343A40;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+        .results-box p:last-child { margin-bottom: 0; }
+        .results-box ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .results-box ul li {
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.6);
+            border-left: 4px solid #F07B3F;
+            border-radius: 4px;
+            font-size: 1em;
+            line-height: 1.6;
+            color: #343A40;
+        }
+
+        /* ── Gated CTA box ── */
+        .gated-cta-box {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-top: 4px solid #1B365D;
+            border-radius: 8px;
+            padding: 28px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+        .gated-cta-box div { flex: 1; }
+        .gated-cta-box h3 {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 6px;
+        }
+        .gated-cta-box p {
+            font-size: 0.95em;
+            color: #6C757D;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .btn-gated {
+            display: inline-block;
+            background: #F07B3F;
+            color: #FFFFFF;
+            font-size: 1em;
+            font-weight: 700;
+            padding: 13px 28px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.2s;
+            flex-shrink: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .btn-gated:hover {
+            background: #d66a32;
+            transform: translateY(-2px);
+        }
+
+        /* ── Tools ── */
+        .tools-box {
+            background: #E9ECEF;
+            padding: 20px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            color: #343A40;
+            line-height: 1.8;
+        }
+        .tools-box strong { color: #1B365D; }
+
+        /* ── Modal ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+        }
+        .modal-header {
+            background: #1B365D;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .modal-header h3 {
+            color: #FFFFFF;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin: 0;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.5em;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            transition: color 0.2s;
+        }
+        .modal-close:hover { color: #FFFFFF; }
+        .modal-body {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .modal-body p {
+            font-size: 1em;
+            line-height: 1.7;
+            color: #343A40;
+            margin: 0;
+        }
+        .modal-lock {
+            font-size: 2.5em;
+            text-align: center;
+        }
+        .btn-modal-contact {
+            display: block;
+            background: #00B4A6;
+            color: #FFFFFF;
+            font-size: 1em;
+            font-weight: 700;
+            padding: 13px 28px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-modal-contact:hover { background: #008B7F; color: #FFFFFF; }
+        .btn-modal-dismiss {
+            background: none;
+            border: none;
+            color: #6C757D;
+            font-size: 0.9em;
+            cursor: pointer;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 4px;
+        }
+        .btn-modal-dismiss:hover { color: #343A40; }
+
+        @media (max-width: 768px) {
+            .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+            .metric:nth-child(2) { border-right: none; }
+            .curriculum-grid { grid-template-columns: repeat(2, 1fr); }
+            .artifact-grid { grid-template-columns: 1fr; }
+            .gated-cta-box { flex-direction: column; }
+            .btn-gated { width: 100%; text-align: center; }
+        }
+        @media (max-width: 600px) {
+            .project-hero h1 { font-size: 1.9em; }
+            .curriculum-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="../../index.html" class="nav-link">Home</a></li>
+                <li><a href="../../projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="../../about.html" class="nav-link">About</a></li>
+                <li><a href="../../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <a href="../../projects.html" class="back-link">← Back to Projects</a>
+            <span class="project-tag-hero">eLearning Development</span>
+            <h1>Online Medical Control Training</h1>
+            <p class="hero-subtitle">A branching scenario module that captures 32 individual learner decisions and transmits detailed performance data to the LMS for clinical competency assessment.</p>
+        </div>
+    </section>
+
+    <!-- Metrics bar -->
+    <div class="metrics-bar">
+        <div class="metric">
+            <span class="metric-num">32</span>
+            <span class="metric-label">Decision Variables Tracked</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">4</span>
+            <span class="metric-label">Branching Clinical Scenarios</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">5</span>
+            <span class="metric-label">Module Curriculum</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">100%</span>
+            <span class="metric-label">SCORM Transmission Validated</span>
+        </div>
+    </div>
+
+    <div class="project-body">
+
+        <!-- Challenge -->
+        <div class="section">
+            <h2>The Challenge</h2>
+            <p>Emergency Medicine residents and new attending physicians needed realistic practice managing EMS calls before live base station shifts, but standard quiz-based eLearning could not capture the nuanced clinical decision-making required for competency evaluation.</p>
+            <p>The final module in a five-module curriculum needed to track 32 discrete decision points across four clinical scenarios and send granular performance data to the LMS for faculty review. Beyond the design challenge, initial pilot testing failed when zero interaction data reached the LMS despite the JavaScript appearing to execute correctly. Standard SCORM troubleshooting approaches did not resolve the issue, requiring a deeper diagnostic process before implementation could proceed.</p>
+        </div>
+
+        <!-- Curriculum -->
+        <div class="section">
+            <h2>Curriculum Architecture</h2>
+            <p>Five separate modules built across two authoring tools, sequenced from foundational knowledge through scenario-based performance assessment.</p>
+
+            <div class="curriculum-grid">
+                <div class="module-card">
+                    <span class="module-num">Module 1</span>
+                    <span class="module-title">EMS System Overview</span>
+                    <span class="module-tool">Articulate Rise 360</span>
+                </div>
+                <div class="module-card">
+                    <span class="module-num">Module 2</span>
+                    <span class="module-title">Communication Protocols</span>
+                    <span class="module-tool">Articulate Rise 360</span>
+                </div>
+                <div class="module-card">
+                    <span class="module-num">Module 3</span>
+                    <span class="module-title">Ethical Decision-Making</span>
+                    <span class="module-tool">Articulate Storyline 360</span>
+                </div>
+                <div class="module-card">
+                    <span class="module-num">Module 4</span>
+                    <span class="module-title">Base Station Workflow</span>
+                    <span class="module-tool">Articulate Rise 360</span>
+                </div>
+                <div class="module-card capstone">
+                    <span class="module-num">Module 5</span>
+                    <span class="module-title">Scenario-Based Assessment</span>
+                    <span class="module-tool">Articulate Storyline 360</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution -->
+        <div class="section">
+            <h2>Solution</h2>
+            <ul class="solution-list">
+                <li>Built four branching clinical scenarios covering field termination, POLST/DNR protocols, capacity assessment, and STEMI transport — each tracking learner decisions at every critical juncture including communication approach, clinical protocol adherence, ethical decision-making, and documentation workflow.</li>
+                <li>Implemented 32 Storyline variables that capture both correct decisions and specific error patterns, including violating DNR orders, forcing transport without capacity assessment, and selecting non-PCI facilities for STEMI patients.</li>
+                <li>Used AI-assisted diagnostics to identify that Articulate Storyline 360 uses a proprietary SCORM wrapper instead of the industry-standard API — the root cause of the data transmission failure during pilot testing.</li>
+                <li>Built custom JavaScript that normalizes Storyline variable formats to SCORM-compliant values, prevents text overflow errors in reflection responses, and ensures trigger timing does not terminate the session before data transmission completes.</li>
+                <li>Created dispatch summary slides with conditional feedback that display different performance assessments based on learner variable states, showing immediate consequences of clinical decisions rather than a generic score.</li>
+                <li>Developed an SME interpretation guide that translates the 32 variable data points into actionable insights about learner readiness, knowledge gaps, and areas requiring remediation before live shifts.</li>
+            </ul>
+
+            <div class="callout-box">
+                <span class="callout-label">Technical Problem Solved</span>
+                <p>Storyline's proprietary SCORM wrapper does not expose the standard <code>API</code> object at the window level. The fix required custom JavaScript to locate the LMS interface through the parent frame chain, normalize variable output formats, and sequence data transmission ahead of session termination. All 32 variables now transmit reliably, confirmed through SCORM Cloud validation testing.</p>
+            </div>
+        </div>
+
+        <!-- Artifacts -->
+        <div class="section">
+            <h2>Inside the Build</h2>
+            <p>Selected screenshots from the development and validation process.</p>
+
+            <div class="artifact-grid">
+                <div class="artifact-zone">
+                    <div class="az-icon">📊</div>
+                    <p>Storyline Variable Tracking Panel<br>32 decision variables<br><em>screenshot-variable-panel.png</em></p>
+                </div>
+                <div class="artifact-zone">
+                    <div class="az-icon">✅</div>
+                    <p>SCORM Cloud Validation Report<br>Confirmed data transmission<br><em>screenshot-scorm-cloud-validation.png</em></p>
+                </div>
+            </div>
+
+            <div class="artifact-zone-wide">
+                <div class="az-icon">🖥️</div>
+                <p>Dispatch Summary Slide<br>Conditional feedback based on learner variable states<br><em>screenshot-dispatch-summary.png</em></p>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results-box">
+            <h2>Impact &amp; Results</h2>
+            <ul>
+                <li>First training of its kind for this program — no prior eLearning equivalent existed for Emergency Medicine base station preparation.</li>
+                <li>Required prerequisite for all incoming Emergency Medicine residents and new attending physicians before live base station shifts.</li>
+                <li>All 32 decision variables transmit successfully to Cornerstone LMS, confirmed through SCORM Cloud validation testing.</li>
+                <li>Faculty can review detailed learner performance data beyond simple pass/fail scores, including specific protocol violations, communication errors, and ethical decision-making patterns.</li>
+                <li>Scoring and feedback system produces individualized performance data for each learner without requiring manual review by a supervisor, giving program leadership cohort-wide visibility into readiness.</li>
+            </ul>
+        </div>
+
+        <!-- Gated CTA -->
+        <div class="gated-cta-box">
+            <div>
+                <h3>See the Full Project</h3>
+                <p>This course is hosted in SCORM Cloud and contains protected content. Request access to review the full module.</p>
+            </div>
+            <button class="btn-gated" onclick="document.getElementById('access-modal').classList.add('active')">Request Access →</button>
+        </div>
+
+        <!-- Tools -->
+        <div class="tools-box">
+            <strong>Role:</strong> Lead Instructional Designer. Designed scenario architecture, implemented variable tracking system, wrote and debugged custom JavaScript for SCORM data transmission, and created faculty-facing data interpretation materials.<br><br>
+            <strong>Tools:</strong> Articulate Storyline 360, Articulate Rise 360, JavaScript (custom SCORM scoring and dynamic feedback), SCORM Cloud, Cornerstone LMS, HTML/CSS, Adobe Premiere Pro, Microsoft Copilot, Claude
+        </div>
+
+    </div>
+
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Interested in What Learning Can Do?</h2>
+            <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
+            <div class="cta-buttons">
+                <a href="../../contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="../../projects.html" class="btn btn-secondary">Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Access Modal -->
+    <div class="modal-overlay" id="access-modal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-header">
+                <h3 id="modal-title">Protected Content</h3>
+                <button class="modal-close" onclick="document.getElementById('access-modal').classList.remove('active')" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-lock">🔒</div>
+                <p>This course contains protected content and is hosted in a secured environment. To request access for portfolio review, please reach out directly.</p>
+                <a href="mailto:rlbaker87@gmail.com?subject=Portfolio Access Request — Emergency Medical Control Training" class="btn-modal-contact">Contact Robert →</a>
+                <button class="btn-modal-dismiss" onclick="document.getElementById('access-modal').classList.remove('active')">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Close modal on overlay click
+        document.getElementById('access-modal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+        // Close on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') document.getElementById('access-modal').classList.remove('active');
+        });
+    </script>
+
+</body>
+</html>
