@@ -18,16 +18,6 @@
             max-width: 900px;
             margin: 0 auto;
         }
-        .back-link {
-            display: inline-block;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9em;
-            font-weight: 600;
-            margin-bottom: 24px;
-            transition: color 0.2s;
-            text-decoration: none;
-        }
-        .back-link:hover { color: #FFFFFF; }
         .project-tag-hero {
             display: inline-block;
             background: rgba(0,180,166,0.35);
@@ -321,6 +311,38 @@
         }
         .tools-box strong { color: #1B365D; }
 
+        /* ── Lightbox ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        }
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 2.2em;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10001;
+        }
+        .lightbox-close:hover { color: #00B4A6; }
+
         /* ── Modal ── */
         .modal-overlay {
             display: none;
@@ -438,7 +460,6 @@
     <!-- Hero -->
     <section class="project-hero">
         <div class="hero-content">
-            <a href="../projects.html" class="back-link">← Back to Projects</a>
             <span class="project-tag-hero">eLearning Development</span>
             <h1>Online Medical Control Training</h1>
             <p class="hero-subtitle">A branching scenario module that captures 32 individual learner decisions and transmits detailed performance data to the LMS for clinical competency assessment.</p>
@@ -532,19 +553,16 @@
             <p>Selected screenshots from the development and validation process.</p>
 
             <div class="artifact-grid">
-                <div class="artifact-zone">
-                    <div class="az-icon">📊</div>
-                    <p>Storyline Variable Tracking Panel<br>32 decision variables<br><em>screenshot-variable-panel.png</em></p>
+                <div class="artifact-zone" style="padding:0;overflow:hidden;">
+                    <img src="online-medical-control/screenshot-variable-panel.png" alt="Storyline variable tracking panel showing 32 decision variables" style="width:100%;display:block;border-radius:6px;" class="zoomable">
                 </div>
-                <div class="artifact-zone">
-                    <div class="az-icon">✅</div>
-                    <p>SCORM Cloud Validation Report<br>Confirmed data transmission<br><em>screenshot-scorm-cloud-validation.png</em></p>
+                <div class="artifact-zone" style="padding:0;overflow:hidden;">
+                    <img src="online-medical-control/screenshot-scorm-cloud-validation.png" alt="SCORM Cloud validation report confirming data transmission" style="width:100%;display:block;border-radius:6px;" class="zoomable">
                 </div>
             </div>
 
-            <div class="artifact-zone-wide">
-                <div class="az-icon">🖥️</div>
-                <p>Dispatch Summary Slide<br>Conditional feedback based on learner variable states<br><em>screenshot-dispatch-summary.png</em></p>
+            <div class="artifact-zone-wide" style="padding:0;overflow:hidden;">
+                <img src="online-medical-control/screenshot-dispatch-summary.png" alt="Dispatch summary slide showing conditional feedback based on learner decisions" style="width:100%;display:block;border-radius:6px;" class="zoomable">
             </div>
         </div>
 
@@ -566,7 +584,7 @@
                 <h3>See the Full Project</h3>
                 <p>This course is hosted in SCORM Cloud and contains protected content. Request access to review the full module.</p>
             </div>
-            <button class="btn-gated" onclick="document.getElementById('access-modal').classList.add('active')">Request Access →</button>
+            <button class="btn-gated" onclick="document.getElementById('access-modal').classList.add('active')">See the Full Course →</button>
         </div>
 
         <!-- Tools -->
@@ -611,21 +629,45 @@
             </div>
             <div class="modal-body">
                 <div class="modal-lock">🔒</div>
-                <p>This course contains protected content and is hosted in a secured environment. To request access for portfolio review, please reach out directly.</p>
-                <a href="../contact.html" class="btn-modal-contact">Go to Contact Page →</a>
+                <p>This course contains protected content and is hosted in a secured environment.</p>
+                <a href="../contact.html" class="btn-modal-contact">Request Access →</a>
                 <button class="btn-modal-dismiss" onclick="document.getElementById('access-modal').classList.remove('active')">Dismiss</button>
             </div>
         </div>
     </div>
 
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    </div>
+
     <script>
-        // Close modal on overlay click
+        // Access modal
         document.getElementById('access-modal').addEventListener('click', function(e) {
             if (e.target === this) this.classList.remove('active');
         });
-        // Close on Escape
+
+        // Lightbox
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        document.getElementById('lightbox-close').addEventListener('click', () => lb.classList.remove('active'));
+        lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('active'); });
+
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', () => {
+                lbImg.src = img.src;
+                lbImg.alt = img.alt;
+                lb.classList.add('active');
+            });
+        });
+
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') document.getElementById('access-modal').classList.remove('active');
+            if (e.key === 'Escape') {
+                document.getElementById('access-modal').classList.remove('active');
+                lb.classList.remove('active');
+            }
         });
     </script>
 
