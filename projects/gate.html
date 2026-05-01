@@ -166,7 +166,7 @@
 
     <script>
         const params = new URLSearchParams(window.location.search);
-        const destination = params.get('to') || 'animated-training-videos.html';
+        const destination = decodeURIComponent(params.get('to') || 'animated-training-videos.html');
         const isExternal = destination.startsWith('http');
 
         const input = document.getElementById('gate-input');
