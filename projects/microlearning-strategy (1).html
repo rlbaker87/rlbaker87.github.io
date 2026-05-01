@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enterprise Microlearning Strategy - Toolkit and Deployment Framework | Robert Baker Portfolio">
+    <title>Enterprise Microlearning Strategy | Robert Baker</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+
+        /* ── Hero ── */
+        .project-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 70px 20px 60px;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .project-tag-hero {
+            display: inline-block;
+            background: rgba(0,180,166,0.35);
+            color: #FFFFFF;
+            font-size: 0.8em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .project-hero h1 {
+            font-size: 2.6em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: #FFFFFF;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
+            opacity: 0.9;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+
+        /* ── Metrics bar ── */
+        .metrics-bar {
+            background: #1B365D;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .metric {
+            padding: 22px 16px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .metric:last-child { border-right: none; }
+        .metric-num {
+            font-size: 1.7em;
+            font-weight: 700;
+            color: #00B4A6;
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+        .metric-label {
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        /* ── Body ── */
+        .project-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* ── Phase divider ── */
+        .phase-divider {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 60px 0 44px;
+        }
+        .phase-divider-line {
+            flex: 1;
+            height: 2px;
+            background: #E9ECEF;
+        }
+        .phase-divider-label {
+            background: #1B365D;
+            color: #FFFFFF;
+            font-size: 0.78em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* ── Sections ── */
+        .section { margin-bottom: 44px; }
+        .section h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E9ECEF;
+        }
+        .section h3 {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 10px;
+            margin-top: 28px;
+        }
+        .section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin-bottom: 14px;
+        }
+        .section p:last-child { margin-bottom: 0; }
+
+        .solution-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .solution-list li {
+            padding: 14px 18px;
+            background: #F8F9FA;
+            border-left: 4px solid #00B4A6;
+            border-radius: 4px;
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        /* ── Pillars ── */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .pillar-card {
+            background: #FFFFFF;
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 20px;
+            border-top: 4px solid #00B4A6;
+            text-align: center;
+        }
+        .pillar-card h4 {
+            font-size: 1em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 8px;
+        }
+        .pillar-card p {
+            font-size: 0.88em;
+            color: #6C757D;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        /* ── Callout box ── */
+        .callout-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 24px 28px;
+            border-radius: 6px;
+            margin: 28px 0;
+        }
+        .callout-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .callout-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin: 0;
+        }
+
+        /* ── Artifact placeholder ── */
+        .artifact-zone {
+            background: #F8F9FA;
+            border: 2px dashed #CED4DA;
+            border-radius: 8px;
+            padding: 48px 20px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .artifact-zone .az-icon { font-size: 2em; margin-bottom: 10px; }
+        .artifact-zone p {
+            font-size: 0.88em;
+            color: #6C757D;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        /* ── Results ── */
+        .results-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 28px 30px;
+            border-radius: 6px;
+            margin-bottom: 44px;
+        }
+        .results-box h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #F07B3F;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(240,123,63,0.2);
+        }
+        .results-box ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .results-box ul li {
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.6);
+            border-left: 4px solid #F07B3F;
+            border-radius: 4px;
+            font-size: 1em;
+            line-height: 1.6;
+            color: #343A40;
+        }
+
+        /* ── Tools ── */
+        .tools-box {
+            background: #E9ECEF;
+            padding: 20px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            color: #343A40;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .tools-box strong { color: #1B365D; }
+
+        /* ── Lightbox ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        }
+        .lightbox-close {
+            position: fixed;
+            top: 20px; right: 24px;
+            background: none; border: none;
+            color: #FFFFFF; font-size: 2.2em;
+            cursor: pointer; line-height: 1; z-index: 10000;
+        }
+        .lightbox-close:hover { color: #00B4A6; }
+        .zoomable { cursor: zoom-in; transition: opacity 0.2s; }
+        .zoomable:hover { opacity: 0.88; }
+
+        @media (max-width: 768px) {
+            .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+            .metric:nth-child(2) { border-right: none; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .artifact-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .project-hero h1 { font-size: 1.9em; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <span class="project-tag-hero">Learning Strategy</span>
+            <h1>Enterprise Microlearning Strategy</h1>
+            <p class="hero-subtitle">A two-year initiative that moved microlearning from an undefined practice to a standardized, integrated capability across a large regional health system - starting with a foundational toolkit and culminating in an enterprise deployment framework.</p>
+        </div>
+    </section>
+
+    <!-- Metrics bar -->
+    <div class="metrics-bar">
+        <div class="metric">
+            <span class="metric-num">2</span>
+            <span class="metric-label">Year Initiative</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">6</span>
+            <span class="metric-label">Deployment Phases</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">6</span>
+            <span class="metric-label">Cross-Functional Team Members</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">30K+</span>
+            <span class="metric-label">Team Members - Deployment Scope</span>
+        </div>
+    </div>
+
+    <div class="project-body">
+
+        <!-- Story intro -->
+        <div class="section">
+            <p>This initiative unfolded in two distinct phases. Year one focused on building a shared foundation - a practical toolkit grounded in learning theory that gave the design team a common language and decision framework. Year two took that foundation and built an enterprise deployment strategy around it, embedding microlearning into existing workflows, LMS infrastructure, and evaluation practices across the organization.</p>
+        </div>
+
+        <!-- YEAR 1 DIVIDER -->
+        <div class="phase-divider">
+            <div class="phase-divider-line"></div>
+            <div class="phase-divider-label">Year 1 - Microlearning Toolkit</div>
+            <div class="phase-divider-line"></div>
+        </div>
+
+        <!-- Toolkit Challenge -->
+        <div class="section">
+            <h2>The Challenge</h2>
+            <p>Designers across the Learning Design and Technology team had varying familiarity with microlearning, and no shared reference existed to guide decisions about when to use it, how to design it, or how to evaluate it. Without a common foundation, microlearning efforts risked being inconsistent in quality, scope, and approach. The team needed a practical, accessible resource grounded in learning theory that designers could turn to at any point in a project.</p>
+        </div>
+
+        <!-- Toolkit Solution -->
+        <div class="section">
+            <h2>Solution</h2>
+            <ul class="solution-list">
+                <li>Designed and built a Rise 360-based toolkit with two main sections: a just-in-time resource library and a self-paced course titled "All About Microlearning," covering principles, use cases, design, and evaluation.</li>
+                <li>Developed a Microlearning Compatibility Guide with nine decision-based questions to help designers determine whether microlearning was the right solution for a given initiative, reducing guesswork and misapplication.</li>
+                <li>Created six use case frameworks - including Pensive, Supplement, Augment, Reinforce, and Remediate - with design considerations, contextualized examples, and possible performance measures for each.</li>
+                <li>Built design guidelines covering modality selection, writing style, active voice conventions, and content chunking principles, all framed around andragogical best practices.</li>
+                <li>Integrated a Kirkpatrick-aligned evaluation section with interactive templates, a compliance-based example showing all four levels applied, and a SWOT reflection activity for designers to evaluate their own development process.</li>
+                <li>Embedded learning theory references - including Kapp and Defelice's definition of microlearning - to ground the resource in research rather than convention.</li>
+            </ul>
+        </div>
+
+        <!-- Toolkit artifacts -->
+        <div class="section">
+            <h2>Toolkit Artifacts</h2>
+            <div class="artifact-grid">
+                <div class="artifact-zone">
+                    <div class="az-icon">📋</div>
+                    <p>Compatibility Guide Screenshot<br>Coming soon</p>
+                </div>
+                <div class="artifact-zone">
+                    <div class="az-icon">🎓</div>
+                    <p>Use Case Framework Sample<br>Coming soon</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toolkit tools -->
+        <div class="tools-box">
+            <strong>Role - Year 1:</strong> Instructional Designer and sole creator of the toolkit. Responsible for content development, course structure, interaction design, and alignment to learning theory.<br><br>
+            <strong>Tools:</strong> Articulate Rise 360, Articulate Review360, Gemini
+        </div>
+
+        <!-- YEAR 2 DIVIDER -->
+        <div class="phase-divider">
+            <div class="phase-divider-line"></div>
+            <div class="phase-divider-label">Year 2 - Deployment Strategy</div>
+            <div class="phase-divider-line"></div>
+        </div>
+
+        <!-- Deployment Challenge -->
+        <div class="section">
+            <h2>The Challenge</h2>
+            <p>The organization had an existing Microlearning Toolkit with principles and guidelines, but no formal deployment framework to ensure those guidelines were applied consistently across the organization. Microlearning efforts were happening ad hoc, without standardized processes, LMS tracking, or integration into existing instructional design workflows. The gap between having a toolkit and having a functional, enterprise-wide practice needed to close.</p>
+        </div>
+
+        <!-- Deployment Solution -->
+        <div class="section">
+            <h2>Solution</h2>
+
+            <p>The deployment strategy was built on three foundational pillars, with all six implementation phases designed to run concurrently and reinforce one another rather than proceed in sequence.</p>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <h4>Consistency</h4>
+                    <p>Shared definitions, templates, and review rubrics to ensure all microlearning meets the same quality standard regardless of who designs it.</p>
+                </div>
+                <div class="pillar-card">
+                    <h4>Standardization</h4>
+                    <p>LMS keyword protocols, catalog labels, and upload procedures to enable categorized reporting on microlearning completion and engagement for the first time.</p>
+                </div>
+                <div class="pillar-card">
+                    <h4>Integration</h4>
+                    <p>Microlearning embedded directly into existing ADDIE workflows so quality is built in from the start of every project rather than reviewed at the end.</p>
+                </div>
+            </div>
+
+            <ul class="solution-list" style="margin-top: 20px;">
+                <li>Revised existing ADDIE workflow documents - Discovery documents, Content Outlines, Detailed Design Documents - to embed microlearning compatibility and best practices directly into the design process.</li>
+                <li>Developed learning theory-based review rubrics and microlearning-specific design templates, integrating them into an updated version of the toolkit and transforming it from a static reference into a living operational resource.</li>
+                <li>Established LMS tracking protocols in collaboration with the Learning Systems Integration team, including keyword standardization, updated upload procedures, and dedicated Curriculum Catalog labels.</li>
+                <li>Designed a Kirkpatrick-aligned evaluation framework focused on real-time data collection, with protocols for measuring engagement and effectiveness across the existing technology stack.</li>
+                <li>Created a Champion deployment model with two LDT representatives and one LSI representative designated to lead upskilling, provide internal consultation, and sustain adoption post-implementation.</li>
+            </ul>
+
+            <div class="callout-box">
+                <span class="callout-label">Design Decision</span>
+                <p>All six phases were structured to run concurrently rather than in sequence. This was intentional - waiting for one phase to complete before starting the next would have created a 12-month+ timeline and lost stakeholder momentum. Concurrent phases let the team build infrastructure, refine tools, and establish champions in parallel.</p>
+            </div>
+        </div>
+
+        <!-- Deployment artifacts -->
+        <div class="section">
+            <h2>Strategy Artifacts</h2>
+            <div class="artifact-grid">
+                <div class="artifact-zone">
+                    <div class="az-icon">🗺️</div>
+                    <p>Executive Roadmap<br>Coming soon</p>
+                </div>
+                <div class="artifact-zone">
+                    <div class="az-icon">📊</div>
+                    <p>Deployment Framework Overview<br>Coming soon</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combined Results -->
+        <div class="results-box">
+            <h2>Impact &amp; Results</h2>
+            <ul>
+                <li>Toolkit delivered to the LDT team as a foundational design reference, establishing the shared definition and compatibility criteria that the deployment strategy was built upon.</li>
+                <li>Cross-functional project team of six, meeting bi-monthly across four structured phases from January 2025 through September 2025.</li>
+                <li>LMS keyword standardization protocol established, enabling categorized microlearning reporting for the first time in the organization.</li>
+                <li>Strategy approved by department leadership following a formal presentation in October 2025.</li>
+                <li>Deployment scope covering 30,000+ team members, with the LDT and LSI teams as the direct implementation audience.</li>
+            </ul>
+        </div>
+
+        <!-- Deployment tools -->
+        <div class="tools-box">
+            <strong>Role - Year 2:</strong> Senior Instructional Designer and Project Lead. Directed all four project phases from gap analysis through strategy finalization. Facilitated bi-monthly team meetings, incorporated iterative leadership feedback, presented to department leadership, and served as primary author of all strategy documentation. Designated as a Microlearning Champion for implementation.<br><br>
+            <strong>Tools:</strong> Cornerstone LMS, Articulate Rise 360, LinkedIn Learning, PowerPoint, SharePoint, Microsoft Teams, HTML, Articulate Review360, Word, Excel
+        </div>
+
+    </div>
+
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Interested in What Learning Can Do?</h2>
+            <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        document.getElementById('lightbox-close').addEventListener('click', () => lb.classList.remove('active'));
+        lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('active'); });
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.addEventListener('click', () => {
+                lbImg.src = img.src;
+                lbImg.alt = img.alt;
+                lb.classList.add('active');
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') lb.classList.remove('active');
+        });
+    </script>
+
+</body>
+</html>

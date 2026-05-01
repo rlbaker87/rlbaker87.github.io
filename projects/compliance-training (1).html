@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Annual Compliance Training Redesign — Performance-based eLearning redesign for 30,000+ team members | Robert Baker Portfolio">
+    <title>Annual Compliance Training Redesign | Robert Baker</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+
+        .project-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 70px 20px 60px;
+        }
+        .hero-content { max-width: 900px; margin: 0 auto; }
+        .project-tag-hero {
+            display: inline-block;
+            background: rgba(0,180,166,0.35);
+            color: #FFFFFF;
+            font-size: 0.8em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .project-hero h1 {
+            font-size: 2.6em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: #FFFFFF;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
+            opacity: 0.9;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+
+        .metrics-bar {
+            background: #1B365D;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .metric {
+            padding: 22px 16px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .metric:last-child { border-right: none; }
+        .metric-num {
+            font-size: 1.7em;
+            font-weight: 700;
+            color: #00B4A6;
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+        .metric-label {
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        .project-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section { margin-bottom: 44px; }
+        .section h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E9ECEF;
+        }
+        .section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin-bottom: 14px;
+        }
+        .section p:last-child { margin-bottom: 0; }
+
+        .solution-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .solution-list li {
+            padding: 14px 18px;
+            background: #F8F9FA;
+            border-left: 4px solid #00B4A6;
+            border-radius: 4px;
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        .callout-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 24px 28px;
+            border-radius: 6px;
+            margin: 28px 0;
+        }
+        .callout-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .callout-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin: 0;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .model-card {
+            background: #FFFFFF;
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 18px 14px;
+            text-align: center;
+            border-top: 4px solid #00B4A6;
+        }
+        .model-card:nth-child(2) { border-top-color: #F07B3F; }
+        .model-card:nth-child(3) { border-top-color: #00B4A6; }
+        .model-card:nth-child(4) { border-top-color: #1B365D; }
+        .model-step {
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #6C757D;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .model-card h4 {
+            font-size: 1em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 6px;
+        }
+        .model-card p {
+            font-size: 0.82em;
+            color: #6C757D;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .audience-card {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #00B4A6;
+        }
+        .audience-card h4 {
+            font-size: 0.95em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 8px;
+        }
+        .audience-card p {
+            font-size: 0.85em;
+            color: #6C757D;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        .artifact-zone {
+            background: #F8F9FA;
+            border: 2px dashed #CED4DA;
+            border-radius: 8px;
+            padding: 48px 20px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .artifact-zone .az-icon { font-size: 2em; margin-bottom: 10px; }
+        .artifact-zone p {
+            font-size: 0.88em;
+            color: #6C757D;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .results-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 28px 30px;
+            border-radius: 6px;
+            margin-bottom: 44px;
+        }
+        .results-box h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #F07B3F;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(240,123,63,0.2);
+        }
+        .results-note {
+            font-size: 0.82em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .results-box ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .results-box ul li {
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.6);
+            border-left: 4px solid #F07B3F;
+            border-radius: 4px;
+            font-size: 1em;
+            line-height: 1.6;
+            color: #343A40;
+        }
+
+        .tools-box {
+            background: #E9ECEF;
+            padding: 20px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            color: #343A40;
+            line-height: 1.8;
+        }
+        .tools-box strong { color: #1B365D; }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        }
+        .lightbox-close {
+            position: fixed;
+            top: 20px; right: 24px;
+            background: none; border: none;
+            color: #FFFFFF; font-size: 2.2em;
+            cursor: pointer; line-height: 1; z-index: 10000;
+        }
+        .lightbox-close:hover { color: #00B4A6; }
+        .zoomable { cursor: zoom-in; transition: opacity 0.2s; }
+        .zoomable:hover { opacity: 0.88; }
+
+        @media (max-width: 768px) {
+            .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+            .metric:nth-child(2) { border-right: none; }
+            .model-grid { grid-template-columns: repeat(2, 1fr); }
+            .audience-grid { grid-template-columns: 1fr; }
+            .artifact-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .project-hero h1 { font-size: 1.9em; }
+            .model-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="project-hero">
+        <div class="hero-content">
+            <span class="project-tag-hero">Compliance Training</span>
+            <h1>Annual Compliance Training Redesign</h1>
+            <p class="hero-subtitle">A full redesign of an enterprise compliance training program, converting passive, text-heavy content into performance-based, scenario-driven eLearning for a workforce spanning two states.</p>
+        </div>
+    </section>
+
+    <div class="metrics-bar">
+        <div class="metric">
+            <span class="metric-num">30K+</span>
+            <span class="metric-label">Team Members at Launch</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">3</span>
+            <span class="metric-label">Differentiated Audience Tracks</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">4-6 hrs</span>
+            <span class="metric-label">Estimated Build Time Per Module</span>
+        </div>
+        <div class="metric">
+            <span class="metric-num">June 2026</span>
+            <span class="metric-label">Scheduled Launch</span>
+        </div>
+    </div>
+
+    <div class="project-body">
+
+        <div class="section">
+            <h2>The Challenge</h2>
+            <p>The Annual Compliance Training consisted of definition-heavy content that asked team members to read and recall policy rather than practice applying it. The program serves a large, diverse workforce spanning clinical and non-clinical roles across two states, but scenarios and examples were often clinical in framing and inaccessible to the majority of learners. Content needed to be restructured so it was relevant, decision-focused, and applicable to every role in the organization.</p>
+        </div>
+
+        <div class="section">
+            <h2>Solution</h2>
+
+            <p>Every module was rebuilt around a standardized four-step instructional model applied consistently across the program.</p>
+
+            <div class="model-grid">
+                <div class="model-card">
+                    <span class="model-step">Step 1</span>
+                    <h4>Context</h4>
+                    <p>Frame the topic in terms of real workplace situations, not policy definitions</p>
+                </div>
+                <div class="model-card">
+                    <span class="model-step">Step 2</span>
+                    <h4>Practice</h4>
+                    <p>Sorting activities and scenario-based knowledge checks replace passive reading</p>
+                </div>
+                <div class="model-card">
+                    <span class="model-step">Step 3</span>
+                    <h4>Feedback</h4>
+                    <p>Immediate, specific feedback tied to the scenario rather than generic correct/incorrect</p>
+                </div>
+                <div class="model-card">
+                    <span class="model-step">Step 4</span>
+                    <h4>Performance Support</h4>
+                    <p>Reference resources embedded at point of need for post-training application</p>
+                </div>
+            </div>
+
+            <ul class="solution-list" style="margin-top: 20px;">
+                <li>Developed a six-prompt Microsoft Copilot Enterprise workflow that transforms existing course design documents into complete Rise 360-ready module drafts, reducing per-module build time to an estimated 4 to 6 hours for a four-module course.</li>
+                <li>Built a custom Copilot declarative agent to automate HTML block generation for team members, using a structured five-step intake sequence and distributable via ZIP export.</li>
+                <li>Created differentiated versions for two additional audiences: an executive briefing format for VP-level leaders using scenario-based action questions and a dashboard structure in place of a scored quiz, and a tailored track for volunteers.</li>
+                <li>Established an ACT Style Guide and eLearning Design Standards document codifying writing rules, Rise 360 theme configuration, feedback standards, accessibility requirements, and module time targets.</li>
+            </ul>
+
+            <div class="callout-box">
+                <span class="callout-label">AI-Assisted Authoring</span>
+                <p>The Copilot prompt series is a six-step workflow that takes an existing design document and produces a structured Rise 360 module draft, including scenario text, interaction copy, and feedback language. Documented session handoff procedures prevent context loss between sessions, making the workflow repeatable across the full team rather than dependent on a single author.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Differentiated Audience Tracks</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h4>Core Workforce</h4>
+                    <p>Scenario-based modules with sorting activities, knowledge checks, and embedded performance support. Applicable across all clinical and non-clinical roles.</p>
+                </div>
+                <div class="audience-card">
+                    <h4>Executive Track</h4>
+                    <p>Briefing format for VP-level leaders. Scenario-based action questions and a dashboard structure replace traditional scored assessments.</p>
+                </div>
+                <div class="audience-card">
+                    <h4>Volunteer Track</h4>
+                    <p>Tailored version scoped to the specific compliance requirements and workplace contexts relevant to volunteer team members.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Artifacts</h2>
+            <div class="artifact-grid">
+                <div class="artifact-zone">
+                    <div class="az-icon">🤖</div>
+                    <p>Copilot Prompt Workflow Screenshot<br>Coming soon</p>
+                </div>
+                <div class="artifact-zone">
+                    <div class="az-icon">📋</div>
+                    <p>ACT Style Guide Sample<br>Coming soon</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-box">
+            <h2>Impact &amp; Results</h2>
+            <span class="results-note">Scheduled launch June 1, 2026</span>
+            <ul>
+                <li>Scoped to reach 30,000+ team members across two states at launch.</li>
+                <li>A standardized instructional template reduced design decision overhead per module and created a consistent learner experience across all ACT courses.</li>
+                <li>The Copilot prompt series established a repeatable AI-assisted authoring workflow across the L&amp;D team, with documented session handoff procedures to prevent context loss between sessions.</li>
+                <li>Three differentiated audience tracks ensure compliance content is relevant and accessible to every role in the organization.</li>
+            </ul>
+        </div>
+
+        <div class="tools-box">
+            <strong>Role:</strong> Instructional Designer and Co-Lead. Co-led the ACT redesign alongside one other designer. Responsible for instructional architecture, stakeholder management, prompt engineering, and custom HTML development.<br><br>
+            <strong>Tools:</strong> Articulate Rise 360, Microsoft Copilot Enterprise, Copilot Studio, HTML/CSS, Cornerstone LMS, Microsoft 365
+        </div>
+
+    </div>
+
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Interested in What Learning Can Do?</h2>
+            <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        document.getElementById('lightbox-close').addEventListener('click', () => lb.classList.remove('active'));
+        lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('active'); });
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.addEventListener('click', () => {
+                lbImg.src = img.src;
+                lbImg.alt = img.alt;
+                lb.classList.add('active');
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') lb.classList.remove('active');
+        });
+    </script>
+
+</body>
+</html>
