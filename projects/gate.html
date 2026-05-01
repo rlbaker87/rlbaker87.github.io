@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Content | Robert Baker</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .gate-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: #F8F9FA;
+        }
+        .gate-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            max-width: 440px;
+            width: 100%;
+        }
+        .gate-header {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            padding: 36px 36px 28px;
+            text-align: center;
+        }
+        .gate-lock {
+            font-size: 2.4em;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .gate-header h1 {
+            color: #FFFFFF;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .gate-header p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .gate-body {
+            padding: 32px 36px 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .gate-label {
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #6C757D;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .gate-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E9ECEF;
+            border-radius: 6px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1em;
+            color: #343A40;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .gate-input:focus {
+            border-color: #00B4A6;
+        }
+        .gate-input.error {
+            border-color: #C62828;
+        }
+        .gate-error {
+            display: none;
+            font-size: 0.88em;
+            color: #C62828;
+            font-weight: 600;
+        }
+        .gate-error.show { display: block; }
+        .gate-btn {
+            width: 100%;
+            background: #00B4A6;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            padding: 13px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-height: 44px;
+        }
+        .gate-btn:hover { background: #008B7F; }
+        .gate-note {
+            text-align: center;
+            font-size: 0.85em;
+            color: #6C757D;
+            line-height: 1.6;
+        }
+        .gate-note a {
+            color: #00B4A6;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .gate-note a:hover { color: #1B365D; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="gate-wrap">
+        <div class="gate-card">
+            <div class="gate-header">
+                <span class="gate-lock">🔒</span>
+                <h1>Protected Content</h1>
+                <p>This content is shared selectively. Enter the access password to continue, or contact Robert to request access.</p>
+            </div>
+            <div class="gate-body">
+                <div>
+                    <span class="gate-label">Password</span>
+                    <input type="password" class="gate-input" id="gate-input" placeholder="Enter password" autocomplete="off">
+                    <p class="gate-error" id="gate-error">Incorrect password. Please try again or contact Robert for access.</p>
+                </div>
+                <button class="gate-btn" id="gate-btn">Continue →</button>
+                <p class="gate-note">Need access? <a href="../contact.html">Get in touch</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const destination = params.get('to') || 'animated-training-videos.html';
+
+        // If already authenticated this session, go straight through
+        if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
+            window.location.href = destination;
+        }
+
+        const input = document.getElementById('gate-input');
+        const btn = document.getElementById('gate-btn');
+        const error = document.getElementById('gate-error');
+
+        function attempt() {
+            if (input.value === 'LaGr3356CN197!') {
+                sessionStorage.setItem('rb_portfolio_auth', 'true');
+                window.location.href = destination;
+            } else {
+                input.classList.add('error');
+                error.classList.add('show');
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        btn.addEventListener('click', attempt);
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') attempt();
+            input.classList.remove('error');
+            error.classList.remove('show');
+        });
+
+        input.focus();
+    </script>
+
+</body>
+</html>
