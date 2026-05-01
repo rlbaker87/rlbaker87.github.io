@@ -167,20 +167,41 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const destination = params.get('to') || 'animated-training-videos.html';
-
-        // If already authenticated this session, go straight through
-        if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
-            window.location.href = destination;
-        }
+        const isExternal = destination.startsWith('http');
 
         const input = document.getElementById('gate-input');
         const btn = document.getElementById('gate-btn');
         const error = document.getElementById('gate-error');
+        const gateBody = document.querySelector('.gate-body');
+
+        function showSuccess() {
+            if (isExternal) {
+                gateBody.innerHTML = `
+                    <div style="text-align:center;">
+                        <div style="font-size:2em;margin-bottom:12px;">✅</div>
+                        <p style="font-weight:700;color:#1B365D;font-size:1.05em;margin-bottom:8px;">Access granted.</p>
+                        <p style="color:#6C757D;font-size:0.95em;margin-bottom:20px;">Click below to launch the course.</p>
+                        <button onclick="window.location.href='${destination}'" class="btn-modal-contact" style="border:none;cursor:pointer;width:auto;padding:13px 28px;">Launch Course →</button>
+                    </div>
+                `;
+            } else {
+                window.location.href = destination;
+            }
+        }
+
+        // If already authenticated this session and destination is internal, go straight through
+        if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
+            if (isExternal) {
+                showSuccess();
+            } else {
+                window.location.href = destination;
+            }
+        }
 
         function attempt() {
             if (input.value === 'LaGr3356CN197!') {
                 sessionStorage.setItem('rb_portfolio_auth', 'true');
-                window.location.href = destination;
+                showSuccess();
             } else {
                 input.classList.add('error');
                 error.classList.add('show');
