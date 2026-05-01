@@ -167,16 +167,10 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const destination = params.get('to') || 'animated-training-videos.html';
-        const isExternal = destination.startsWith('http');
 
         // If already authenticated this session, go straight through
         if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
-            if (isExternal) {
-                window.open(destination, '_blank');
-                history.back();
-            } else {
-                window.location.href = destination;
-            }
+            window.location.href = destination;
         }
 
         const input = document.getElementById('gate-input');
@@ -186,12 +180,7 @@
         function attempt() {
             if (input.value === 'LaGr3356CN197!') {
                 sessionStorage.setItem('rb_portfolio_auth', 'true');
-                if (isExternal) {
-                    window.open(destination, '_blank');
-                    history.back();
-                } else {
-                    window.location.href = destination;
-                }
+                window.location.href = destination;
             } else {
                 input.classList.add('error');
                 error.classList.add('show');
