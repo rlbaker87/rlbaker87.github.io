@@ -545,7 +545,7 @@
                     </div>
                     <div class="video-player" id="video-player">
                         <div class="video-embed-wrap">
-                            <iframe src="https://www.youtube.com/embed/FIRfTjy6sns?si=Xkx_HDiWefCsCNBd"
+                            <iframe data-src="https://www.youtube.com/embed/FIRfTjy6sns?si=Xkx_HDiWefCsCNBd"
                                 title="Kitchen Hood Fire Safety Training Video"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -663,6 +663,8 @@
         if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
             videoGate.style.display = 'none';
             videoPlayer.classList.add('show');
+            const iframe = videoPlayer.querySelector('iframe');
+            if (iframe && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
         }
 
         videoModal.addEventListener('click', (e) => {
