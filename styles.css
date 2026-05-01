@@ -314,7 +314,7 @@ a {
 }
 
 .expertise-card li:before {
-    content: "â†’";
+    content: "→";
     position: absolute;
     left: 0;
     color: #00B4A6;
