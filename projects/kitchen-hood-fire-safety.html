@@ -658,27 +658,30 @@
         const videoError = document.getElementById('video-gate-error');
         const videoPlayer = document.getElementById('video-player');
         const videoGate = document.getElementById('video-gate');
-
-        // Check session auth
-        if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
-            videoGate.style.display = 'none';
-            videoPlayer.classList.add('show');
+        
+        function showVideo() {
             const iframe = videoPlayer.querySelector('iframe');
             if (iframe && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+            videoGate.style.display = 'none';
+            videoPlayer.classList.add('show');
+            const btnWrap = document.getElementById('video-btn-wrap');
+            if (btnWrap) btnWrap.style.display = 'none';
         }
-
+        
+        // Check session auth
+        if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
+            showVideo();
+        }
+        
         videoModal.addEventListener('click', (e) => {
             if (e.target === videoModal) videoModal.classList.remove('active');
         });
-
+        
         function unlockVideo() {
             if (videoInput.value === 'LaGr3356CN197!') {
                 sessionStorage.setItem('rb_portfolio_auth', 'true');
                 videoModal.classList.remove('active');
-                videoGate.style.display = 'none';
-                videoPlayer.classList.add('show');
-                const btnWrap = document.getElementById('video-btn-wrap');
-                if (btnWrap) btnWrap.style.display = 'none';
+                showVideo();
             } else {
                 videoInput.classList.add('error');
                 videoError.classList.add('show');
