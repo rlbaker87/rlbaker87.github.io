@@ -239,9 +239,47 @@
             margin-bottom: 30px;
         }
 
+        .ai-image-wrap {
+            margin-top: 36px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .ai-image-wrap img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 10px;
+        }
+        .ai-image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(27,54,93,0.85) 0%, transparent 100%);
+            padding: 20px 24px;
+        }
+        .ai-image-caption p {
+            color: #FFFFFF;
+            font-size: 0.88em;
+            margin: 0;
+            opacity: 0.9;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
         @media (max-width: 768px) {
             .about-hero h1 {
                 font-size: 2.2em;
+            }
+
+            .journey-layout {
+                flex-direction: column;
+            }
+            .journey-image {
+                width: 100% !important;
             }
 
             .skills-section {
@@ -318,11 +356,23 @@
         <!-- Professional Journey -->
         <section class="about-section">
             <h2>Professional Journey</h2>
-            <p>I spent a decade in education, teaching high school and collegiate students, designing professional development for educators, and coaching wrestling and football. That work built my foundation in curriculum design, facilitation, performance analysis, and developing people under pressure. I learned how to break down complex concepts, adapt to wildly different audiences, and use data to improve outcomes.</p>
+            <div style="display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
+                <div style="flex:1; min-width:280px;">
+                    <p>I spent a decade in education, teaching high school and collegiate students, designing professional development for educators, and coaching wrestling and football. That work built my foundation in curriculum design, facilitation, performance analysis, and developing people under pressure. I learned how to break down complex concepts, adapt to wildly different audiences, and use data to improve outcomes.</p>
 
-            <p>In 2022 I transitioned to enterprise instructional design at Prisma Health, bringing that same analytical and results-focused approach to a much larger stage. Over the past three years I have progressively taken on more strategic scope, from designing individual learning solutions to leading enterprise-wide initiatives, managing cross-functional teams, and pioneering AI integration in learning design.</p>
+                    <p>In 2022 I transitioned to enterprise instructional design at Prisma Health, bringing that same analytical and results-focused approach to a much larger stage. Over the past three years I have progressively taken on more strategic scope, from designing individual learning solutions to leading enterprise-wide initiatives, managing cross-functional teams, and pioneering AI integration in learning design.</p>
 
-            <p>Today I lead projects that span AI-integrated leadership development, enterprise compliance training covering federal healthcare statutes, high-risk environment safety training, and large-scale program management. I am particularly energized by work that sits at the intersection of technology and human performance, where the design challenge is not just what to teach but how to make it stick in the real world.</p>
+                    <p>Today I lead projects that span AI-integrated leadership development, enterprise compliance training covering federal healthcare statutes, high-risk environment safety training, and large-scale program management. I am particularly energized by work that sits at the intersection of technology and human performance, where the design challenge is not just what to teach but how to make it stick in the real world.</p>
+                </div>
+                <div style="flex-shrink:0; width:340px;">
+                    <div class="ai-image-wrap">
+                        <img src="assets/images/AI-Rob.png" alt="AI-generated portrait of Robert Baker — khaki pants, button-up shirt, completely unbothered while starships battle outside the window">
+                        <div class="ai-image-caption">
+                            <p>Yes, this is AI-generated. Yes, that is the Enterprise outside the window. The khakis are very much real.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Core Competencies -->
