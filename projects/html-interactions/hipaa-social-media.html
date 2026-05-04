@@ -1,1 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIPAA in Practice: Social Media & Patient Privacy | Robert Baker</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B365D;
+  --teal:#00B4A6;
+  --teal-dark:#008B7F;
+  --orange:#F07B3F;
+  --green:#2E7D32;
+  --red:#C62828;
+  --neutral:#455A64;
+  --white:#FFFFFF;
+  --bg-light:#F8F9FA;
+  --bg-selected:#E8F7F6;
+  --text-dark:#343A40;
+  --text-mid:#6C757D;
+  --border:#E9ECEF;
+  --font:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  --social-bg:#F8F9FA;
+  --card-bg:#FFFFFF;
+  --card-border:#E9ECEF;
+  --avatar-1:#1B365D;
+  --avatar-2:#00B4A6;
+  --avatar-3:#F07B3F;
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
+body{
+  background:transparent;
+  font-family:var(--font);
+  font-size:16px;
+  line-height:1.6;
+  color:var(--text-dark);
+  padding:0;
+  margin:0;
+}
+
+#app{
+  width:100%;
+  max-width:720px;
+  margin:0 auto;
+  padding:20px 16px 32px;
+}
+
+/* ── Header ── */
+.activity-header{
+  background:var(--navy);
+  color:var(--white);
+  border-radius:6px 6px 0 0;
+  padding:18px 24px 16px;
+  margin-bottom:0;
+}
+.activity-header .badge{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  background:rgba(0,180,166,0.25);
+  color:var(--white);
+  padding:3px 10px;
+  border-radius:3px;
+  display:inline-block;
+  margin-bottom:8px;
+}
+.activity-header h1{
+  font-size:19px;
+  font-weight:700;
+  color:var(--white);
+  margin-bottom:6px;
+}
+.activity-header p{
+  font-size:15px;
+  color:rgba(255,255,255,0.88);
+  line-height:1.55;
+}
+
+/* ── Progress ── */
+.progress-container{
+  background:var(--white);
+  border-left:1px solid var(--card-border);
+  border-right:1px solid var(--card-border);
+  padding:10px 24px 8px;
+}
+.progress-wrap{
+  background:var(--border);
+  height:4px;
+  border-radius:2px;
+  margin-bottom:4px;
+}
+.progress-fill{
+  background:var(--teal);
+  height:4px;
+  border-radius:2px;
+  transition:width 0.4s ease;
+}
+.progress-label{
+  font-size:11px;
+  color:var(--text-mid);
+  text-align:right;
+}
+
+/* ── Scenario wrapper ── */
+.scenario-wrap{
+  border:1px solid var(--card-border);
+  border-top:none;
+  border-radius:0 0 6px 6px;
+  background:var(--social-bg);
+  padding:20px 20px 24px;
+}
+
+.scenario-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text-mid);
+  margin-bottom:12px;
+}
+
+/* ── Social Media Card ── */
+.social-card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  margin-bottom:16px;
+}
+
+.card-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px 8px;
+}
+
+.avatar{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:15px;
+  color:var(--white);
+  flex-shrink:0;
+}
+
+.user-info{
+  flex:1;
+}
+.user-name{
+  font-weight:700;
+  font-size:14px;
+  color:var(--text-dark);
+  display:block;
+}
+.user-meta{
+  font-size:11px;
+  color:var(--text-mid);
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.user-meta .globe{font-size:10px;}
+
+.card-platform-badge{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--text-mid);
+  border:1px solid var(--border);
+  border-radius:3px;
+  padding:2px 6px;
+}
+
+.card-body{
+  padding:4px 14px 12px;
+  font-size:15px;
+  line-height:1.65;
+  color:var(--text-dark);
+}
+
+/* ── Selectable Phrases ── */
+.selectable{
+  display:inline;
+  border-radius:3px;
+  padding:1px 2px;
+  cursor:pointer;
+  transition:background 0.15s, outline 0.15s;
+  outline:2px solid transparent;
+  font-family:var(--font);
+  font-size:inherit;
+  color:inherit;
+  background:none;
+  border:none;
+  text-decoration:underline;
+  text-decoration-style:dotted;
+  text-decoration-color:var(--teal);
+  text-underline-offset:3px;
+}
+.selectable:hover{
+  background:var(--bg-selected);
+  outline:2px solid var(--teal);
+}
+.selectable:focus-visible{
+  outline:3px solid var(--teal);
+  outline-offset:2px;
+}
+.selectable.selected{
+  background:#CCEFED;
+  outline:2px solid var(--teal);
+  text-decoration:none;
+}
+.selectable.locked{
+  cursor:default;
+  pointer-events:none;
+}
+.selectable.correct-reveal{
+  background:#e8f5e9;
+  outline:2px solid var(--green);
+}
+.selectable.incorrect-reveal{
+  background:#fdecea;
+  outline:2px solid var(--red);
+}
+.selectable.missed-reveal{
+  background:#fff3cd;
+  outline:2px solid #f9a825;
+}
+
+/* ── Card Reactions ── */
+.card-reactions{
+  padding:6px 14px 4px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border-top:1px solid var(--card-border);
+  font-size:12px;
+  color:var(--text-mid);
+}
+.reaction-emojis{
+  display:inline-flex;
+  gap:1px;
+}
+.reaction-count{font-size:12px;color:var(--text-mid);}
+.card-actions{
+  padding:4px 14px 10px;
+  display:flex;
+  gap:0;
+  border-top:1px solid var(--card-border);
+  margin-top:2px;
+}
+.card-action-btn{
+  flex:1;
+  background:none;
+  border:none;
+  font-family:var(--font);
+  font-size:12px;
+  font-weight:700;
+  color:var(--text-mid);
+  padding:6px 4px;
+  border-radius:4px;
+  cursor:default;
+  text-align:center;
+}
+
+/* ── Comments Section ── */
+.comments-section{
+  padding:0 14px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.comment-item{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+}
+.comment-avatar{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:11px;
+  color:var(--white);
+  flex-shrink:0;
+  margin-top:2px;
+}
+.comment-bubble{
+  background:var(--bg-light);
+  border-radius:0 12px 12px 12px;
+  padding:7px 12px;
+  font-size:14px;
+  line-height:1.5;
+  flex:1;
+}
+.comment-name{
+  font-weight:700;
+  font-size:12px;
+  color:var(--text-dark);
+  display:block;
+  margin-bottom:1px;
+}
+.comment-violation{
+  background:#fff8e1;
+  border-radius:0 12px 12px 12px;
+  border:1.5px solid #f9a825;
+  padding:7px 12px;
+  font-size:14px;
+  line-height:1.5;
+  flex:1;
+}
+
+/* ── Task box ── */
+.task-box{
+  background:var(--white);
+  border:1px solid var(--card-border);
+  border-radius:6px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  font-size:15px;
+  color:var(--text-dark);
+  line-height:1.6;
+}
+.task-box strong{
+  color:var(--navy);
+}
+
+/* ── Buttons ── */
+.btn-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.btn-no-violation{
+  background:var(--white);
+  color:var(--navy);
+  border:2px solid var(--navy);
+  border-radius:5px;
+  padding:9px 18px;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  transition:background 0.15s, border-color 0.15s, color 0.15s;
+}
+.btn-no-violation:hover{background:var(--bg-light);}
+.btn-no-violation.active{background:var(--bg-selected);border-color:var(--teal);color:var(--teal);}
+.btn-no-violation:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+.btn-no-violation:disabled{opacity:0.5;cursor:default;}
+
+.btn-submit{
+  background:var(--teal);
+  color:var(--white);
+  border:none;
+  border-radius:5px;
+  padding:9px 22px;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  transition:background 0.15s;
+}
+.btn-submit:hover{background:var(--teal-dark);}
+.btn-submit:focus-visible{outline:3px solid var(--navy);outline-offset:2px;}
+.btn-submit:disabled{opacity:0.5;cursor:default;}
+
+/* ── Feedback ── */
+.feedback-panel{
+  border-radius:5px;
+  padding:14px 16px;
+  font-size:15px;
+  line-height:1.6;
+  display:none;
+  margin-bottom:14px;
+}
+.feedback-panel.show{display:block;}
+.feedback-panel.correct{
+  background:var(--white);
+  border-left:4px solid var(--green);
+}
+.feedback-panel.incorrect{
+  background:var(--white);
+  border-left:4px solid var(--red);
+}
+.feedback-panel .fb-label{
+  font-weight:700;
+  display:block;
+  margin-bottom:4px;
+}
+.feedback-panel.correct .fb-label{color:var(--green);}
+.feedback-panel.incorrect .fb-label{color:var(--red);}
+
+.next-btn-row{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:4px;
+}
+.btn-next{
+  background:var(--navy);
+  color:var(--white);
+  border:none;
+  border-radius:5px;
+  padding:9px 22px;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  display:none;
+  transition:background 0.15s;
+}
+.btn-next.show{display:inline-block;}
+.btn-next:hover{background:#142a4a;}
+.btn-next:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+
+/* ── Final screen ── */
+.final-note{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:5px;
+  padding:14px 16px;
+  font-size:15px;
+  line-height:1.6;
+  color:var(--text-dark);
+  margin-bottom:10px;
+  display:none;
+}
+.final-note.show{display:block;}
+
+.btn-try-again{
+  background:var(--white);
+  color:var(--navy);
+  border:2px solid var(--navy);
+  border-radius:5px;
+  padding:9px 18px;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  transition:background 0.15s;
+  display:none;
+}
+.btn-try-again.show{display:inline-block;}
+.btn-try-again:hover{background:var(--bg-light);}
+.btn-try-again:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+
+/* ── Intro Screen ── */
+.intro-screen{
+  border:1px solid var(--card-border);
+  border-radius:6px;
+  overflow:hidden;
+}
+.intro-header{
+  background:var(--navy);
+  color:var(--white);
+  padding:20px 24px 18px;
+}
+.intro-header .badge{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  background:rgba(0,180,166,0.25);
+  color:var(--white);
+  padding:3px 10px;
+  border-radius:3px;
+  display:inline-block;
+  margin-bottom:10px;
+}
+.intro-header h1{
+  font-size:20px;
+  font-weight:700;
+  color:var(--white);
+  margin:0;
+}
+.intro-body{
+  background:var(--white);
+  padding:24px 24px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.intro-body p{
+  font-size:15px;
+  line-height:1.7;
+  color:var(--text-dark);
+}
+.intro-task{
+  background:var(--bg-light);
+  border-left:4px solid var(--teal);
+  border-radius:0 5px 5px 0;
+  padding:14px 16px;
+}
+.intro-task .task-label{
+  font-size:15px;
+  font-weight:700;
+  color:var(--navy);
+  display:block;
+  margin-bottom:6px;
+}
+.intro-task p{
+  font-size:14px;
+  line-height:1.65;
+  color:var(--text-dark);
+  margin:0;
+}
+.intro-footer{
+  padding:0 24px 24px;
+  background:var(--white);
+  display:flex;
+  justify-content:flex-end;
+}
+.btn-start{
+  background:var(--teal);
+  color:var(--white);
+  border:none;
+  border-radius:5px;
+  padding:11px 28px;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  min-height:44px;
+  transition:background 0.15s;
+}
+.btn-start:hover{background:var(--teal-dark);}
+.btn-start:focus-visible{outline:3px solid var(--navy);outline-offset:2px;}
+
+@media(max-width:500px){
+  #app{padding:12px 8px 24px;}
+  .activity-header{padding:14px 16px 12px;}
+  .btn-row{flex-direction:column;}
+  .btn-no-violation,.btn-submit{width:100%;}
+  .intro-header,.intro-body,.intro-footer{padding-left:16px;padding-right:16px;}
+}
+
+/* ── Results Screen ── */
+.results-screen{
+  border:1px solid var(--card-border);
+  border-radius:6px;
+  overflow:hidden;
+  display:none;
+}
+.results-screen.show{display:block;}
+.results-header{
+  background:var(--navy);
+  color:var(--white);
+  padding:20px 24px 18px;
+}
+.results-header .badge{
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  background:rgba(0,180,166,0.25);color:var(--white);padding:3px 10px;border-radius:3px;
+  display:inline-block;margin-bottom:10px;
+}
+.results-header h2{font-size:20px;font-weight:700;color:var(--white);margin:0;}
+.results-body{background:var(--white);padding:28px 28px 24px;}
+.score-summary{
+  display:flex;align-items:center;gap:20px;
+  background:var(--bg-light);border-radius:8px;padding:20px 24px;margin-bottom:24px;
+}
+.score-circle{
+  width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:1.5em;font-weight:700;color:var(--white);
+}
+.score-circle.perfect{background:var(--green);}
+.score-circle.good{background:var(--teal);}
+.score-circle.needs-work{background:var(--red);}
+.score-text h3{font-size:1.1em;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.score-text p{font-size:0.9em;color:var(--text-mid);line-height:1.5;margin:0;}
+.breakdown-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.breakdown-item{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--bg-light);border-radius:6px;padding:14px 16px;
+}
+.breakdown-icon{
+  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:0.9em;flex-shrink:0;margin-top:1px;
+}
+.breakdown-icon.correct{background:#e8f5e9;color:var(--green);}
+.breakdown-icon.incorrect{background:#fdecea;color:var(--red);}
+.breakdown-label{font-size:0.95em;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.breakdown-detail{font-size:0.85em;color:var(--text-mid);line-height:1.5;}
+.results-footer{padding:0 28px 28px;background:var(--white);display:flex;justify-content:flex-end;}
+.btn-try-again-final{
+  background:var(--white);color:var(--navy);border:2px solid var(--navy);
+  border-radius:5px;padding:9px 22px;font-family:var(--font);font-size:15px;
+  font-weight:700;cursor:pointer;min-height:44px;transition:background 0.15s;
+}
+.btn-try-again-final:hover{background:var(--bg-light);}
+.btn-try-again-final:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+
+/* ── Portfolio chrome ── */
+.navbar{background-color:#1B365D;padding:15px 0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.nav-container{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-size:1.5em;font-weight:700;color:#FFFFFF;text-decoration:none;}
+.logo:hover{color:#00B4A6;}
+.nav-menu{display:flex;list-style:none;gap:30px;}
+.nav-link{color:#FFFFFF;font-weight:500;padding:8px 15px;border-radius:4px;text-decoration:none;}
+.nav-link:hover,.nav-link.active{background-color:rgba(0,180,166,0.2);color:#00B4A6;}
+.project-hero{background:linear-gradient(135deg,#1B365D 0%,#00B4A6 100%);color:#FFFFFF;padding:50px 20px 40px;}
+.project-hero-inner{max-width:900px;margin:0 auto;}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.8);font-size:0.9em;font-weight:600;margin-bottom:24px;transition:color 0.2s;text-decoration:none;}
+.back-link:hover{color:#FFFFFF;}
+.project-tag-hero{display:inline-block;background:rgba(0,180,166,0.3);color:#FFFFFF;font-size:0.8em;font-weight:700;padding:4px 14px;border-radius:20px;margin-bottom:16px;}
+.project-hero h1{font-size:2.2em;font-weight:700;line-height:1.25;margin-bottom:14px;color:#FFFFFF;}
+.project-hero .hero-subtitle{font-size:1.05em;opacity:0.9;line-height:1.7;}
+.interaction-wrap{max-width:900px;margin:0 auto;padding:50px 20px 20px;}
+.interaction-intro p{font-size:1.05em;line-height:1.8;color:#343A40;margin-bottom:14px;}
+.tools-box-portfolio{background:#E9ECEF;padding:20px 24px;border-radius:6px;font-size:1em;color:#343A40;line-height:1.8;margin-top:40px;margin-bottom:60px;}
+.tools-box-portfolio strong{color:#1B365D;}
+.cta-section{background-color:#1B365D;color:#FFFFFF;padding:80px 20px;text-align:center;}
+.cta-section h2{font-size:2.5em;margin-bottom:20px;font-weight:700;color:#FFFFFF;}
+.cta-section p{font-size:1.3em;margin-bottom:35px;opacity:0.9;}
+.cta-buttons{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.btn{display:inline-block;padding:15px 35px;font-size:1.1em;font-weight:600;border-radius:6px;transition:all 0.3s ease;border:2px solid transparent;text-decoration:none;}
+.btn-primary{background-color:#F07B3F;color:#FFFFFF;border-color:#F07B3F;}
+.btn-primary:hover{background-color:#d66a32;transform:translateY(-2px);}
+.btn-secondary{background-color:transparent;color:#FFFFFF;border:2px solid #FFFFFF;}
+.btn-secondary:hover{background-color:rgba(255,255,255,0.15);transform:translateY(-2px);}
+footer{background-color:#343A40;color:#FFFFFF;padding:40px 20px;}
+.footer-content{max-width:1200px;margin:0 auto;text-align:center;}
+.footer-links{display:flex;justify-content:center;gap:30px;margin-bottom:20px;flex-wrap:wrap;}
+.footer-links a,.footer-links span{color:#FFFFFF;opacity:0.9;text-decoration:none;}
+.footer-links a:hover{color:#00B4A6;opacity:1;}
+.footer-social{margin:20px 0;}
+.footer-social a{color:#00B4A6;margin:0 15px;font-weight:600;text-decoration:none;}
+.footer-social a:hover{color:#F07B3F;}
+.footer-copyright{margin-top:20px;opacity:0.7;font-size:0.9em;}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo">Robert Baker</a>
+    <ul class="nav-menu">
+      <li><a href="../index.html" class="nav-link">Home</a></li>
+      <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+      <li><a href="../about.html" class="nav-link">About</a></li>
+      <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="project-hero">
+  <div class="project-hero-inner">
+    <a href="../projects.html" class="back-link">&#8592; Back to Projects</a>
+    <span class="project-tag-hero">Interactive Demo</span>
+    <h1>HIPAA in Practice: Social Media &amp; Patient Privacy</h1>
+    <p class="hero-subtitle">A scenario-based interaction placing the learner in the role of a Compliance Officer reviewing real social media posts for HIPAA violations</p>
+  </div>
+</section>
+
+<div class="interaction-wrap">
+  <div class="interaction-intro">
+    <p>Compliance training on HIPAA privacy often stops at definitions — what PHI is, what the rules require — without asking team members to apply that knowledge in realistic situations. This interaction was designed to close that gap. Rather than selecting from a list of answers, learners click directly on the words or phrases that constitute violations inside a realistic social media post.</p>
+    <p>Built as a custom HTML block for Articulate Rise 360, deployable as a standalone demo or embedded directly in an eLearning course.</p>
+  </div>
+
+  <div id="app" role="main">
+
+  <!-- Intro Screen -->
+  <div id="intro-screen" class="intro-screen">
+    <div class="intro-header">
+      <span class="badge">Privacy &amp; HIPAA</span>
+      <h1 tabindex="-1" id="intro-heading">Social Media &amp; Patient Privacy</h1>
+    </div>
+    <div class="intro-body">
+      <p>Let's apply what you learned using a popular medium of communication: social media. Healthcare team members use social media in different ways. Some share personal experiences after work. Others post about teamwork, long shifts, or the challenges of working in healthcare.</p>
+      <p>Even when posts are well-intentioned, patient information can be shared unintentionally. Comments, replies, and added details can also create risk, even if the original post seemed appropriate.</p>
+      <div class="intro-task">
+        <span class="task-label">Your Task</span>
+        <p>In the following scenarios, place yourself in the role of a Compliance Officer reviewing social media posts and comments. Your task is to recognize when information crosses the line and identify what puts patient privacy at risk.</p>
+      </div>
+    </div>
+    <div class="intro-footer">
+      <button class="btn-start" id="btn-start" type="button">Start Activity →</button>
+    </div>
+  </div>
+
+  <!-- Activity (hidden until Start) -->
+  <div id="activity-wrap" style="display:none;">
+    <div class="activity-header">
+      <span class="badge">Privacy &amp; HIPAA</span>
+      <h2 tabindex="-1" id="main-heading">Social Media &amp; Patient Privacy</h2>
+      <p>Read the following social media posts to identify if the post is HIPAA compliant. Click on the words or phrases that violate HIPAA. To succeed, you must correctly identify all HIPAA violations. If there are no violations, select the <strong>No Violations Present</strong> button.</p>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-wrap" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-valuetext="Scenario 1 of 3" id="prog-bar">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+      <div class="progress-label" aria-live="polite" id="prog-label">Scenario 1 of 3</div>
+    </div>
+
+    <div class="scenario-wrap" id="scenario-area" aria-live="polite"></div>
+  </div>
+
+  <!-- Results Screen (hidden until activity complete) -->
+  <div id="results-screen" class="results-screen">
+    <div class="results-header">
+      <span class="badge">Privacy &amp; HIPAA</span>
+      <h2>Activity Complete</h2>
+    </div>
+    <div class="results-body">
+      <div class="score-summary" id="score-summary"></div>
+      <div class="breakdown-list" id="breakdown-list"></div>
+    </div>
+    <div class="results-footer">
+      <button class="btn-try-again-final" id="btn-try-again-final" type="button">Try Again</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── Scenario Data ──────────────────────────────────────────────────────────────
+const scenarios = [
+  {
+    id: 1,
+    label: 'Scenario 1 of 3',
+    pct: 0,
+    avatar: { initials: 'JM', color: '#1B365D' },
+    userName: 'Jordan M.',
+    userMeta: '2 hours ago · 🌐',
+    reactions: { emojis: '❤️👍😢', count: '14 reactions' },
+    postPhrases: [
+      { text: 'Long shift today. Helped a ', selectable: false },
+      { text: '67-year-old patient', id: 'p1-age', violation: true },
+      { text: ' from ', selectable: false },
+      { text: 'Downtown Memorial', id: 'p1-loc', violation: true },
+      { text: ' recover after a ', selectable: false },
+      { text: 'difficult admission', id: 'p1-care', violation: true },
+      { text: '. ', selectable: false },
+      { text: "Glad they're doing better now", id: 'p1-dist', violation: false, distractor: true },
+      { text: '.', selectable: false }
+    ],
+    noViolation: false,
+    feedbackCorrect: {
+      label: 'Great job!',
+      text: 'You identified all three elements that make this post non-compliant. Age, location, and care context can identify a patient, even without a name, and combining them significantly increases that risk. Improper disclosure of PHI may require breach notification, corrective action, reporting to the Office for Civil Rights, and civil monetary penalties. If you are unsure whether something already posted creates risk, contact your organization\'s Privacy Office immediately.'
+    },
+    feedbackIncorrect: {
+      label: 'This decision creates risk!',
+      text: 'This post contains patient identifiers that must be removed before it can be posted. Patient identifiers are not limited to names — age, location, and care context can all make a patient recognizable, especially in combination. Sharing this post as written could result in breach notification requirements and civil monetary penalties. Remove all three identifying elements before posting anything about a patient interaction. If you are unsure whether something already posted creates risk, contact your organization\'s Privacy Office immediately.'
+    }
+  },
+  {
+    id: 2,
+    label: 'Scenario 2 of 3',
+    pct: 33,
+    avatar: { initials: 'TP', color: '#00B4A6' },
+    userName: 'Taylor P.',
+    userMeta: '5 hours ago · 🌐',
+    reactions: { emojis: '❤️💪👏', count: '31 reactions' },
+    postPhrases: [
+      { text: 'Long day at work today. Supporting a ', selectable: false },
+      { text: 'trauma patient', id: 'p2-dist', violation: false, distractor: true },
+      { text: ' made it especially tough, but proud of the teamwork that helped get through the shift.', selectable: false }
+    ],
+    noViolation: true,
+    feedbackCorrect: {
+      label: 'Great job!',
+      text: 'You recognized that this post is compliant as written. General statements about work challenges are acceptable when no patient identifiers are included. Not every work-related post violates HIPAA — knowing the difference protects both patients and your ability to communicate normally about your work experience.'
+    },
+    feedbackIncorrect: {
+      label: 'This decision creates risk!',
+      text: 'This post does not contain patient identifiers and is compliant as written. Flagging compliant content as a violation creates unnecessary risk of over-restriction and does not strengthen HIPAA compliance. Knowing what does not need to be changed is just as important as knowing what does. Review what qualifies as a patient identifier — age, location, medical record numbers, and care details — before flagging content as non-compliant.'
+    }
+  },
+  {
+    id: 3,
+    label: 'Scenario 3 of 3',
+    pct: 67,
+    avatar: { initials: 'TP', color: '#00B4A6' },
+    userName: 'Taylor P.',
+    userMeta: '5 hours ago · 🌐',
+    reactions: { emojis: '❤️💪👏', count: '31 reactions' },
+    postPhrases: [
+      { text: 'Long day at work today. Supporting a trauma patient made it especially tough, but proud of the teamwork that helped get through the shift.', selectable: false }
+    ],
+    hasComments: true,
+    genericComments: [
+      { initials: 'SR', color: '#2E7D32', name: 'Sam R.', text: 'Well done! 👏' },
+      { initials: 'CL', color: '#F07B3F', name: 'Casey L.', text: 'You got this! Keep it up 💙' }
+    ],
+    violationComment: {
+      initials: 'MK', color: '#C62828', name: 'Morgan K.',
+      phrases: [
+        { text: 'I think I know who you\'re talking about, ', selectable: false },
+        { text: 'that guy', id: 'p3-gender', violation: true },
+        { text: ' from ', selectable: false },
+        { text: 'room 412', id: 'p3-room', violation: true },
+        { text: '.', selectable: false }
+      ],
+      distractorPhrase: { text: "I think I know who you're talking about", id: 'p3-dist', violation: false, distractor: true }
+    },
+    noViolation: false,
+    commentInstruction: 'A comment has been added to this post. Click on the words or phrases in the comment that violate HIPAA.',
+    feedbackCorrect: {
+      label: 'Great job!',
+      text: 'You identified both elements that make this comment non-compliant. Comments are treated the same as original posts under HIPAA. Adding a room number and a gender reference to an otherwise compliant post creates a combination that can identify a patient. Improper disclosure may require breach notification, corrective action, and reporting to the Office for Civil Rights. If you suspect a violation has already occurred, contact your organization\'s Privacy Office immediately.'
+    },
+    feedbackIncorrect: {
+      label: 'This decision creates risk!',
+      text: 'This comment contains details that make it non-compliant. Comments on social media posts are subject to the same HIPAA requirements as original posts. A room number and gender reference, even added casually, can identify a patient when combined with the context of the original post. Both elements must be identified as non-compliant.'
+    },
+    isFinal: true
+  }
+];
+
+// ── State ──────────────────────────────────────────────────────────────────────
+let currentIdx = 0;
+let completionFired = false;
+let scoreResults = []; // tracks {label, correct} per scenario
+
+// ── Render ─────────────────────────────────────────────────────────────────────
+function render(idx) {
+  const s = scenarios[idx];
+  const area = document.getElementById('scenario-area');
+
+  // Progress
+  document.getElementById('prog-fill').style.width = s.pct + '%';
+  const pb = document.getElementById('prog-bar');
+  pb.setAttribute('aria-valuenow', idx + 1);
+  pb.setAttribute('aria-valuetext', s.label);
+  document.getElementById('prog-label').textContent = s.label;
+
+  // Build post phrase spans
+  function buildPhraseSpans(phrases, prefix) {
+    return phrases.map(p => {
+      if (p.selectable === false && !p.id) {
+        return `<span>${escHtml(p.text)}</span>`;
+      }
+      if (p.id) {
+        return `<button class="selectable" data-id="${p.id}" data-violation="${p.violation}" data-distractor="${p.distractor || false}" aria-pressed="false" type="button">${escHtml(p.text)}</button>`;
+      }
+      return `<span>${escHtml(p.text)}</span>`;
+    }).join('');
+  }
+
+  // Generic comments HTML
+  let genericCommentsHtml = '';
+  if (s.hasComments && s.genericComments) {
+    genericCommentsHtml = s.genericComments.map(c => `
+      <div class="comment-item">
+        <div class="comment-avatar" style="background:${c.color}" aria-hidden="true">${c.initials}</div>
+        <div class="comment-bubble">
+          <span class="comment-name">${escHtml(c.name)}</span>
+          ${escHtml(c.text)}
+        </div>
+      </div>`).join('');
+  }
+
+  // Violation comment HTML
+  let violationCommentHtml = '';
+  if (s.hasComments && s.violationComment) {
+    const vc = s.violationComment;
+    const commentSpans = buildPhraseSpans(vc.phrases, 'vc');
+    violationCommentHtml = `
+      <div class="comment-item">
+        <div class="comment-avatar" style="background:${vc.color}" aria-hidden="true">${vc.initials}</div>
+        <div class="comment-violation">
+          <span class="comment-name">${escHtml(vc.name)}</span>
+          ${commentSpans}
+        </div>
+      </div>`;
+  }
+
+  // Comment instruction
+  const commentInstrHtml = s.hasComments ? `
+    <div class="task-box" style="border-left:3px solid var(--orange);margin-bottom:10px;">
+      <strong>Notice the comment below.</strong> ${escHtml(s.commentInstruction)}
+    </div>` : '';
+
+  // Post body
+  const postBodyHtml = buildPhraseSpans(s.postPhrases, 'post');
+
+  // No-violation button
+  const noViolBtnHtml = `
+    <button class="btn-no-violation" id="btn-no-viol" type="button" ${s.noViolation ? '' : ''}>
+      No Violations Present
+    </button>`;
+
+  area.innerHTML = `
+    <div class="scenario-label" id="sc-label-${idx}" tabindex="-1">${escHtml(s.label)}</div>
+
+    ${commentInstrHtml}
+
+    <div class="social-card" role="article" aria-label="Social media post">
+      <div class="card-header">
+        <div class="avatar" style="background:${s.avatar.color}" aria-hidden="true">${s.avatar.initials}</div>
+        <div class="user-info">
+          <span class="user-name">${escHtml(s.userName)}</span>
+          <span class="user-meta"><span class="globe" aria-hidden="true">🌐</span> ${escHtml(s.userMeta)}</span>
+        </div>
+        <span class="card-platform-badge" aria-label="Social post">POST</span>
+      </div>
+      <div class="card-body">${postBodyHtml}</div>
+      ${s.hasComments ? `
+        <div class="card-reactions" aria-label="Reactions">
+          <span class="reaction-emojis" aria-hidden="true">${s.reactions.emojis}</span>
+          <span class="reaction-count">${escHtml(s.reactions.count)}</span>
+        </div>
+        <div class="card-actions" aria-hidden="true">
+          <div class="card-action-btn">👍 Like</div>
+          <div class="card-action-btn">💬 Comment</div>
+          <div class="card-action-btn">↗ Share</div>
+        </div>
+        <div class="comments-section" aria-label="Comments">
+          ${genericCommentsHtml}
+          ${violationCommentHtml}
+        </div>
+      ` : `
+        <div class="card-reactions" aria-label="Reactions">
+          <span class="reaction-emojis" aria-hidden="true">${s.reactions.emojis}</span>
+          <span class="reaction-count">${escHtml(s.reactions.count)}</span>
+        </div>
+        <div class="card-actions" aria-hidden="true">
+          <div class="card-action-btn">👍 Like</div>
+          <div class="card-action-btn">💬 Comment</div>
+          <div class="card-action-btn">↗ Share</div>
+        </div>
+      `}
+    </div>
+
+    <div class="btn-row">
+      ${noViolBtnHtml}
+      <button class="btn-submit" id="btn-submit" type="button">Submit</button>
+    </div>
+
+    <div class="feedback-panel" id="feedback" role="status" aria-live="polite"></div>
+
+    ${!s.isFinal ? `
+    <div class="next-btn-row">
+      <button class="btn-next" id="btn-next" type="button">Next Scenario →</button>
+    </div>
+    ` : `
+    <div class="next-btn-row">
+      <button class="btn-next" id="btn-next" type="button">Continue →</button>
+    </div>
+    `}
+  `;
+
+  // Focus management
+  document.getElementById(`sc-label-${idx}`).focus();
+
+  // Attach interactivity
+  attachEvents(s);
+}
+
+function attachEvents(s) {
+  const selectables = document.querySelectorAll('.selectable');
+  const btnNoViol = document.getElementById('btn-no-viol');
+  const btnSubmit = document.getElementById('btn-submit');
+  const btnNext = document.getElementById('btn-next');
+  const feedback = document.getElementById('feedback');
+  let submitted = false;
+
+  selectables.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (submitted) return;
+      const pressed = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', pressed ? 'false' : 'true');
+      btn.classList.toggle('selected', !pressed);
+    });
+  });
+
+  if (btnNoViol) {
+    btnNoViol.addEventListener('click', () => {
+      if (submitted) return;
+      submitted = true;
+
+      selectables.forEach(b => {
+        b.setAttribute('aria-pressed', 'false');
+        b.classList.remove('selected');
+        b.classList.add('locked');
+      });
+      btnNoViol.dataset.active = '1';
+      btnNoViol.classList.add('active');
+      btnNoViol.disabled = true;
+      btnSubmit.disabled = true;
+
+      const isCorrect = evaluate(s, selectables, btnNoViol);
+      scoreResults.push({ label: s.label, correct: isCorrect });
+      revealAnswers(s, selectables);
+
+      const fb = isCorrect ? s.feedbackCorrect : s.feedbackIncorrect;
+      feedback.innerHTML = `<strong class="fb-label">${escHtml(fb.label)}</strong>${escHtml(fb.text)}`;
+      feedback.className = `feedback-panel show ${isCorrect ? 'correct' : 'incorrect'}`;
+      feedback.focus();
+
+      if (btnNext) btnNext.classList.add('show');
+
+      if (s.isFinal && !completionFired) {
+        completionFired = true;
+        window.parent.postMessage({ type: 'complete' }, '*');
+      }
+    });
+  }
+
+  btnSubmit.addEventListener('click', () => {
+    if (submitted) return;
+    submitted = true;
+
+    selectables.forEach(b => {
+      b.classList.add('locked');
+      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed'));
+    });
+    if (btnNoViol) btnNoViol.disabled = true;
+    btnSubmit.disabled = true;
+
+    const isCorrect = evaluate(s, selectables, btnNoViol);
+    scoreResults.push({ label: s.label, correct: isCorrect });
+    revealAnswers(s, selectables);
+
+    const fb = isCorrect ? s.feedbackCorrect : s.feedbackIncorrect;
+    feedback.innerHTML = `<strong class="fb-label">${escHtml(fb.label)}</strong>${escHtml(fb.text)}`;
+    feedback.className = `feedback-panel show ${isCorrect ? 'correct' : 'incorrect'}`;
+    feedback.focus();
+
+    if (btnNext) btnNext.classList.add('show');
+
+    if (s.isFinal && !completionFired) {
+      completionFired = true;
+      window.parent.postMessage({ type: 'complete' }, '*');
+    }
+  });
+
+  if (btnNext) {
+    btnNext.addEventListener('click', () => {
+      if (s.isFinal) {
+        showResults();
+      } else {
+        currentIdx++;
+        render(currentIdx);
+      }
+    });
+  }
+}
+
+function showResults() {
+  document.getElementById('activity-wrap').style.display = 'none';
+  const resultsScreen = document.getElementById('results-screen');
+  resultsScreen.classList.add('show');
+
+  const total = scoreResults.length;
+  const correct = scoreResults.filter(r => r.correct).length;
+
+  // Score circle class
+  const circleClass = correct === total ? 'perfect' : correct >= total / 2 ? 'good' : 'needs-work';
+
+  // Summary message
+  const messages = {
+    3: 'Excellent work. You identified all HIPAA compliance issues correctly — including recognizing a compliant post and catching a violation hidden in a comment.',
+    2: 'Good effort. You caught most of the issues, but review the scenario you missed to make sure you can recognize that type of violation in practice.',
+    1: 'This material takes practice. Review each scenario carefully and try again — pay particular attention to what counts as a patient identifier and how comments can introduce risk.',
+    0: 'Take another look at the scenarios. Focus on what qualifies as a patient identifier and remember that comments on social media posts carry the same HIPAA obligations as original posts.'
+  };
+
+  document.getElementById('score-summary').innerHTML = `
+    <div class="score-circle ${circleClass}">${correct}/${total}</div>
+    <div class="score-text">
+      <h3>${correct === total ? 'All correct!' : correct + ' of ' + total + ' correct'}</h3>
+      <p>${messages[correct] || messages[0]}</p>
+    </div>
+  `;
+
+  // Breakdown
+  const breakdownLabels = [
+    'Scenario 1 — Identifiers in a post (age, location, care context)',
+    'Scenario 2 — Recognizing a compliant post',
+    'Scenario 3 — Violation introduced through a comment'
+  ];
+
+  document.getElementById('breakdown-list').innerHTML = scoreResults.map((r, i) => `
+    <div class="breakdown-item">
+      <div class="breakdown-icon ${r.correct ? 'correct' : 'incorrect'}">${r.correct ? '✓' : '✗'}</div>
+      <div>
+        <div class="breakdown-label">${breakdownLabels[i] || r.label}</div>
+        <div class="breakdown-detail">${r.correct ? 'Correct' : 'Incorrect — review this scenario when you try again'}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Try again button
+  document.getElementById('btn-try-again-final').addEventListener('click', () => {
+    scoreResults = [];
+    resultsScreen.classList.remove('show');
+    showIntro();
+  });
+}
+
+function evaluate(s, selectables, btnNoViol) {
+  if (s.noViolation) {
+    const anySelected = Array.from(selectables).some(b => b.getAttribute('aria-pressed') === 'true' && b.dataset.violation === 'true');
+    const noViolActive = btnNoViol && btnNoViol.dataset.active === '1';
+    return noViolActive && !anySelected;
+  } else {
+    const violations = Array.from(selectables).filter(b => b.dataset.violation === 'true');
+    const distractors = Array.from(selectables).filter(b => b.dataset.distractor === 'true');
+    const allViolationsSelected = violations.every(b => b.getAttribute('aria-pressed') === 'true');
+    const noDistractorsSelected = distractors.every(b => b.getAttribute('aria-pressed') === 'false');
+    const noViolActive = btnNoViol && btnNoViol.dataset.active === '1';
+    return allViolationsSelected && noDistractorsSelected && !noViolActive;
+  }
+}
+
+function revealAnswers(s, selectables) {
+  selectables.forEach(btn => {
+    const isViolation = btn.dataset.violation === 'true';
+    const isSelected = btn.getAttribute('aria-pressed') === 'true';
+
+    if (isViolation && isSelected) {
+      btn.classList.add('correct-reveal');
+    } else if (isViolation && !isSelected) {
+      btn.classList.add('missed-reveal');
+    } else if (!isViolation && isSelected) {
+      btn.classList.add('incorrect-reveal');
+    }
+    btn.classList.remove('selected');
+  });
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function showIntro() {
+  document.getElementById('intro-screen').style.display = '';
+  document.getElementById('activity-wrap').style.display = 'none';
+  document.getElementById('results-screen').classList.remove('show');
+  currentIdx = 0;
+}
+
+function startActivity() {
+  document.getElementById('intro-screen').style.display = 'none';
+  document.getElementById('activity-wrap').style.display = '';
+  currentIdx = 0;
+  render(0);
+}
+
+document.getElementById('btn-start').addEventListener('click', startActivity);
+
+showIntro();
+</script>
+  </div>
+
+  <div class="tools-box-portfolio">
+    <strong>Role:</strong> Instructional Designer and Developer<br>
+    <strong>Tools:</strong> Gen AI (Claude), HTML, CSS, JavaScript (Vibe Coding), Articulate Rise 360<br>
+    <strong>Status:</strong> In SME review — built for Annual Compliance Training reaching 30,000+ team members
+  </div>
+
+</div>
+
+<section class="cta-section">
+  <div style="max-width:900px;margin:0 auto;">
+    <h2>Interested in What Learning Can Do?</h2>
+    <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
+    <div class="cta-buttons">
+      <a href="../contact.html" class="btn btn-primary">Get In Touch</a>
+      <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+      <a href="tel:4234134258">(423) 413-4258</a>
+      <span>Greer, SC</span>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank">LinkedIn</a>
+    </div>
+    <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
