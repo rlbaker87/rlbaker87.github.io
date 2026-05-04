@@ -1,1 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML Interactions Gallery — Custom-coded interactions built for Articulate Rise 360 and standalone delivery | Robert Baker Portfolio">
+    <title>HTML Interactions Gallery | Robert Baker</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
 
+        /* ── Hero ── */
+        .project-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 70px 20px 60px;
+        }
+        .hero-content { max-width: 1100px; margin: 0 auto; }
+        .project-tag-hero {
+            display: inline-block;
+            background: rgba(0,180,166,0.35);
+            color: #FFFFFF;
+            font-size: 0.8em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .project-hero h1 {
+            font-size: 2.6em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: #FFFFFF;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
+            opacity: 0.9;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+
+        /* ── Body ── */
+        .page-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 20px 80px;
+        }
+
+        /* ── Intro ── */
+        .intro-strip {
+            margin-bottom: 48px;
+            padding-bottom: 28px;
+            border-bottom: 2px solid #E9ECEF;
+        }
+        .intro-strip p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin-bottom: 10px;
+        }
+        .intro-strip p:last-child { margin: 0; }
+
+        /* ── Interaction grid ── */
+        .interaction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        /* ── Interaction tile ── */
+        .interaction-tile {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid #E9ECEF;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .interaction-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,180,166,0.15);
+        }
+
+        /* ── Tile preview area ── */
+        .tile-preview {
+            width: 100%;
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+            background: #1B365D;
+        }
+        .tile-preview-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            pointer-events: none;
+        }
+
+        /* ── Try It overlay ── */
+        .tile-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(27,54,93,0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+        .interaction-tile:hover .tile-overlay {
+            background: rgba(27,54,93,0.55);
+        }
+        .try-it-btn {
+            background: #00B4A6;
+            color: #FFFFFF;
+            font-size: 0.9em;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 6px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.2s, transform 0.2s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .interaction-tile:hover .try-it-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Tile tag ── */
+        .tile-tag-strip {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 5;
+        }
+        .tile-tag {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: #00B4A6;
+            color: #FFFFFF;
+            padding: 3px 7px;
+            border-radius: 3px;
+        }
+
+        /* ── Tile body ── */
+        .tile-body {
+            padding: 16px 18px 18px;
+            border-top: 3px solid #00B4A6;
+        }
+        .tile-title {
+            font-size: 0.95em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 5px;
+            line-height: 1.35;
+        }
+        .tile-desc {
+            font-size: 0.82em;
+            color: #6C757D;
+            line-height: 1.55;
+        }
+
+        /* ── HIPAA mini preview ── */
+        .thumb-hipaa {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .thumb-hipaa .t-header {
+            background: #1B365D;
+            padding: 12px 14px 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .thumb-hipaa .t-badge {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: rgba(0,180,166,0.3);
+            color: #FFFFFF;
+            padding: 2px 7px;
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 6px;
+            width: fit-content;
+        }
+        .thumb-hipaa .t-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #FFFFFF;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.3;
+        }
+        .thumb-hipaa .t-body {
+            background: #FFFFFF;
+            padding: 8px 14px 10px;
+        }
+        .thumb-hipaa .t-line {
+            height: 5px;
+            border-radius: 2px;
+            background: #E9ECEF;
+            margin-bottom: 5px;
+        }
+        .thumb-hipaa .t-options {
+            display: flex;
+            gap: 5px;
+            margin-top: 7px;
+            flex-wrap: wrap;
+        }
+        .thumb-hipaa .t-option {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-radius: 3px;
+            padding: 3px 8px;
+            font-size: 8px;
+            color: #343A40;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .thumb-hipaa .t-option.selected {
+            background: #E8F7F6;
+            border-color: #00B4A6;
+            color: #1B365D;
+            font-weight: 700;
+        }
+        .thumb-hipaa .t-btn {
+            display: block;
+            margin-top: 8px;
+            margin-left: auto;
+            background: #00B4A6;
+            color: #FFFFFF;
+            font-size: 8px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 2px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: fit-content;
+        }
+
+        /* ── Placeholder tile ── */
+        .interaction-tile.placeholder {
+            opacity: 0.5;
+            cursor: default;
+            pointer-events: none;
+        }
+        .placeholder-preview {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #F8F9FA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            border-bottom: 1px dashed #CED4DA;
+        }
+        .placeholder-preview span { font-size: 2em; opacity: 0.4; }
+        .placeholder-preview p {
+            font-size: 0.72em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #6C757D;
+        }
+
+        /* ── Lightbox ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-container {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .lightbox-header {
+            background: #1B365D;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .lightbox-title {
+            color: #FFFFFF;
+            font-size: 0.95em;
+            font-weight: 700;
+            margin: 0;
+        }
+        .lightbox-close {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.75);
+            font-size: 1.6em;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+            padding: 0;
+        }
+        .lightbox-close:hover { color: #FFFFFF; }
+        .lightbox-iframe-wrap {
+            flex: 1;
+            overflow: hidden;
+            min-height: 600px;
+        }
+        .lightbox-iframe-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .interaction-grid { grid-template-columns: 1fr; }
+            .project-hero h1 { font-size: 1.9em; }
+            .lightbox-iframe-wrap { min-height: 500px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="project-hero">
+        <div class="hero-content">
+            <span class="project-tag-hero">Interactive Demos</span>
+            <h1>HTML Interactions Gallery</h1>
+            <p class="hero-subtitle">Custom-coded HTML interactions built for Articulate Rise 360 and standalone delivery. Click any tile to try the interaction.</p>
+        </div>
+    </section>
+
+    <div class="page-body">
+
+        <div class="intro-strip">
+            <p><strong style="color:#1B365D;">Role:</strong> Instructional Designer and developer. Designed interaction logic, wrote HTML/CSS/JavaScript, and embedded interactions in Rise 360 via custom code blocks.</p>
+            <p><strong style="color:#1B365D;">Tools:</strong> HTML, CSS, JavaScript, Articulate Rise 360, Claude, Microsoft Copilot</p>
+        </div>
+
+        <div class="interaction-grid">
+
+            <!-- HIPAA Interaction -->
+            <div class="interaction-tile" onclick="openLightbox('html-interactions/hipaa-social-media.html', 'HIPAA in Practice: Social Media &amp; Patient Privacy')">
+                <div class="tile-preview">
+                    <div class="tile-preview-inner">
+                        <div class="thumb-hipaa">
+                            <div class="t-header">
+                                <span class="t-badge">Privacy &amp; HIPAA</span>
+                                <div class="t-title">Social Media &amp; Patient Privacy</div>
+                            </div>
+                            <div class="t-body">
+                                <div class="t-line" style="width:100%"></div>
+                                <div class="t-line" style="width:75%"></div>
+                                <div class="t-options">
+                                    <span class="t-option selected">Option A</span>
+                                    <span class="t-option">Option B</span>
+                                    <span class="t-option">Option C</span>
+                                </div>
+                                <div class="t-btn">Submit &#8594;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-overlay">
+                        <span class="try-it-btn">Try It &#8594;</span>
+                    </div>
+                    <div class="tile-tag-strip"><span class="tile-tag">Interactive Demo</span></div>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-title">HIPAA in Practice: Social Media &amp; Patient Privacy</div>
+                    <div class="tile-desc">Phrase-select scenario interaction — learners identify compliant and non-compliant social media language in real-world healthcare situations</div>
+                </div>
+            </div>
+
+            <!-- Placeholder 1 -->
+            <div class="interaction-tile placeholder">
+                <div class="placeholder-preview">
+                    <span>⚡</span>
+                    <p>Coming Soon</p>
+                </div>
+                <div class="tile-body" style="border-top:3px solid #E9ECEF;">
+                    <div class="tile-title" style="color:#6C757D;">Additional Interaction</div>
+                    <div class="tile-desc">More custom HTML interactions coming soon</div>
+                </div>
+            </div>
+
+            <!-- Placeholder 2 -->
+            <div class="interaction-tile placeholder">
+                <div class="placeholder-preview">
+                    <span>⚡</span>
+                    <p>Coming Soon</p>
+                </div>
+                <div class="tile-body" style="border-top:3px solid #E9ECEF;">
+                    <div class="tile-title" style="color:#6C757D;">Additional Interaction</div>
+                    <div class="tile-desc">More custom HTML interactions coming soon</div>
+                </div>
+            </div>
+
+            <!-- Placeholder 3 -->
+            <div class="interaction-tile placeholder">
+                <div class="placeholder-preview">
+                    <span>⚡</span>
+                    <p>Coming Soon</p>
+                </div>
+                <div class="tile-body" style="border-top:3px solid #E9ECEF;">
+                    <div class="tile-title" style="color:#6C757D;">Additional Interaction</div>
+                    <div class="tile-desc">More custom HTML interactions coming soon</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Interested in What Learning Can Do?</h2>
+            <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-container">
+            <div class="lightbox-header">
+                <h3 class="lightbox-title" id="lightbox-title"></h3>
+                <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="lightbox-iframe-wrap">
+                <iframe id="lightbox-iframe" src="" title="HTML Interaction"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const lb = document.getElementById('lightbox');
+        const lbIframe = document.getElementById('lightbox-iframe');
+        const lbTitle = document.getElementById('lightbox-title');
+        const lbClose = document.getElementById('lightbox-close');
+
+        function openLightbox(src, title) {
+            lbIframe.src = src;
+            lbTitle.innerHTML = title;
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lb.classList.remove('active');
+            lbIframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        lbClose.addEventListener('click', closeLightbox);
+        lb.addEventListener('click', (e) => {
+            if (e.target === lb) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+
+</body>
+</html>
