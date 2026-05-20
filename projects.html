@@ -276,6 +276,7 @@
             border-radius: 3px;
         }
         .tile-tag.muted { background: #E9ECEF; color: #6C757D; }
+        .tile-tag.orange { background: #FF6B00; color: #000; }
         .tile-body { padding: 16px 18px 18px; }
         .tile-title {
             font-size: 0.95em;
@@ -288,6 +289,48 @@
             font-size: 0.82em;
             color: #6C757D;
             line-height: 1.55;
+        }
+
+        /* Haul Road thumbnail */
+        .thumb-haul-road {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2C2C2C 0%, #1B365D 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .thumb-haul-road::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(
+                135deg,
+                rgba(255,209,0,0.08) 0,
+                rgba(255,209,0,0.08) 1px,
+                transparent 1px,
+                transparent 20px
+            );
+        }
+        .thumb-haul-road .hr-label {
+            font-size: 1.1em;
+            font-weight: 800;
+            color: #FFD100;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            line-height: 1.4;
+        }
+        .thumb-haul-road .hr-sub {
+            font-size: 0.62em;
+            color: #FF6B00;
+            display: block;
+            letter-spacing: 0.1em;
+            margin-top: 4px;
         }
 
         /* HIPAA thumbnail */
@@ -495,7 +538,17 @@
             <div class="carousel-track-outer">
                 <div class="carousel-track" id="more-track">
 
-
+                    <!-- Haul Road — new tile -->
+                    <a href="projects/haul-road.html" class="carousel-tile">
+                        <div class="tile-thumb">
+                            <img src="projects/haul-road/haul-road-home-screen.png" alt="Haul Road gamified safety microlearning" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="tile-tag-strip"><span class="tile-tag">AI Workflow / Gamification</span></div>
+                        </div>
+                        <div class="tile-body">
+                            <div class="tile-title">Haul Road</div>
+                            <div class="tile-desc">Frogger-style safety microlearning for heavy equipment operators, built using a multi-AI development and validation workflow</div>
+                        </div>
+                    </a>
 
                     <a href="projects/html-interactions.html" class="carousel-tile">
                         <div class="tile-thumb">
@@ -518,8 +571,6 @@
                             <div class="tile-desc">Animated soft skills and workflow training videos built in Animaker</div>
                         </div>
                     </a>
-
-
 
                     <a class="carousel-tile" style="pointer-events:none;opacity:0.55;">
                         <div class="tile-thumb" style="background:#F8F9FA;">
