@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../styles.css">
     <style>
 
-        /* ── Hero ── */
+        /* Hero */
         .project-hero {
             background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
             color: #FFFFFF;
@@ -42,14 +42,14 @@
             max-width: 720px;
         }
 
-        /* ── Body ── */
+        /* Body */
         .page-body {
             max-width: 1100px;
             margin: 0 auto;
             padding: 70px 20px 80px;
         }
 
-        /* ── Video grid ── */
+        /* Video grid */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -57,7 +57,7 @@
             margin-bottom: 28px;
         }
 
-        /* ── Video tile ── */
+        /* Video tile */
         .video-tile {
             background: #FFFFFF;
             border-radius: 10px;
@@ -104,7 +104,7 @@
             line-height: 1.55;
         }
 
-        /* ── Placeholder tile ── */
+        /* Placeholder tile */
         .video-tile-placeholder {
             background: #F8F9FA;
             border-radius: 10px;
@@ -133,6 +133,117 @@
         .video-tile-placeholder .video-tile-body {
             border-top: 3px solid #E9ECEF;
         }
+
+        /* Gated video tile */
+        .video-gate-thumb {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #1B365D 0%, #2a4a7a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .video-gate-thumb:hover { opacity: 0.9; }
+        .gate-lock {
+            font-size: 1.8em;
+            opacity: 0.9;
+        }
+        .gate-thumb-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+        }
+        .gate-thumb-btn {
+            background: #00B4A6;
+            color: #FFFFFF;
+            border: none;
+            padding: 7px 18px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 4px;
+            transition: background 0.2s;
+        }
+        .gate-thumb-btn:hover { background: #009e91; }
+
+        /* Gate modal */
+        .gate-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .gate-modal-overlay.active { display: flex; }
+        .gate-modal {
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 36px 32px;
+            max-width: 380px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+        }
+        .gate-modal h3 {
+            color: #1B365D;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .gate-modal p {
+            color: #6C757D;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .gate-modal input[type="password"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #CED4DA;
+            border-radius: 6px;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .gate-modal input[type="password"]:focus { border-color: #00B4A6; }
+        .gate-modal-btn {
+            width: 100%;
+            background: #00B4A6;
+            color: #FFFFFF;
+            border: none;
+            padding: 11px;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .gate-modal-btn:hover { background: #009e91; }
+        .gate-error {
+            color: #dc3545;
+            font-size: 0.82em;
+            margin-top: 8px;
+            display: none;
+        }
+        .gate-modal-close {
+            display: block;
+            margin-top: 14px;
+            color: #6C757D;
+            font-size: 0.82em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-decoration: underline;
+        }
+        .gate-modal-close:hover { color: #343A40; }
 
         @media (max-width: 900px) {
             .video-grid { grid-template-columns: repeat(2, 1fr); }
@@ -176,16 +287,12 @@
         <!-- Row 1 -->
         <div class="video-grid">
 
-            <!-- Video 1 -->
+            <!-- Video 1 - Gated -->
             <div class="video-tile">
-                <div class="video-embed">
-                    <iframe src="https://www.youtube.com/embed/ZnnDUF3CJBE?si=n7Y4bWVbkj8HopAV"
-                        title="Course Intro Video — Patient Red Carpet for Registration Team Members"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
-                    </iframe>
+                <div class="video-gate-thumb" onclick="openGate('video1')">
+                    <div class="gate-lock">🔒</div>
+                    <div class="gate-thumb-label">Protected Content</div>
+                    <button class="gate-thumb-btn">Enter Password to Watch</button>
                 </div>
                 <div class="video-tile-body">
                     <span class="video-tile-tag">Registration Workflow</span>
@@ -194,16 +301,12 @@
                 </div>
             </div>
 
-            <!-- Video 2 -->
+            <!-- Video 2 - Gated -->
             <div class="video-tile">
-                <div class="video-embed">
-                    <iframe src="https://www.youtube.com/embed/Wvg0-A96ZF0?si=x0yoxI74JVy0xt-3"
-                        title="Rolling Out the Red Carpet — for Registration Team Members"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
-                    </iframe>
+                <div class="video-gate-thumb" onclick="openGate('video2')">
+                    <div class="gate-lock">🔒</div>
+                    <div class="gate-thumb-label">Protected Content</div>
+                    <button class="gate-thumb-btn">Enter Password to Watch</button>
                 </div>
                 <div class="video-tile-body">
                     <span class="video-tile-tag">Registration Workflow</span>
@@ -227,7 +330,7 @@
 
         </div>
 
-        <!-- Row 2 — all placeholders -->
+        <!-- Row 2 - all placeholders -->
         <div class="video-grid">
 
             <div class="video-tile-placeholder">
@@ -295,6 +398,83 @@
         </div>
     </footer>
 
+    <!-- Gate Modal -->
+    <div class="gate-modal-overlay" id="gateModal">
+        <div class="gate-modal">
+            <h3>🔒 Protected Content</h3>
+            <p>This video contains proprietary training content. Enter the access password to watch.</p>
+            <input type="password" id="gatePassword" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkGate()">
+            <button class="gate-modal-btn" onclick="checkGate()">Watch Video</button>
+            <div class="gate-error" id="gateError">Incorrect password. Please try again or <a href="../contact.html" style="color:#dc3545;">contact Robert</a> for access.</div>
+            <button class="gate-modal-close" onclick="closeGate()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        const VIDEOS = {
+            video1: 'https://www.youtube.com/embed/ZnnDUF3CJBE?si=n7Y4bWVbkj8HopAV',
+            video2: 'https://www.youtube.com/embed/Wvg0-A96ZF0?si=x0yoxI74JVy0xt-3'
+        };
+        const TITLES = {
+            video1: 'Course Intro Video — Patient Red Carpet for Registration Team Members',
+            video2: 'Rolling Out the Red Carpet — for Registration Team Members'
+        };
+
+        let currentTarget = null;
+
+        function openGate(videoId) {
+            currentTarget = videoId;
+            document.getElementById('gatePassword').value = '';
+            document.getElementById('gateError').style.display = 'none';
+            document.getElementById('gateModal').classList.add('active');
+            setTimeout(() => document.getElementById('gatePassword').focus(), 100);
+        }
+
+        function closeGate() {
+            document.getElementById('gateModal').classList.remove('active');
+            currentTarget = null;
+        }
+
+        function checkGate() {
+            const pw = document.getElementById('gatePassword').value;
+            if (sessionStorage.getItem('rb_portfolio_auth') === 'true' || pw === 'RLB2025!') {
+                sessionStorage.setItem('rb_portfolio_auth', 'true');
+                closeGate();
+                unlockVideo(currentTarget);
+            } else {
+                document.getElementById('gateError').style.display = 'block';
+            }
+        }
+
+        function unlockVideo(videoId) {
+            const thumbs = document.querySelectorAll('.video-gate-thumb');
+            const tiles = document.querySelectorAll('.video-tile');
+            const idx = videoId === 'video1' ? 0 : 1;
+            const tile = tiles[idx];
+            const embed = document.createElement('div');
+            embed.className = 'video-embed';
+            embed.innerHTML = `<iframe src="${VIDEOS[videoId]}" title="${TITLES[videoId]}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+            tile.replaceChild(embed, tile.querySelector('.video-gate-thumb'));
+        }
+
+        // Auto-unlock if already authenticated this session
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
+                unlockVideo('video1');
+                unlockVideo('video2');
+            }
+        });
+
+        // Close modal on overlay click
+        document.getElementById('gateModal').addEventListener('click', function(e) {
+            if (e.target === this) closeGate();
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeGate();
+        });
+    </script>
 
 </body>
 </html>
