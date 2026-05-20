@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Haul Road: a Frogger-style gamified safety microlearning for heavy equipment operators, built using a multi-AI development workflow.">
+    <title>Haul Road | Robert Baker</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+
+        /* ── Hero ── */
+        .project-hero {
+            background: linear-gradient(135deg, #1B365D 0%, #00B4A6 100%);
+            color: #FFFFFF;
+            padding: 70px 20px 60px;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .project-tag-hero {
+            display: inline-block;
+            background: rgba(0,180,166,0.35);
+            color: #FFFFFF;
+            font-size: 0.8em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .project-hero h1 {
+            font-size: 2.6em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: #FFFFFF;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
+            opacity: 0.9;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+
+        /* ── Body ── */
+        .project-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* ── Sections ── */
+        .section { margin-bottom: 44px; }
+        .section h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E9ECEF;
+        }
+        .section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin-bottom: 14px;
+        }
+        .section p:last-child { margin-bottom: 0; }
+
+        /* ── Solution list ── */
+        .solution-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .solution-list li {
+            padding: 14px 18px;
+            background: #F8F9FA;
+            border-left: 4px solid #00B4A6;
+            border-radius: 4px;
+            color: #343A40;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        /* ── Screenshot ── */
+        .game-screenshot {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+            border: 1px solid #E9ECEF;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .screenshot-caption {
+            font-size: 0.82em;
+            color: #6C757D;
+            text-align: center;
+            margin-bottom: 44px;
+            font-style: italic;
+        }
+
+        /* ── Play CTA box ── */
+        .gated-cta-box {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-top: 4px solid #1B365D;
+            border-radius: 8px;
+            padding: 28px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+        .gated-cta-box div { flex: 1; }
+        .gated-cta-box h3 {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #1B365D;
+            margin-bottom: 6px;
+        }
+        .gated-cta-box p {
+            font-size: 0.95em;
+            color: #6C757D;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .btn-gated {
+            display: inline-block;
+            background: #F07B3F;
+            color: #FFFFFF;
+            font-size: 1em;
+            font-weight: 700;
+            padding: 13px 28px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.2s;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+        .btn-gated:hover {
+            background: #d66a32;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        /* ── Workflow visual ── */
+        .workflow-flow {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        .workflow-step {
+            flex: 1;
+            min-width: 150px;
+            background: #FFFFFF;
+            border: 1px solid #E9ECEF;
+            border-top: 4px solid #00B4A6;
+            padding: 20px 14px;
+            position: relative;
+            text-align: center;
+        }
+        .workflow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0; height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #00B4A6;
+            z-index: 2;
+        }
+        .workflow-step.highlight {
+            background: #F8F9FA;
+            border-top-color: #F07B3F;
+        }
+        .workflow-step.highlight::after {
+            border-left-color: #F07B3F;
+        }
+        .workflow-step-num {
+            display: inline-block;
+            width: 26px; height: 26px;
+            background: #1B365D;
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 0.82em;
+            line-height: 26px;
+            text-align: center;
+            border-radius: 50%;
+            margin-bottom: 8px;
+        }
+        .workflow-step.highlight .workflow-step-num { background: #F07B3F; }
+        .workflow-step-tool {
+            font-size: 0.65em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #00B4A6;
+            margin-bottom: 5px;
+        }
+        .workflow-step.highlight .workflow-step-tool { color: #F07B3F; }
+        .workflow-step-label {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #1B365D;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+        .workflow-step-desc {
+            font-size: 0.75em;
+            color: #6C757D;
+            line-height: 1.5;
+        }
+
+        /* ── Validation grid ── */
+        .validation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .validation-card {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-top: 4px solid #00B4A6;
+            border-radius: 4px;
+            padding: 18px 16px;
+        }
+        .validation-card h4 {
+            color: #1B365D;
+            font-size: 0.9em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .validation-card p {
+            font-size: 0.88em;
+            color: #343A40;
+            line-height: 1.65;
+            margin: 0;
+        }
+        .validation-card .flag {
+            display: inline-block;
+            background: #FFF3CD;
+            border: 1px solid #F07B3F;
+            color: #343A40;
+            font-size: 0.75em;
+            padding: 2px 8px;
+            margin-top: 8px;
+            font-weight: 600;
+            border-radius: 3px;
+        }
+
+        /* ── Reflection callout ── */
+        .callout-box {
+            background: #FFF3CD;
+            border-left: 5px solid #F07B3F;
+            padding: 24px 28px;
+            border-radius: 6px;
+            margin: 28px 0 0;
+        }
+        .callout-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #F07B3F;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .callout-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #343A40;
+            margin: 0;
+        }
+
+        /* ── Outcomes ── */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .outcome-card {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-top: 4px solid #00B4A6;
+            border-radius: 4px;
+            padding: 18px 16px;
+        }
+        .outcome-card .outcome-label {
+            font-size: 0.72em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #6C757D;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .outcome-card .outcome-value {
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #1B365D;
+            line-height: 1.4;
+        }
+
+        /* ── Tools box ── */
+        .tools-box {
+            background: #E9ECEF;
+            padding: 20px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            color: #343A40;
+            line-height: 1.8;
+        }
+        .tools-box strong { color: #1B365D; }
+
+        @media (max-width: 768px) {
+            .workflow-flow { flex-direction: column; }
+            .workflow-step:not(:last-child)::after { display: none; }
+            .validation-grid { grid-template-columns: 1fr; }
+            .gated-cta-box { flex-direction: column; }
+            .btn-gated { width: 100%; text-align: center; }
+        }
+        @media (max-width: 600px) {
+            .project-hero h1 { font-size: 1.9em; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Robert Baker</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <span class="project-tag-hero">AI Workflow / Gamification</span>
+            <h1>Haul Road</h1>
+            <p class="hero-subtitle">A Frogger-style gamified safety microlearning for heavy equipment operators, built from scratch using a multi-AI development workflow with no project brief, no client, and no SMEs.</p>
+        </div>
+    </section>
+
+    <div class="project-body">
+
+        <!-- Screenshot -->
+        <img
+            src="haul-road/haul-road-home-screen.png"
+            alt="Haul Road instructions and home screen"
+            class="game-screenshot"
+        />
+        <p class="screenshot-caption">Haul Road instructions screen — bilingual English and Spanish support, industrial jobsite aesthetic</p>
+
+        <!-- Play CTA -->
+        <div class="gated-cta-box">
+            <div>
+                <h3>Play the Game</h3>
+                <p>The full game is live and playable in your browser. If you work in construction or heavy equipment operations, feedback on whether the content feels right is welcome.</p>
+            </div>
+            <a href="haul-road/haul-road-elearning.html" class="btn-gated" target="_blank">Play Haul Road &#8594;</a>
+        </div>
+
+        <!-- Challenge -->
+        <div class="section">
+            <h2>The Challenge</h2>
+            <p>There was nothing in the queue when Claude Design launched. Rather than run a generic test, the challenge became a real question: can a defensible, content-validated, interactive learning artifact be built from scratch using only AI tools, publicly available curriculum standards, and a documented workflow?</p>
+            <p>The content domain needed to be authentic enough to matter. A childhood memory of watching construction truck videos with my son pointed toward heavy equipment operators, a workforce that is underserved by eLearning and whose safety training has real consequences. That was worth building.</p>
+        </div>
+
+        <!-- Workflow -->
+        <div class="section">
+            <h2>The Workflow</h2>
+            <p>Full ideation, validation, and build executed across four tools in a deliberate sequence, each chosen for what it does best.</p>
+
+            <div class="workflow-flow">
+                <div class="workflow-step">
+                    <div class="workflow-step-num">1</div>
+                    <div class="workflow-step-tool">Claude Chat</div>
+                    <div class="workflow-step-label">Ideation and Storyboarding</div>
+                    <div class="workflow-step-desc">Game mechanics, field layout, traffic escalation, question bank structure, checkpoint logic, scoring, win and game over states</div>
+                </div>
+                <div class="workflow-step highlight">
+                    <div class="workflow-step-num">2</div>
+                    <div class="workflow-step-tool">Perplexity / Gemini / ChatGPT</div>
+                    <div class="workflow-step-label">Content Validation</div>
+                    <div class="workflow-step-desc">Cross-referenced against NCCER HEO curriculum and OSHA standards. Two questions flagged and corrected. Eleven terms verified for jobsite accuracy.</div>
+                </div>
+                <div class="workflow-step">
+                    <div class="workflow-step-num">3</div>
+                    <div class="workflow-step-tool">Claude Chat</div>
+                    <div class="workflow-step-label">Prompt Engineering</div>
+                    <div class="workflow-step-desc">Validated content synthesized into a structured Claude Design prompt covering visuals, game logic, question bank, and bilingual requirements</div>
+                </div>
+                <div class="workflow-step highlight">
+                    <div class="workflow-step-num">4</div>
+                    <div class="workflow-step-tool">Claude Design</div>
+                    <div class="workflow-step-label">Build and Iteration</div>
+                    <div class="workflow-step-desc">Full interactive prototype built through conversation. Instructions screen, three difficulty levels, question cards, coaching tips, win and game over screens, English and Spanish toggle.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution -->
+        <div class="section">
+            <h2>Solution</h2>
+            <ul class="solution-list">
+                <li>Completed all ideation and text-based storyboarding in Claude chat before opening any build tool. Game mechanics, field layout, traffic escalation across three difficulty levels, a checkpoint question system, near miss consequences, and scoring logic were all defined in conversation first.</li>
+                <li>Developed a question bank grounded in construction safety practice, then ran verification prompts through Perplexity, Gemini, and ChatGPT to cross-reference content against NCCER Heavy Equipment Operations curriculum and OSHA construction standards.</li>
+                <li>Conducted a full terminology review against authentic heavy civil construction jobsite language, confirming or correcting eleven terms including spotter, haul road, walk-around, blind spot, near miss, and swing radius for accuracy with a dam construction site audience.</li>
+                <li>Used Claude chat to engineer a structured handoff prompt for Claude Design, translating all validated content and game logic specs into a format the tool could build from directly.</li>
+                <li>Executed the full prototype build in Claude Design through iterative conversation and inline editing, producing a playable HTML artifact with three escalating levels, bilingual English and Spanish support, and a complete question and coaching system.</li>
+                <li>Documented the workflow publicly on LinkedIn, including an honest account of token limit interruptions that left the Spanish version incomplete mid-build.</li>
+            </ul>
+        </div>
+
+        <!-- Content Validation -->
+        <div class="section">
+            <h2>Content Validation</h2>
+            <p>Without SME access, external AI validation against published standards was the quality gate. Two items came back flagged and were corrected before the build.</p>
+            <div class="validation-grid">
+                <div class="validation-card">
+                    <h4>Question Flagged: Blind Spot Direction</h4>
+                    <p>Original question assumed the passenger side is always the larger blind spot on a bulldozer. Perplexity flagged this as too absolute. Blind spots vary by machine model, attachments, and terrain. Replaced with a question asking what operators should assume about blind spots in general.</p>
+                    <span class="flag">Corrected before build</span>
+                </div>
+                <div class="validation-card">
+                    <h4>Question Flagged: Eye Contact Protocol</h4>
+                    <p>Original framing implied eye contact alone is the safety standard for ground worker approach. OSHA and NCCER guidance is broader. Both parties must acknowledge each other and the operator must confirm it is safe. Rewritten to reflect the full protocol.</p>
+                    <span class="flag">Corrected before build</span>
+                </div>
+                <div class="validation-card">
+                    <h4>Terminology: 11 Terms Reviewed</h4>
+                    <p>Walk-around, spotter, haul road, near miss, cab, blade, and ground conditions confirmed as accurate. Blind side updated to blind spot. Eye contact and signal updated to make eye contact and wait for acknowledgment. Yellow iron flagged as informal and used as flavor only.</p>
+                    <span class="flag">Language locked before build</span>
+                </div>
+                <div class="validation-card">
+                    <h4>Five Terms Added from Field Review</h4>
+                    <p>Cut and fill, ripper, bench, berm, and lift identified as terms a bulldozer operator on a dam site would commonly use. Incorporated into coaching tips and question framing where appropriate to add site authenticity.</p>
+                    <span class="flag">Added to question context</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Honest Reflection -->
+        <div class="section">
+            <h2>Honest Reflection on Claude Design</h2>
+            <p>The output quality is strong, and watching it build a functional interactive prototype in real time is genuinely impressive. It took very little back and forth to make visual and mechanical adjustments.</p>
+            <p>Rushing through the design phase of the process had a visible impact. Elements that were not storyboarded explicitly required more iteration inside the tool. The workflow investment up front in Claude chat paid off. The more detailed the prompt, the cleaner the first output.</p>
+
+            <div class="callout-box">
+                <span class="callout-label">Worth Knowing Before You Plan Around It</span>
+                <p>Token limits will stop you mid-build. The Spanish version of this game was not finished when the weekly cap was hit. That is a meaningful constraint for any course of real scope. Branching logic, LMS integration, and accessibility compliance are also not there yet, though workarounds are beginning to surface. This is a tool that earns a place in a deliberate workflow. It does not replace the workflow.</p>
+            </div>
+        </div>
+
+        <!-- Outcomes -->
+        <div class="section">
+            <h2>Outcomes</h2>
+            <div class="outcomes-grid">
+                <div class="outcome-card">
+                    <span class="outcome-label">Artifact</span>
+                    <span class="outcome-value">Fully playable browser-based prototype, three difficulty levels, hosted on GitHub</span>
+                </div>
+                <div class="outcome-card">
+                    <span class="outcome-label">Validation</span>
+                    <span class="outcome-value">Question bank cross-referenced against NCCER HEO curriculum and OSHA standards</span>
+                </div>
+                <div class="outcome-card">
+                    <span class="outcome-label">Bilingual Support</span>
+                    <span class="outcome-value">English and Spanish toggle built in, reflecting actual construction workforce demographics</span>
+                </div>
+                <div class="outcome-card">
+                    <span class="outcome-label">Workflow</span>
+                    <span class="outcome-value">Repeatable multi-AI protocol documented and publicly shared on LinkedIn</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="tools-box">
+            <strong>Role:</strong> Sole designer, content developer, prompt engineer, and workflow architect. No organizational client, no SMEs, no project brief.<br><br>
+            <strong>Tools:</strong> Claude Chat (ideation, storyboarding, prompt engineering), Claude Design (interactive prototype build), Perplexity (content validation with cited sources), ChatGPT (cross-validation), Gemini (cross-validation), NCCER Heavy Equipment Operations curriculum, OSHA construction safety standards, GitHub Pages
+        </div>
+
+    </div>
+
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Interested in What Learning Can Do?</h2>
+            <p>Let's talk about how strategic instructional design drives real outcomes in your organization.</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:rlbaker87@gmail.com">rlbaker87@gmail.com</a>
+                <a href="tel:4234134258">(423) 413-4258</a>
+                <span>Greer, SC</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/robert-baker-ma/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Robert Baker. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
