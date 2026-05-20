@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Animated Training Videos — Soft skills and workflow training built in Animaker | Robert Baker Portfolio">
+    <meta name="description" content="Animated Training Videos: Soft skills and workflow training built in Animaker | Robert Baker Portfolio">
     <title>Animated Training Videos | Robert Baker</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
@@ -281,22 +281,26 @@
 
         <!-- Intro strip -->
         <div style="margin-bottom:56px;padding-bottom:32px;border-bottom:2px solid #E9ECEF;">
-            <p style="font-size:1.05em;line-height:1.8;color:#343A40;margin:0;"><strong style="color:#1B365D;">Role:</strong> Instructional Designer — script, storyboard, animation, and production. Partnered with subject matter experts for content accuracy and stakeholder review.<br><strong style="color:#1B365D;">Tools:</strong> Animaker, Articulate Rise 360, Adobe Premiere Pro, Gemini, Claude</p>
+            <p style="font-size:1.05em;line-height:1.8;color:#343A40;margin:0;"><strong style="color:#1B365D;">Role:</strong> Instructional Designer: script, storyboard, animation, and production. Partnered with subject matter experts for content accuracy and stakeholder review.<br><strong style="color:#1B365D;">Tools:</strong> Animaker, Articulate Rise 360, Adobe Premiere Pro, Gemini, Claude</p>
         </div>
 
         <!-- Row 1 -->
         <div class="video-grid">
 
-            <!-- Video 1 - Gated -->
+            <!-- Video 1 - Public -->
             <div class="video-tile">
-                <div class="video-gate-thumb" onclick="openGate('video1')">
-                    <div class="gate-lock">🔒</div>
-                    <div class="gate-thumb-label">Protected Content</div>
-                    <button class="gate-thumb-btn">Enter Password to Watch</button>
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/ZnnDUF3CJBE?si=n7Y4bWVbkj8HopAV"
+                        title="Course Intro Video: Patient Red Carpet for Registration Team Members"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
                 </div>
                 <div class="video-tile-body">
                     <span class="video-tile-tag">Registration Workflow</span>
-                    <div class="video-tile-title">Patient Red Carpet — Course Introduction</div>
+                    <div class="video-tile-title">Patient Red Carpet: Course Introduction</div>
                     <div class="video-tile-desc">Hook video contrasting traditional check-in with patient eCheck-in. Sets the stage for soft skills training.</div>
                 </div>
             </div>
@@ -311,7 +315,7 @@
                 <div class="video-tile-body">
                     <span class="video-tile-tag">Registration Workflow</span>
                     <div class="video-tile-title">Rolling Out the Red Carpet</div>
-                    <div class="video-tile-desc">Core training video. Reinforces verify, don't re-ask — and shows how small service behaviors improve the patient experience.</div>
+                    <div class="video-tile-desc">Core training video. Reinforces verify, don't re-ask. Shows how small service behaviors improve the patient experience.</div>
                 </div>
             </div>
 
@@ -412,12 +416,10 @@
 
     <script>
         const VIDEOS = {
-            video1: 'https://www.youtube.com/embed/ZnnDUF3CJBE?si=n7Y4bWVbkj8HopAV',
             video2: 'https://www.youtube.com/embed/Wvg0-A96ZF0?si=x0yoxI74JVy0xt-3'
         };
         const TITLES = {
-            video1: 'Course Intro Video — Patient Red Carpet for Registration Team Members',
-            video2: 'Rolling Out the Red Carpet — for Registration Team Members'
+            video2: 'Rolling Out the Red Carpet for Registration Team Members'
         };
 
         let currentTarget = null;
@@ -437,7 +439,7 @@
 
         function checkGate() {
             const pw = document.getElementById('gatePassword').value;
-            if (sessionStorage.getItem('rb_portfolio_auth') === 'true' || pw === 'RLB2025!') {
+            if (sessionStorage.getItem('rb_portfolio_auth') === 'true' || pw === 'LaGr3356CN197!') {
                 sessionStorage.setItem('rb_portfolio_auth', 'true');
                 closeGate();
                 unlockVideo(currentTarget);
@@ -460,7 +462,6 @@
         // Auto-unlock if already authenticated this session
         window.addEventListener('DOMContentLoaded', () => {
             if (sessionStorage.getItem('rb_portfolio_auth') === 'true') {
-                unlockVideo('video1');
                 unlockVideo('video2');
             }
         });
