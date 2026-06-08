@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire Extinguisher Types</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+    :root{
+      --white:#FFFFFF;
+      --bg-light:#F8F9FA;
+      --bg-selected:#e8f7f6;
+      --text-dark:#343A40;
+      --text-mid:#666666;
+      --border:#E9ECEF;
+      --navy:#1B365D;
+      --teal:#00B4A6;
+      --teal-dark:#008B7F;
+      --orange:#F07B3F;
+      --green:#2E7D32;
+      --red:#C62828;
+      --neutral:#455A64;
+      --font:Verdana,Geneva,sans-serif;
+    }
+
+    body{
+      background:transparent;
+      font-family:var(--font);
+      font-size:17px;
+      line-height:1.6;
+      color:var(--text-dark);
+    }
+    #app{width:100%;max-width:960px;margin:0 auto;padding:0}
+
+    /* HEADER */
+    .act-header{
+      background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 100%);
+      color:var(--white);
+      padding:24px 28px 20px;
+      border-radius:6px 6px 0 0;
+    }
+    .act-header .step-badge{
+      background:rgba(255,255,255,0.18);
+      color:var(--white);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      padding:4px 10px;
+      border-radius:3px;
+      display:inline-block;
+      margin-bottom:10px;
+    }
+    .act-header h2{
+      font-size:24px;
+      font-weight:700;
+      color:var(--white);
+      margin-bottom:6px;
+    }
+    .act-header p{
+      font-size:17px;
+      color:rgba(255,255,255,0.88);
+      line-height:1.5;
+    }
+
+    /* MAIN BODY */
+    .act-body{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-top:none;
+      border-radius:0 0 6px 6px;
+      padding:24px 28px 28px;
+    }
+
+    /* EXTINGUISHER TRAY */
+    .tray-label{
+      font-size:14px;
+      font-weight:700;
+      color:var(--text-mid);
+      text-transform:uppercase;
+      letter-spacing:0.07em;
+      margin-bottom:12px;
+    }
+    .extinguisher-tray{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      background:var(--bg-light);
+      border:1px solid var(--border);
+      border-radius:6px;
+      padding:16px;
+      min-height:130px;
+      margin-bottom:24px;
+      align-items:flex-end;
+    }
+
+    /* EXTINGUISHER CARDS */
+    .ext-card{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:6px;
+      cursor:grab;
+      user-select:none;
+      border-radius:6px;
+      padding:8px 10px 6px;
+      border:2px solid transparent;
+      transition:border-color 0.15s, box-shadow 0.15s, transform 0.15s, opacity 0.15s;
+      background:var(--white);
+      box-shadow:0 1px 4px rgba(0,0,0,0.10);
+      min-width:80px;
+    }
+    .ext-card:hover:not(.placed){
+      border-color:var(--teal);
+      box-shadow:0 3px 10px rgba(0,180,166,0.18);
+      transform:translateY(-2px);
+    }
+    .ext-card[aria-pressed="true"]{
+      border-color:var(--navy);
+      box-shadow:0 3px 12px rgba(27,54,93,0.28);
+    }
+    .ext-card.dragging{
+      opacity:0.45;
+      transform:scale(0.97);
+    }
+    .ext-card.placed{
+      opacity:0.35;
+      cursor:default;
+      pointer-events:none;
+    }
+    .ext-card-label{
+      font-size:12px;
+      font-weight:700;
+      color:var(--text-dark);
+      text-align:center;
+      line-height:1.3;
+    }
+    .ext-card-sub{
+      font-size:11px;
+      color:var(--text-mid);
+      text-align:center;
+      line-height:1.2;
+    }
+
+    /* SVG EXTINGUISHER */
+    .ext-svg{ width:52px; height:80px; display:block; }
+
+    /* ZONE GRID */
+    .zones-label{
+      font-size:14px;
+      font-weight:700;
+      color:var(--text-mid);
+      text-transform:uppercase;
+      letter-spacing:0.07em;
+      margin-bottom:12px;
+    }
+    .zone-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+    }
+
+    /* DROP ZONE */
+    .drop-zone{
+      border:2px dashed var(--border);
+      border-radius:6px;
+      background:var(--bg-light);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-end;
+      padding:10px 8px 8px;
+      min-height:190px;
+      position:relative;
+      transition:border-color 0.15s, background 0.15s;
+      overflow:hidden;
+    }
+    .drop-zone.drag-over{
+      border-color:var(--teal);
+      background:var(--bg-selected);
+    }
+    .drop-zone.correct{
+      border-color:var(--green);
+      border-style:solid;
+      background:#f0fff0;
+    }
+    .drop-zone.incorrect{
+      border-color:var(--red);
+      border-style:solid;
+      background:#fff0f0;
+    }
+    .drop-zone.incorrect-flash{
+      border-color:var(--red);
+      background:#ffe4e4;
+    }
+
+    .zone-name{
+      font-size:12px;
+      font-weight:700;
+      color:var(--text-dark);
+      text-align:center;
+      line-height:1.3;
+      margin-top:8px;
+      z-index:2;
+      position:relative;
+    }
+    .zone-result-label{
+      font-size:11px;
+      font-weight:700;
+      text-align:center;
+      margin-top:2px;
+      z-index:2;
+      position:relative;
+    }
+    .zone-result-label.correct{ color:var(--green); }
+    .zone-result-label.incorrect{ color:var(--red); }
+
+    /* ZONE SCENE SVGs */
+    .zone-scene{
+      width:100%;
+      height:90px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      position:relative;
+      z-index:2;
+    }
+    .zone-scene svg{ width:70px; height:80px; }
+
+    /* FLAME */
+    .flame-wrap{
+      position:absolute;
+      top:6px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:1;
+      pointer-events:none;
+    }
+    .flame{
+      width:30px;
+      height:44px;
+      display:inline-block;
+    }
+    .flame svg{
+      width:30px;
+      height:44px;
+      animation:flicker 0.6s ease-in-out infinite alternate;
+      transform-origin:bottom center;
+    }
+    @keyframes flicker{
+      0%{transform:scaleY(1) scaleX(1) rotate(-2deg)}
+      100%{transform:scaleY(1.15) scaleX(0.88) rotate(2deg)}
+    }
+    .flame.extinguished svg{
+      animation:none;
+      opacity:0;
+      transition:opacity 0.5s ease;
+    }
+    .smoke{
+      position:absolute;
+      top:-10px;
+      left:50%;
+      transform:translateX(-50%);
+      pointer-events:none;
+      opacity:0;
+    }
+    .smoke.show{
+      animation:smokeRise 1.2s ease forwards;
+    }
+    @keyframes smokeRise{
+      0%{opacity:0.7;transform:translateX(-50%) translateY(0) scale(0.5)}
+      100%{opacity:0;transform:translateX(-50%) translateY(-30px) scale(1.8)}
+    }
+
+    /* PLACED MINI EXTINGUISHER IN ZONE */
+    .zone-placed-ext{
+      position:absolute;
+      bottom:28px;
+      right:8px;
+      z-index:3;
+      opacity:0;
+      transform:scale(0.6) translateY(10px);
+      transition:opacity 0.4s ease, transform 0.4s ease;
+    }
+    .zone-placed-ext.show{
+      opacity:1;
+      transform:scale(1) translateY(0);
+    }
+    .zone-placed-ext svg{ width:28px; height:44px; }
+
+    /* CONCLUSION / RESULTS */
+    .conclusion-wrap{
+      border:1px solid var(--border);
+      border-radius:6px;
+      overflow:hidden;
+      background:var(--white);
+      display:none;
+    }
+    .conclusion-wrap.show{ display:block; }
+    .conclusion-header{
+      background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 100%);
+      color:var(--white);
+      padding:28px;
+    }
+    .conclusion-header .step-badge{
+      background:rgba(255,255,255,0.18);
+      color:var(--white);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      padding:4px 10px;
+      border-radius:3px;
+      display:inline-block;
+      margin-bottom:10px;
+    }
+    .conclusion-header h2{
+      font-size:24px;
+      font-weight:700;
+      color:var(--white);
+    }
+    .conclusion-body{
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    /* SCORE ROW */
+    .score-row{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      background:var(--bg-light);
+      border:1px solid var(--border);
+      border-radius:6px;
+      padding:16px 20px;
+    }
+    .score-circle{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      flex-shrink:0;
+      background:var(--navy);
+      color:var(--white);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+    }
+    .score-circle .score-num{font-size:22px;line-height:1}
+    .score-circle .score-denom{font-size:11px;opacity:.8}
+    .score-text strong{font-size:18px;display:block;margin-bottom:4px}
+    .score-text p{font-size:17px;color:var(--text-mid);margin:0}
+
+    /* BREAKDOWN SECTION */
+    .breakdown-heading{
+      font-size:13px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.07em;
+      color:var(--neutral);
+      margin-bottom:2px;
+    }
+    .breakdown-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .breakdown-item{
+      border-radius:5px;
+      padding:14px 16px;
+      font-size:17px;
+      line-height:1.6;
+      color:var(--text-dark);
+      background:var(--bg-light);
+      border:1px solid var(--border);
+    }
+    .breakdown-item.correct{
+      border-left:4px solid var(--green);
+      background:#f6fff6;
+    }
+    .breakdown-item.incorrect{
+      border-left:4px solid var(--red);
+      background:#fff5f5;
+    }
+    .breakdown-item-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:6px;
+    }
+    .breakdown-status{
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.07em;
+      flex-shrink:0;
+    }
+    .breakdown-status.correct{ color:var(--green); }
+    .breakdown-status.incorrect{ color:var(--red); }
+    .breakdown-zone{
+      font-size:17px;
+      font-weight:700;
+      color:var(--text-dark);
+    }
+    .breakdown-ext{
+      font-size:14px;
+      color:var(--text-mid);
+      margin-bottom:4px;
+    }
+    .breakdown-why{
+      font-size:17px;
+      color:var(--text-dark);
+      line-height:1.6;
+    }
+
+    /* END ACTIONS */
+    .end-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .end-actions-note{
+      font-size:17px;
+      color:var(--text-dark);
+      line-height:1.5;
+      flex:1;
+    }
+    .btn-outline{
+      background:var(--white);
+      color:var(--teal);
+      border:2px solid var(--teal);
+      border-radius:5px;
+      padding:10px 24px;
+      font-family:var(--font);
+      font-size:17px;
+      font-weight:700;
+      cursor:pointer;
+      min-height:44px;
+      flex-shrink:0;
+      transition:background 0.15s, color 0.15s;
+    }
+    .btn-outline:hover{
+      background:var(--teal);
+      color:var(--white);
+    }
+    .btn-outline:focus-visible{ outline:3px solid var(--navy); outline-offset:2px; }
+
+    /* RESPONSIVE */
+    @media(max-width:700px){
+      .zone-grid{ grid-template-columns:repeat(2,1fr); }
+      .extinguisher-tray{ justify-content:center; }
+    }
+    @media(max-width:420px){
+      .zone-grid{ grid-template-columns:1fr; }
+    }
+
+    /* DRAG GHOST */
+    #drag-ghost{
+      position:fixed;
+      pointer-events:none;
+      z-index:9999;
+      transform:translate(-50%,-50%) rotate(3deg) scale(1.08);
+      opacity:0.92;
+      display:none;
+    }
+  </style>
+</head>
+<body>
+<div id="app" role="main">
+
+  <!-- INTERACTION SCREEN -->
+  <div id="interaction-screen">
+    <div class="act-header">
+      <span class="step-badge">Fire Safety</span>
+      <h2 tabindex="-1" id="main-heading">Fire Extinguisher Types</h2>
+      <p>Match each extinguisher to the location where it belongs. Drag each extinguisher to its correct zone.</p>
+    </div>
+
+    <div class="act-body">
+      <div class="tray-label">Extinguisher Types — Drag to Match</div>
+      <div class="extinguisher-tray" id="tray" role="list" aria-label="Available extinguishers"></div>
+
+      <div class="zones-label">Zones — Drop Here</div>
+      <div class="zone-grid" id="zone-grid" role="list" aria-label="Location zones"></div>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div class="conclusion-wrap" id="conclusion-screen" role="region" aria-label="Activity complete" aria-live="polite">
+    <div class="conclusion-header">
+      <span class="step-badge">Activity Complete</span>
+      <h2 tabindex="-1" id="conclusion-heading">Fire Extinguisher Types — Your Results</h2>
+    </div>
+    <div class="conclusion-body" id="conclusion-body">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+</div>
+
+<div id="drag-ghost"></div>
+
+<script>
+/* DATA */
+const extinguishers = [
+  { id:'ext-a',   type:'A',   label:'Class A',     sub:'Pressurized Water', color:'silver' },
+  { id:'ext-abc', type:'ABC', label:'Class ABC',    sub:'Dry Chemical',      color:'red'    },
+  { id:'ext-bc',  type:'BC',  label:'Class BC',     sub:'Dry Chemical',      color:'red-bc' },
+  { id:'ext-k',   type:'K',   label:'Class K',      sub:'Wet Chemical',      color:'yellow' },
+  { id:'ext-nm',  type:'NM',  label:'Non-Magnetic', sub:'MRI Safe',          color:'white'  }
+];
+
+const zones = [
+  {
+    id:'zone-mri',
+    name:'MRI Room',
+    correctExt:'ext-nm',
+    scene:'mri',
+    explanation:'Contains no metal parts. Safe for use near powerful magnetic fields where standard extinguishers become dangerous projectiles.'
+  },
+  {
+    id:'zone-kitchen',
+    name:'Kitchen Area',
+    correctExt:'ext-k',
+    scene:'kitchen',
+    explanation:'Contains wet chemical agent that reacts with cooking oils and fats to smother flames. Designed for high-temperature grease fires.'
+  },
+  {
+    id:'zone-or',
+    name:'Operating Room',
+    correctExt:'ext-bc',
+    scene:'or',
+    explanation:'Contains dry chemical that handles flammable liquids and electrical fires without leaving residue that damages sensitive equipment. No water that could cause electrical hazards.'
+  },
+  {
+    id:'zone-office',
+    name:'General Office / Hallway',
+    correctExt:'ext-abc',
+    scene:'office',
+    explanation:'Contains dry chemical effective against ordinary combustibles, flammable liquids, and electrical fires. The right choice for mixed-use spaces.'
+  },
+  {
+    id:'zone-paper',
+    name:'Paper Records Room',
+    correctExt:'ext-a',
+    scene:'paper',
+    explanation:'Contains pressurized water that cools and soaks ordinary combustibles like paper and cardboard. Not safe near electrical equipment.'
+  }
+];
+
+/* SVG GENERATORS */
+function extSVG(color, typeLabel, size) {
+  const w = size === 'large' ? 52 : 28;
+  const h = size === 'large' ? 80 : 44;
+  const bodyColors = {
+    'silver': { body:'#C0C0C0', shine:'#E8E8E8', band:'#888',    label:'#333' },
+    'red':    { body:'#CC2200', shine:'#FF5533', band:'#880000', label:'#FFF' },
+    'red-bc': { body:'#BB1100', shine:'#EE4422', band:'#770000', label:'#FFF' },
+    'yellow': { body:'#D4A017', shine:'#F0C830', band:'#8B6914', label:'#222' },
+    'white':  { body:'#F0F0F0', shine:'#FFFFFF', band:'#222222', label:'#222' }
+  };
+  const c = bodyColors[color] || bodyColors['red'];
+  const cx = w / 2;
+  return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <rect x="${cx-4}" y="2" width="8" height="5" rx="2" fill="${c.band}"/>
+    <rect x="${cx-9}" y="5" width="18" height="3" rx="1.5" fill="${c.band}"/>
+    <rect x="${cx-3}" y="8" width="6" height="5" rx="1" fill="${c.band}"/>
+    <ellipse cx="${cx}" cy="16" rx="${w*0.38}" ry="5" fill="${c.body}"/>
+    <rect x="${cx-w*0.36}" y="14" width="${w*0.72}" height="${h*0.58}" rx="${w*0.13}" fill="${c.body}"/>
+    <rect x="${cx-w*0.22}" y="16" width="${w*0.1}" height="${h*0.50}" rx="3" fill="${c.shine}" opacity="0.55"/>
+    <rect x="${cx-w*0.36}" y="${14+h*0.18}" width="${w*0.72}" height="${h*0.20}" rx="2" fill="${c.band}" opacity="0.9"/>
+    <text x="${cx}" y="${14+h*0.18+h*0.12}" text-anchor="middle" font-family="Verdana,Geneva,sans-serif" font-size="${size==='large'?9:6}" font-weight="700" fill="${c.label}">${typeLabel}</text>
+    <ellipse cx="${cx}" cy="${14+h*0.58}" rx="${w*0.36}" ry="4" fill="${c.band}" opacity="0.7"/>
+    <line x1="${cx+w*0.36}" y1="${14+h*0.25}" x2="${cx+w*0.5}" y2="${14+h*0.35}" stroke="${c.band}" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="${cx+w*0.5}" cy="${14+h*0.35}" r="2.5" fill="${c.band}"/>
+  </svg>`;
+}
+
+function flameSVG(hue) {
+  const id = 'fg' + Math.random().toString(36).slice(2,7);
+  return `<svg viewBox="0 0 20 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="${id}" cx="50%" cy="80%" r="60%">
+        <stop offset="0%" stop-color="#FFEE00"/>
+        <stop offset="45%" stop-color="${hue}"/>
+        <stop offset="100%" stop-color="#990000" stop-opacity="0.7"/>
+      </radialGradient>
+    </defs>
+    <path d="M10,34 C3,28 1,22 4,16 C5,13 4,9 6,6 C7,10 9,11 10,8 C11,5 12,2 14,0 C14,5 12,9 14,13 C15,10 16,8 18,8 C17,12 16,16 17,20 C18,24 17,30 10,34 Z" fill="url(#${id})"/>
+  </svg>`;
+}
+
+function sceneSVG(scene) {
+  const scenes = {
+    mri:`<svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="5" y="18" width="60" height="36" rx="18" fill="#888" stroke="#555" stroke-width="1.5"/>
+      <ellipse cx="35" cy="36" rx="14" ry="14" fill="#333"/>
+      <ellipse cx="35" cy="36" rx="11" ry="11" fill="#1a1a2e"/>
+      <rect x="20" y="46" width="30" height="6" rx="2" fill="#CCC" stroke="#999" stroke-width="1"/>
+      <rect x="10" y="22" width="12" height="6" rx="1" fill="#3a3a3a"/>
+      <circle cx="13" cy="25" r="1.5" fill="#00FF88"/>
+      <circle cx="17" cy="25" r="1.5" fill="#FF4400" opacity="0.6"/>
+      <text x="35" y="14" text-anchor="middle" font-family="Verdana" font-size="8" font-weight="700" fill="#555">MRI</text>
+    </svg>`,
+    kitchen:`<svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="8" y="28" width="54" height="32" rx="3" fill="#666" stroke="#444" stroke-width="1"/>
+      <rect x="8" y="22" width="54" height="10" rx="3" fill="#555" stroke="#333" stroke-width="1"/>
+      <ellipse cx="24" cy="27" rx="8" ry="5" fill="#333" stroke="#222" stroke-width="1"/>
+      <ellipse cx="46" cy="27" rx="8" ry="5" fill="#333" stroke="#222" stroke-width="1"/>
+      <ellipse cx="24" cy="27" rx="4" ry="2.5" fill="#444"/>
+      <ellipse cx="46" cy="27" rx="4" ry="2.5" fill="#444"/>
+      <rect x="14" y="18" width="20" height="6" rx="8" fill="#888" stroke="#555" stroke-width="1"/>
+      <rect x="20" y="34" width="30" height="18" rx="2" fill="#444" stroke="#333" stroke-width="1"/>
+      <rect x="23" y="37" width="24" height="12" rx="2" fill="#2a2a2a"/>
+    </svg>`,
+    or:`<svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="38" width="50" height="8" rx="3" fill="#CCC" stroke="#999" stroke-width="1"/>
+      <rect x="18" y="46" width="6" height="12" rx="2" fill="#AAA" stroke="#888" stroke-width="1"/>
+      <rect x="46" y="46" width="6" height="12" rx="2" fill="#AAA" stroke="#888" stroke-width="1"/>
+      <ellipse cx="35" cy="34" rx="8" ry="6" fill="#DDD" stroke="#BBB" stroke-width="1"/>
+      <rect x="22" y="36" width="26" height="4" rx="2" fill="#DDD"/>
+      <rect x="30" y="4" width="4" height="20" rx="2" fill="#888"/>
+      <rect x="22" y="22" width="26" height="8" rx="4" fill="#999" stroke="#777" stroke-width="1"/>
+      <ellipse cx="35" cy="26" rx="10" ry="3" fill="#FFEE99" opacity="0.7"/>
+      <text x="35" y="14" text-anchor="middle" font-family="Verdana" font-size="9" font-weight="700" fill="#1B365D">OR</text>
+    </svg>`,
+    office:`<svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="6" y="42" width="58" height="6" rx="2" fill="#C8A87A" stroke="#9A7A55" stroke-width="1"/>
+      <rect x="10" y="48" width="4" height="14" rx="1" fill="#AA8A5A"/>
+      <rect x="56" y="48" width="4" height="14" rx="1" fill="#AA8A5A"/>
+      <rect x="22" y="22" width="26" height="20" rx="3" fill="#333" stroke="#222" stroke-width="1"/>
+      <rect x="24" y="24" width="22" height="14" rx="1" fill="#1a2a4a"/>
+      <rect x="26" y="26" width="14" height="1.5" rx="1" fill="#4488FF" opacity="0.7"/>
+      <rect x="26" y="29" width="10" height="1.5" rx="1" fill="#4488FF" opacity="0.5"/>
+      <rect x="26" y="32" width="12" height="1.5" rx="1" fill="#4488FF" opacity="0.5"/>
+      <rect x="33" y="42" width="4" height="4" rx="1" fill="#444"/>
+      <rect x="29" y="44" width="12" height="2" rx="1" fill="#444"/>
+      <rect x="20" y="46" width="20" height="4" rx="2" fill="#888" stroke="#666" stroke-width="0.5"/>
+    </svg>`,
+    paper:`<svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="14" y="18" width="42" height="44" rx="3" fill="#999" stroke="#777" stroke-width="1"/>
+      <rect x="17" y="22" width="36" height="10" rx="2" fill="#BBB" stroke="#888" stroke-width="0.5"/>
+      <rect x="17" y="35" width="36" height="10" rx="2" fill="#BBB" stroke="#888" stroke-width="0.5"/>
+      <rect x="17" y="48" width="36" height="10" rx="2" fill="#BBB" stroke="#888" stroke-width="0.5"/>
+      <rect x="31" y="26" width="8" height="2" rx="1" fill="#888"/>
+      <rect x="31" y="39" width="8" height="2" rx="1" fill="#888"/>
+      <rect x="31" y="52" width="8" height="2" rx="1" fill="#888"/>
+      <rect x="22" y="12" width="6" height="10" rx="1" fill="#FFF" stroke="#DDD" stroke-width="0.5"/>
+      <rect x="30" y="10" width="6" height="12" rx="1" fill="#FFFDE7" stroke="#DDD" stroke-width="0.5"/>
+      <rect x="38" y="13" width="6" height="9" rx="1" fill="#FFF" stroke="#DDD" stroke-width="0.5"/>
+    </svg>`
+  };
+  return scenes[scene] || scenes['office'];
+}
+
+/* STATE */
+let placed = {};
+let selectedExt = null;
+let dragExtId = null;
+
+/* UTILITIES */
+function focusSilently(el) {
+  if (!el) return;
+  el.style.outline = 'none';
+  el.focus();
+  el.addEventListener('blur', () => { el.style.outline = ''; }, { once: true });
+}
+
+function isExtPlaced(extId) {
+  return Object.values(placed).some(p => p.extId === extId);
+}
+
+/* BUILD TRAY */
+function buildTray() {
+  const tray = document.getElementById('tray');
+  tray.innerHTML = '';
+  extinguishers.forEach(ext => {
+    const alreadyPlaced = isExtPlaced(ext.id);
+    const card = document.createElement('div');
+    card.className = 'ext-card' + (alreadyPlaced ? ' placed' : '');
+    card.id = ext.id;
+    card.setAttribute('role', 'listitem');
+    card.setAttribute('draggable', alreadyPlaced ? 'false' : 'true');
+    card.setAttribute('tabindex', alreadyPlaced ? '-1' : '0');
+    card.setAttribute('aria-pressed', 'false');
+    card.setAttribute('aria-label',
+      `${ext.label}, ${ext.sub}. ${alreadyPlaced ? 'Already placed.' : 'Drag or press Enter to select.'}`);
+    card.innerHTML = `
+      <div class="ext-svg">${extSVG(ext.color, ext.type, 'large')}</div>
+      <div class="ext-card-label">${ext.label}</div>
+      <div class="ext-card-sub">${ext.sub}</div>
+    `;
+
+    if (!alreadyPlaced) {
+      card.addEventListener('dragstart', (e) => {
+        dragExtId = ext.id;
+        card.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', ext.id);
+        const ghost = document.getElementById('drag-ghost');
+        ghost.innerHTML = `<div style="background:white;border:2px solid #00B4A6;border-radius:6px;padding:8px;box-shadow:0 4px 16px rgba(0,0,0,0.25)">${extSVG(ext.color, ext.type, 'large')}</div>`;
+        ghost.style.display = 'block';
+        try { e.dataTransfer.setDragImage(ghost, 30, 45); } catch(err) {}
+      });
+      card.addEventListener('dragend', () => {
+        card.classList.remove('dragging');
+        dragExtId = null;
+        document.getElementById('drag-ghost').style.display = 'none';
+      });
+
+      card.addEventListener('click', () => {
+        if (selectedExt === ext.id) {
+          selectedExt = null;
+          card.setAttribute('aria-pressed', 'false');
+        } else {
+          document.querySelectorAll('.ext-card').forEach(c => c.setAttribute('aria-pressed', 'false'));
+          selectedExt = ext.id;
+          card.setAttribute('aria-pressed', 'true');
+        }
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+      });
+    }
+
+    tray.appendChild(card);
+  });
+}
+
+/* BUILD ZONES */
+function buildZones() {
+  const grid = document.getElementById('zone-grid');
+  grid.innerHTML = '';
+
+  zones.forEach(zone => {
+    const placement = placed[zone.id];
+    const hasPlacement = !!placement;
+    const isCorrect = hasPlacement && placement.correct;
+    const isIncorrect = hasPlacement && !placement.correct;
+    const isLocked = hasPlacement;
+
+    let zoneClass = 'drop-zone';
+    if (isCorrect) zoneClass += ' correct';
+    if (isIncorrect) zoneClass += ' incorrect';
+
+    const zoneEl = document.createElement('div');
+    zoneEl.className = zoneClass;
+    zoneEl.id = zone.id;
+    zoneEl.setAttribute('role', 'listitem');
+    zoneEl.setAttribute('tabindex', '0');
+    zoneEl.setAttribute('aria-label',
+      `${zone.name}. ${isCorrect ? 'Correctly matched.' : isIncorrect ? 'Incorrect match.' : 'Drop zone.'}`);
+    zoneEl.setAttribute('aria-dropeffect', isLocked ? 'none' : 'move');
+
+    const showFlame = !isCorrect;
+    const flameHTML = showFlame ? `
+      <div class="flame-wrap" aria-hidden="true">
+        <span class="flame" id="flame-${zone.id}">
+          ${flameSVG('#FF5500')}
+        </span>
+        <span class="smoke" id="smoke-${zone.id}">
+          <svg width="30" height="20" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="15" cy="10" rx="12" ry="7" fill="#888" opacity="0.6"/>
+          </svg>
+        </span>
+      </div>
+    ` : '';
+
+    const correctExtObj = extinguishers.find(e => e.id === zone.correctExt);
+    const placedExtObj = hasPlacement ? extinguishers.find(e => e.id === placement.extId) : null;
+    const miniExtDisplay = placedExtObj || correctExtObj;
+    const miniExtHTML = `
+      <div class="zone-placed-ext${hasPlacement ? ' show' : ''}" id="mini-${zone.id}" aria-hidden="true">
+        ${extSVG(miniExtDisplay.color, miniExtDisplay.type, 'small')}
+      </div>
+    `;
+
+    let resultLabel = '';
+    if (isCorrect) resultLabel = `<div class="zone-result-label correct" aria-live="polite">&#10003; Correct</div>`;
+    if (isIncorrect) resultLabel = `<div class="zone-result-label incorrect" aria-live="polite">&#10007; Incorrect</div>`;
+
+    zoneEl.innerHTML = `
+      ${flameHTML}
+      <div class="zone-scene" aria-hidden="true">${sceneSVG(zone.scene)}</div>
+      ${miniExtHTML}
+      <div class="zone-name">${zone.name}</div>
+      ${resultLabel}
+    `;
+
+    if (!isLocked) {
+      zoneEl.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        zoneEl.classList.add('drag-over');
+      });
+      zoneEl.addEventListener('dragleave', () => {
+        zoneEl.classList.remove('drag-over');
+      });
+      zoneEl.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zoneEl.classList.remove('drag-over');
+        const extId = e.dataTransfer.getData('text/plain') || dragExtId;
+        if (extId) handleDrop(zone.id, extId);
+      });
+
+      zoneEl.addEventListener('click', () => {
+        if (selectedExt) {
+          handleDrop(zone.id, selectedExt);
+          selectedExt = null;
+          document.querySelectorAll('.ext-card').forEach(c => c.setAttribute('aria-pressed', 'false'));
+        }
+      });
+      zoneEl.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && selectedExt) {
+          e.preventDefault();
+          zoneEl.click();
+        }
+      });
+    }
+
+    grid.appendChild(zoneEl);
+  });
+}
+
+/* HANDLE DROP */
+function handleDrop(zoneId, extId) {
+  const zone = zones.find(z => z.id === zoneId);
+  if (!zone) return;
+  if (placed[zoneId]) return;
+
+  const isCorrect = extId === zone.correctExt;
+  placed[zoneId] = { extId, correct: isCorrect };
+
+  if (isCorrect) {
+    buildTray();
+    buildZones();
+    const flameEl = document.getElementById(`flame-${zoneId}`);
+    const smokeEl = document.getElementById(`smoke-${zoneId}`);
+    if (flameEl) {
+      flameEl.classList.add('extinguished');
+      if (smokeEl) setTimeout(() => smokeEl.classList.add('show'), 100);
+    }
+    const allDone = zones.every(z => placed[z.id]);
+    if (allDone) setTimeout(showResults, 900);
+  } else {
+    buildTray();
+    buildZones();
+    const zoneEl = document.getElementById(zoneId);
+    if (zoneEl) {
+      zoneEl.classList.add('incorrect-flash');
+      setTimeout(() => zoneEl.classList.remove('incorrect-flash'), 600);
+    }
+    const allDone = zones.every(z => placed[z.id]);
+    if (allDone) setTimeout(showResults, 900);
+  }
+}
+
+/* RESULTS SCREEN */
+function showResults() {
+  document.getElementById('interaction-screen').style.display = 'none';
+
+  const correctCount = zones.filter(z => placed[z.id] && placed[z.id].correct).length;
+  const total = zones.length;
+
+  const scoreText = correctCount === total
+    ? 'All correct. Well done.'
+    : `${correctCount} of ${total} correct. Review the breakdown below.`;
+
+  const breakdownHTML = zones.map(zone => {
+    const placement = placed[zone.id];
+    const isCorrect = placement && placement.correct;
+    const correctExtObj = extinguishers.find(e => e.id === zone.correctExt);
+    const placedExtObj = extinguishers.find(e => e.id === (placement ? placement.extId : null));
+
+    const statusLabel = isCorrect ? 'Correct' : 'Incorrect';
+    const placedNote = (!isCorrect && placedExtObj)
+      ? `<div class="breakdown-ext">You placed: ${placedExtObj.label} (${placedExtObj.sub})</div>`
+      : '';
+
+    return `
+      <div class="breakdown-item ${isCorrect ? 'correct' : 'incorrect'}">
+        <div class="breakdown-item-header">
+          <span class="breakdown-status ${isCorrect ? 'correct' : 'incorrect'}">${statusLabel}</span>
+          <span class="breakdown-zone">${zone.name}</span>
+        </div>
+        <div class="breakdown-ext">Correct extinguisher: ${correctExtObj.label} (${correctExtObj.sub})</div>
+        ${placedNote}
+        <div class="breakdown-why">${zone.explanation}</div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('conclusion-body').innerHTML = `
+    <div class="score-row" role="status" aria-label="${correctCount} of ${total} correct">
+      <div class="score-circle" aria-hidden="true">
+        <span class="score-num">${correctCount}</span>
+        <span class="score-denom">/ ${total}</span>
+      </div>
+      <div class="score-text">
+        <strong>${scoreText}</strong>
+        <p>Review each zone below to see why each extinguisher type is used there.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="breakdown-heading">Extinguisher Breakdown</div>
+    </div>
+    <div class="breakdown-list">
+      ${breakdownHTML}
+    </div>
+
+    <div class="end-actions">
+      <p class="end-actions-note">Review the breakdown above, then click "Try Again" if you would like another attempt.</p>
+      <button class="btn-outline" id="try-again-btn" type="button">Try Again</button>
+    </div>
+  `;
+
+  const cs = document.getElementById('conclusion-screen');
+  cs.classList.add('show');
+  focusSilently(document.getElementById('conclusion-heading'));
+  try { window.parent.postMessage({ type: 'complete' }, '*'); } catch(e) {}
+
+  document.getElementById('try-again-btn').addEventListener('click', () => {
+    placed = {};
+    selectedExt = null;
+    dragExtId = null;
+    cs.classList.remove('show');
+    document.getElementById('interaction-screen').style.display = '';
+    buildTray();
+    buildZones();
+    focusSilently(document.getElementById('main-heading'));
+  });
+}
+
+/* INIT */
+buildTray();
+buildZones();
+focusSilently(document.getElementById('main-heading'));
+</script>
+</body>
+</html>
