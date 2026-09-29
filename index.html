@@ -106,34 +106,141 @@
     </section>
 
     <!-- Recent Impact -->
+    <style>
+        .impact-tiles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .impact-tile {
+            display: flex;
+            flex-direction: column;
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid #00B4A6;
+            color: #343A40;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .impact-tile:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 180, 166, 0.2);
+            border-top-color: #F07B3F;
+        }
+        .impact-tile-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        .impact-tile-body {
+            padding: 30px 35px 35px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .impact-tile-tag {
+            align-self: flex-start;
+            background: #00B4A6;
+            color: #FFFFFF;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .impact-tile h3 {
+            color: #1B365D;
+            font-size: 1.7em;
+            line-height: 1.25;
+            margin-bottom: 14px;
+        }
+        .impact-tile p {
+            font-size: 1.05em;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+        .impact-tile-stat {
+            margin-top: auto;
+            background: #FFF3CD;
+            border-left: 4px solid #F07B3F;
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-weight: 700;
+            color: #F07B3F;
+        }
+        .impact-tile-stat.pending {
+            background: #F8F9FA;
+            border-left-color: #E9ECEF;
+            color: #6C757D;
+            font-style: italic;
+        }
+        .impact-tile-link {
+            margin-top: 18px;
+            color: #1B365D;
+            font-weight: 700;
+        }
+        .impact-all {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .btn-xl {
+            display: inline-block;
+            width: 100%;
+            max-width: 1100px;
+            padding: 22px 40px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border-radius: 10px;
+            background: #1B365D;
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+        .btn-xl:hover {
+            background: #F07B3F;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(240, 123, 63, 0.3);
+        }
+        @media (max-width: 768px) {
+            .impact-tiles { grid-template-columns: 1fr; }
+            .impact-tile-img { height: 220px; }
+            .impact-tile-body { padding: 25px; }
+        }
+    </style>
     <section class="recent-work">
         <div class="section-container">
             <h2 class="section-title">Recent Impact</h2>
 
-            <div class="work-highlight">
-                <span class="project-tag">AI-Integrated Leadership Development</span>
-                <h3>Innovation Forge</h3>
+            <div class="impact-tiles">
+                <a href="projects/forge-coach.html" class="impact-tile">
+                    <img class="impact-tile-img" src="projects/forge-coach/photo-bridge-finished.jpg" alt="Leaders' finished Lego bridge from the Innovation Forge simulation">
+                    <div class="impact-tile-body">
+                        <span class="impact-tile-tag">AI-Integrated Leadership Development</span>
+                        <h3>Innovation Forge</h3>
+                        <p>A 60-minute leadership simulation for director-level and above healthcare leaders, pairing a Lego bridge-building crisis with a custom Microsoft Copilot coaching agent.</p>
+                        <div class="impact-tile-stat">80+ leaders &nbsp;|&nbsp; 4.66/5 likelihood to apply skills</div>
+                        <span class="impact-tile-link">See the project &rarr;</span>
+                    </div>
+                </a>
 
-                <p>A 60-minute leadership simulation for director-level and above healthcare leaders. Teams rotate through a command structure, work a Lego bridge-building crisis, and consult a custom-built Microsoft Copilot agent that coaches with questions instead of answers.</p>
-
-                <div class="result-highlight">
-                    <strong>Impact:</strong> Delivered to 80+ director-level leaders at the annual Learning and Leadership Symposium. Rated 4.66/5 for likelihood to apply skills and 4.5/5 for engagement.
-                </div>
-
-                <div style="margin-top: 20px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
-                    <a href="projects/forge-coach.html" class="btn btn-primary">See the Project</a>
-                    <a href="projects.html" style="color: #1B365D; font-weight: 600;">See All Projects</a>
-                </div>
+                <a href="https://www.atdsouthcarolina.org/event-6681411" target="_blank" class="impact-tile">
+                    <img class="impact-tile-img" src="assets/images/atdsc-flyer-06052026.jpeg" alt="ATD South Carolina 80th Anniversary Learning Event flyer: From Ideas to Assets" style="object-position: top;">
+                    <div class="impact-tile-body">
+                        <span class="impact-tile-tag">Speaking</span>
+                        <h3>From Ideas to Assets: Developing Your AI Workflow</h3>
+                        <p>Co-presented a hands-on AI workflow workshop at the ATD South Carolina 80th Anniversary Learning Event, June 2026, alongside Kasey McClure and Artrell Williams, CPTM, CPTD.</p>
+                        <!-- SESSION DATA: replace this line with attendance and rating, and remove the "pending" class -->
+                        <div class="impact-tile-stat pending">Data soon to come</div>
+                        <span class="impact-tile-link">About the event &rarr;</span>
+                    </div>
+                </a>
             </div>
 
-            <!-- Speaking: staged for next iteration. Add session data where marked. -->
-            <div style="max-width: 1000px; margin: 30px auto 0; background: #FFFFFF; border-radius: 10px; padding: 30px 40px; border-left: 5px solid #F07B3F; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);">
-                <span style="display: inline-block; color: #F07B3F; font-weight: 700; font-size: 0.85em; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Speaking</span>
-                <h3 style="color: #1B365D; font-size: 1.3em; margin-bottom: 10px;">From Ideas to Assets: Developing Your AI Workflow for Learning Solutions</h3>
-                <p style="margin: 0; color: #343A40;">Co-presented a hands-on AI workflow workshop at the ATD South Carolina 80th Anniversary Learning Event, June 2026, alongside Kasey McClure and Artrell Williams, CPTM, CPTD.</p>
-                <!-- SESSION DATA: add attendance and rating here, for example:
-                <p style="margin: 12px 0 0; color: #343A40;"><strong style="color: #F07B3F;">[##] attendees</strong> &nbsp;|&nbsp; <strong style="color: #F07B3F;">[#.#]/5</strong> session rating</p>
-                -->
+            <div class="impact-all">
+                <a href="projects.html" class="btn-xl">See All Projects</a>
             </div>
         </div>
     </section>
